@@ -10,6 +10,7 @@ body {
 nav {
     background: rgb(132, 187, 189);
     padding: 20px;
+    height: 100%;
 }
 
 nav ul {
@@ -28,7 +29,7 @@ nav li a:hover {
     color: white !important ;
 }
 
-#bemVindoContainer {
+#cadastroContainer {
     padding: 20px;
     background-color: #f1f1f1;
     height: 100% !important;
@@ -37,6 +38,10 @@ nav li a:hover {
 #page-header {
     background-color: rgb(41, 40, 40);
     color: white;
+}
+
+input {
+    width: 90% !important;
 }
 
 footer {
@@ -50,7 +55,7 @@ footer {
         padding: 20px;
     }
 
-    #bemVindoContainer {
+    #cadastroContainer {
         padding-right: 20px !important;
     }
 }
