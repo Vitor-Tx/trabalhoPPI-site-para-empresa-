@@ -1,5 +1,6 @@
 var clientes = [
     {
+        "id": 1,
         "nome": "Guilherme Bartasson",
         "cpf": "137.682.906-11",
         "endereco": "Rua Guaporé 526, Bairro Santa Rosa, Uberlândia - MG",
@@ -10,6 +11,7 @@ var clientes = [
         "profissão": "Analista de Automação"
     },
     {
+        "id": 2,
         "nome": "Sebastião Mota",
         "cpf": "987.654.321-87",
         "endereco": "Rua A 123, Bairro Estrela, Passo Fundo - AC",

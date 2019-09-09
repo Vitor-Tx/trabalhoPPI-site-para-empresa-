@@ -32,6 +32,12 @@ trabalho da faculdade que envolve linguagens de programação web
 
 ### Casa
 
+- Rua
+- Bairro
+- Cidade
+- Estado
+- Proprietarios
+- Tipo Transação
 - Quantidade de Quartos
 - Quantidade de Suítes
 - Quantidade de Salas de Estar
@@ -40,9 +46,22 @@ trabalho da faculdade que envolve linguagens de programação web
 - Área
 - Possui Armário Embutido
 - Descrição
+- Valor de Venda/Aluguel
+- Valor Real de Venda/Aluguel
+- Porcentagem Imobiliária
+- Data início Venda/Aluguel
+- Data fim Venda/Aluguel
+- Vendido/Alugado
+- Funcionário Responsável
 
 ### Apartamento
 
+- Rua
+- Bairro
+- Cidade
+- Estado
+- Proprietarios
+- Tipo Transação
 - Quantidade de Quartos
 - Quantidade de Suítes
 - Quantidade de Salas de Estar
@@ -51,6 +70,13 @@ trabalho da faculdade que envolve linguagens de programação web
 - Área
 - Possui Armário Embutido
 - Descrição
+- Valor de Venda/Aluguel
+- Valor Real de Venda/Aluguel
+- Porcentagem Imobiliária
+- Data início Venda/Aluguel
+- Data fim Venda/Aluguel
+- Vendido/Alugado
+- Funcionário Responsável
 - Andar
 - Valor do Condomínio
 - Condomínio Possui Portaria 24 Horas
