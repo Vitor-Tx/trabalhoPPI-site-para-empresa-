@@ -1,0 +1,63 @@
+body {
+    background: gray;
+    height: 96vh;
+}
+
+.card {
+    border: none;
+}
+
+nav {
+    background: rgb(132, 187, 189);
+    padding: 20px;
+    height: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li a {
+    text-decoration: none !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+nav li a:hover {
+    cursor: pointer;
+    color: white !important ;
+}
+
+#container-funcionarios {
+    padding: 20px;
+    padding-top: 0px;
+    background-color: #f1f1f1;
+    height: 100% !important;
+}
+
+#page-header {
+    background-color: rgb(41, 40, 40);
+    color: white;
+}
+
+.box-funcionario {
+    background: rgb(147, 230, 235);
+    padding: 30px;
+}
+
+footer {
+    padding: 20px;
+    background-color: rgb(41, 40, 40);
+    color: white;
+}
+
+@media (max-width: 575px) {
+    section {
+        padding: 20px;
+    }
+
+    #container-funcionarios {
+        padding-right: 20px !important;
+    }
+}
