@@ -27,3 +27,30 @@ trabalho da faculdade que envolve linguagens de programação web
 - Sexo
 - Estado Civil
 - Profissão
+
+## Informações relativas aos imóveis
+
+### Casa
+
+- Quantidade de Quartos
+- Quantidade de Suítes
+- Quantidade de Salas de Estar
+- Quantidades de Sala de Jantar
+- Número de Vagas na Garagem
+- Área
+- Possui Armário Embutido
+- Descrição
+
+### Apartamento
+
+- Quantidade de Quartos
+- Quantidade de Suítes
+- Quantidade de Salas de Estar
+- Quantidades de Sala de Jantar
+- Número de Vagas na Garagem
+- Área
+- Possui Armário Embutido
+- Descrição
+- Andar
+- Valor do Condomínio
+- Condomínio Possui Portaria 24 Horas
