@@ -93,7 +93,7 @@ window.onload = () => {
                           "</div>");
             } else if (imovel.tipoTransacao === "Aluguel") {
                 saida += ("<div class='row mt-2 ml-1'>" +
-                              "<label for='valorAluguel'><strong>Valor do Aluguel:&nbsp&nbsp</strong></label>" +
+                              "<label for='valorAluguel'><strong>Valor do    Aluguel:&nbsp&nbsp</strong></label>" +
                               "<span name='valorAluguel'>" + imovel.valorAluguel + "</span>" +
                           "</div>" +
                           "<div class='row mt-2 ml-1'>" +
