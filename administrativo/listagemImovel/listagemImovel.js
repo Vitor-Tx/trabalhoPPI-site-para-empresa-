@@ -21,7 +21,7 @@ window.onload = () => {
                                 "</div>");
 
             imovel.proprietarios.forEach(function(proprietario) {
-                saida += ("<div class='row ml-1'>" +
+                saida += ("<div class='row mt-2 ml-1'>" +
                             "<label for='proprietario" + counterProprietario + "'><strong>Proprietario" + counterProprietario + ":&nbsp&nbsp</strong></label>" +
                             "<span name='proprietario" + counterProprietario + "'>" + proprietario + "</span>" +
                         "</div>");
@@ -144,7 +144,7 @@ window.onload = () => {
                     "</div>");
 
             imovel.proprietarios.forEach(function(proprietario) {
-                saida += ("<div class='row ml-1'>" +
+                saida += ("<div class='row mt-2 ml-1'>" +
                             "<label for='proprietario" + counterProprietario + "'><strong>Proprietario" + counterProprietario + ":&nbsp&nbsp</strong></label>" +
                             "<span name='proprietario" + counterProprietario + "'>" + proprietario + "</span>" +
                         "</div>");
