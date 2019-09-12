@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<title>Pesquisa</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/pesquisa.css">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	</head>
+	<body>
+	    <section class="row">
+	        <div class="col px-0">
+	            <nav class="navbar navbar-expand-lg justify-content-center">
+	                <a class="navbar-brand" href="#"><img style="max-width:90px; margin-top: -7px;" src="imagens/logo-bonfins3.png"></a>
+
+	                <ul class="navbar-nav">
+	                    <li class="nav-item"><a class="nav-link " href="#home">Home</a></li>
+	                    <li class="nav-item">
+	                        <a class="nav-link " href="#galeria">Galeria</a>
+	                    </li>
+	                    <li class="nav-item"><a class="nav-link " href="# ">Cadastro</a></li>
+	                    <li class="nav-item"><a class="nav-link " href="# ">Login</a></li>
+	                    <li class="nav-item"><a class="nav-link " href="# ">Pesquisar Imóvel</a></li>
+	                    <li class="nav-item"><a class="nav-link " href="#quem-somos">Quem somos?</a></li>
+	                    <li class="nav-item"><a class="nav-link " href="#contato">Contato</a></li>
+	                </ul>
+	            </nav>
+	        </div>
+	    </section>
+		<section class="row h-75" id="corpo">
+				<div class="col-3 border-right border-dark">
+					<div>
+						<form id="pesquisa" class="ml-2">
+							<label for="proposito">Propósito do usuário:</label>
+							<br>
+							<input type="radio" value="aquisicao" name="proposito">Aquisição
+							<input type="radio" value="locacao" name="proposito">Locação
+							<br>
+							<label for="bairro" class="mt-1">Bairro:</label>
+							<br>
+							<select name="bairro">
+								<option>Bairro1</option>
+								<option>Bairro2</option>
+								<option>Bairro3</option>
+							</select>
+							<br>
+							<label for="valorMin" class="mt-1">Valor mínimo:</label>
+							<br>
+							<input type="text" name="valorMin">
+							<br>
+							<label for="valorMax">Valor máximo:</label>
+							<br>
+							<input type="text" name="valorMax">
+							<p class="mt-1">Outras Informações:</p>
+							<textarea name="informacoes" rows="5" cols="30" class="info"></textarea>
+							<br>
+							<button>Buscar</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-9 overflow-auto">
+					<div>
+						<div class="row ml-3 mt-2 text-white">
+							<div class="col-3 border border-white corpoImovel">
+								<ul class="list-unstyled text-center">
+									<li>Apartamento</li>
+									<li>Uberlandia</li>
+									<li>Martins</li>
+									<li>Rua monte carmelo</li>
+									<li>2 Quartos</li>
+									<li>2 Banheiros</li>
+									<li>?? m²</li>
+									<li>Preço: R$9999,99</li>
+									<li><button>Tenho interesse</button></li>
+								</ul>
+							</div>
+							<div class="col-8 border border-white corpoImovel">
+								<div class="row">
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4  p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row ml-3 mt-2 text-white ">
+							<div class="col-3 border border-white corpoImovel">
+								<ul class="list-unstyled text-center">
+									<li>Apartamento</li>
+									<li>Uberlandia</li>
+									<li>Martins</li>
+									<li>Rua monte carmelo</li>
+									<li>2 Quartos</li>
+									<li>2 Banheiros</li>
+									<li>?? m²</li>
+									<li>Preço: R$9999,99</li>
+									<li><button>Tenho interesse</button></li>
+								</ul>
+							</div>
+							<div class="col-8 border border-white corpoImovel">
+								<div class="row">
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4  p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row ml-3 mt-2 text-white">
+							<div class="col-3 border border-white corpoImovel">
+								<ul class="list-unstyled text-center">
+									<li>Apartamento</li>
+									<li>Uberlandia</li>
+									<li>Martins</li>
+									<li>Rua monte carmelo</li>
+									<li>2 Quartos</li>
+									<li>2 Banheiros</li>
+									<li>?? m²</li>
+									<li>Preço: R$9999,99</li>
+									<li><button>Tenho interesse</button></li>
+								</ul>
+							</div>
+							<div class="col-8 border border-white corpoImovel">
+								<div class="row">
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4 p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+									<div class="col-4  p-0 mt-5">
+										<img src="imagens/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</section>
+		<div class="row" >
+            <div class="w-100" >
+                <footer class="text-center w-100">
+                    <small>Imobiliária Bonfins<span>&reg</span></small>
+                </footer>
+            </div>
+		</div>
+	</body>
+	<script src="../jquery/jquery-3.4.1.js "></script>
+	<script src="../popper/popper.min.js "></script>
+	<script src="../js/bootstrap.js "></script>
+</html>
