@@ -66,3 +66,16 @@ footer {
 .corpoImovel{
   background-color: rgb(70, 70, 70);
 }
+
+#corpoPesquisa{
+  position: fixed;
+  left: 0;
+  top: 100px;
+  z-index: 1030;
+}
+
+#corpoNav{
+  position: fixed;
+  top: 0;
+  z-index: 1030;
+}
