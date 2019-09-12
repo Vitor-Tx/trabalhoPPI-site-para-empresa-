@@ -9,7 +9,7 @@ img {
 }
 
 body {
-    background-image: url("/imagens/city.jpg");
+    background-image: url("assets/images/city.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
     background-attachment: fixed;
@@ -48,8 +48,7 @@ nav li a {
 
 nav li a:hover {
     cursor: pointer;
-    color: black;
-    background-color: white;
+    color: white !important;
 }
 
 #public-header {
