@@ -1,0 +1,57 @@
+p {
+    color: black;
+    font-size: 3vh;
+}
+
+img {
+    max-width: 90%;
+    height: auto;
+}
+
+body {
+    background-image: url("/imagens/city.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-weight: bolder;
+    color: rgb(7, 43, 30);
+}
+
+#article {
+    padding: 100px;
+    background-color: rgba(255, 255, 255, 0.678) !important;
+    font-family: 'Oswald', sans-serif;
+}
+
+a {
+    margin: 0px 20px;
+    font-size: 14px;
+}
+
+nav {
+    padding: 0;
+}
+
+nav li {
+    border-left: 0;
+}
+
+nav li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    border-left: 0;
+}
+
+nav li a:hover {
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+#public-header {
+    background-color: rgb(103, 238, 204);
+}
