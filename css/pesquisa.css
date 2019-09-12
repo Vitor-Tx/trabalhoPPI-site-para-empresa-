@@ -1,0 +1,68 @@
+html, body{
+   height: 100%;
+}
+
+img {
+    max-width: 90%;
+    height: auto;
+}
+
+a {
+    margin: 0px 20px;
+    font-size: 14px;
+}
+
+nav {
+    padding: 0;
+    background-color: rgb(70, 70, 70);
+}
+
+nav li {
+    border-left: 0;
+}
+
+nav li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    border-left: 0;
+}
+
+nav li a:hover {
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+
+footer {
+    padding: 5px;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    bottom: 0;
+    position: fixed;
+}
+
+#pesquisa{
+  margin: 10px;
+}
+
+#footer{
+  height: 5%;
+}
+
+.info{
+  margin-top: -15px;
+}
+
+#corpo{
+  background-color: #ffffcc;
+}
+
+.imagensCasas{
+  max-height: 300px;
+  max-width: 200px;
+}
+
+.corpoImovel{
+  background-color: rgb(70, 70, 70);
+}
