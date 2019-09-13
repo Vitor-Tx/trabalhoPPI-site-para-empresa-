@@ -1,28 +1,32 @@
-p {
-    color: black;
-    font-size: 3vh;
+@font-face {
+    font-family: 'Caviar Dreams';
+    src: url('../assets/fonts/CaviarDreams.ttf');
 }
 
-img {
-    max-width: 90%;
-    height: auto;
+.logo-bonfins {
+    height: 12vh;
 }
 
-body {
-    background-image: url("assets/images/city.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
+.carousel-img {
+    height: 85.95vh !important;
 }
 
-h1 {
-    font-weight: bolder;
-    color: rgb(7, 43, 30);
+.carousel-control {
+    background-color: rgba(126, 122, 122, 0.2);
+    width: 8vw;
 }
 
-#article {
-    background-color: rgba(255, 255, 255, 0.678) !important;
-    font-family: 'Oswald', sans-serif;
+.carousel-control:hover {
+    background-color: rgba(54, 54, 54, 0.7);
+}
+
+#about {
+    padding: 0 !important;
+    font-family: 'Caviar Dreams';
+}
+
+#about-header {
+    background-color: rgb(114, 46, 0);
 }
 
 a {
@@ -32,6 +36,8 @@ a {
 
 nav {
     padding: 0;
+    background-color: rgb(214, 97, 18);
+    font-family: 'Caviar Dreams';
 }
 
 nav li {
@@ -40,16 +46,35 @@ nav li {
 
 nav li a {
     display: block;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255) !important;
     font-size: 1.2em;
     border-left: 0;
 }
 
 nav li a:hover {
     cursor: pointer;
-    color: white !important;
+    color: rgb(37, 37, 37) !important;
 }
 
-#public-header {
-    background-color: rgb(103, 238, 204);
+.parallax {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#prlx1 {
+    background-image: url("../assets/images/casa15.png");
+    height: 300px;
+    opacity: 0.65;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(54, 53, 53);
+    width: 1.5vh;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(214, 97, 18);;
 }
