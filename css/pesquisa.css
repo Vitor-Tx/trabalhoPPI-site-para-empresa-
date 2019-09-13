@@ -1,10 +1,65 @@
-html, body{
-   height: 100%;
+@font-face {
+    font-family: 'Caviar Dreams';
+    src: url('../assets/fonts/CaviarDreams.ttf');
 }
 
-img {
-    max-width: 90%;
-    height: auto;
+html, body{
+    height: 95.7vh;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.logo-bonfins {
+    height: 12vh;
+}
+
+#footer{
+    background-color: rgb(214, 97, 18);
+    color: rgb(255, 255, 255);
+}
+
+#corpo{
+    height: 86vh;
+    font-family: 'Caviar Dreams';
+}
+
+#conteudoCorpo{
+    position: relative;
+    left: 0;
+    right: 0;
+    height: 96%;
+}
+
+#corpoResultado{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.corpoImovel{
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+}
+
+li{
+    font-size: 1rem;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    color: rgb(214, 97, 18);
+}
+
+.imagensCasas{
+    height: 20vh;
+    width: 35vh;
+    margin-left: -10px;
+    border-radius: 15px;
+    border: solid 1px rgb(214, 97, 18);
+}
+
+.corpo-imagens{
+    margin-top: 7vh;
 }
 
 a {
@@ -14,7 +69,8 @@ a {
 
 nav {
     padding: 0;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(214, 97, 18);
+    font-family: 'Caviar Dreams';
 }
 
 nav li {
@@ -23,59 +79,21 @@ nav li {
 
 nav li a {
     display: block;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255) !important;
     font-size: 1.2em;
     border-left: 0;
 }
 
 nav li a:hover {
     cursor: pointer;
-    color: black;
-    background-color: white;
+    color: rgb(37, 37, 37) !important;
 }
 
-footer {
-    padding: 5px;
-    background-color: rgb(70, 70, 70);
-    color: white;
-    bottom: 0;
-    position: fixed;
+::-webkit-scrollbar {
+    background-color: rgb(54, 53, 53);
+    width: 1.5vh;
 }
 
-#pesquisa{
-  margin: 10px;
-}
-
-#footer{
-  height: 5%;
-}
-
-.info{
-  margin-top: -15px;
-}
-
-#corpo{
-  background-color: #ffffcc;
-}
-
-.imagensCasas{
-  max-height: 300px;
-  max-width: 200px;
-}
-
-.corpoImovel{
-  background-color: rgb(70, 70, 70);
-}
-
-#corpoPesquisa{
-  position: fixed;
-  left: 0;
-  top: 100px;
-  z-index: 1030;
-}
-
-#corpoNav{
-  position: fixed;
-  top: 0;
-  z-index: 1030;
+::-webkit-scrollbar-thumb {
+    background-color: rgb(214, 97, 18);;
 }
