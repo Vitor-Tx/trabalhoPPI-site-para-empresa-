@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Caviar Dreams';
+    src: url('../assets/fonts/CaviarDreams.ttf');
+}
+
 body {
     background: gray;
     height: 96vh;
@@ -7,9 +12,37 @@ body {
     border: none;
 }
 
+.logo-bonfins {
+    height: 12vh;
+    margin-left: 20px;
+}
+
+a {
+    font-size: 30px;
+}
+
 nav {
-    background: rgb(132, 187, 189);
-    padding: 20px;
+    padding: 0;
+    background-color: rgb(214, 97, 18);
+    font-family: 'Caviar Dreams';
+}
+
+nav li {
+    border-left: 0;
+}
+
+nav li a {
+    display: block;
+    color: rgb(255, 255, 255) !important;
+    font-size: 1.3rem;
+    border-left: 0;
+    text-align: center;
+}
+
+nav li a:hover {
+    cursor: pointer;
+    color: rgb(37, 37, 37) !important;
+    text-decoration: none;
 }
 
 nav ul {
@@ -17,40 +50,18 @@ nav ul {
     padding: 0;
 }
 
-nav li a {
-    text-decoration: none !important;
-    font-weight: bold !important;
-    color: black !important;
-}
-
-nav li a:hover {
-    cursor: pointer;
-    color: white !important ;
-}
-
 #bemVindoContainer {
     padding: 20px;
-    background-color: #f1f1f1;
-    height: 100% !important;
+    background-color: #f1f1f1 !important;
+    min-height: 82.3vh;
 }
 
-#page-header {
-    background-color: rgb(41, 40, 40);
-    color: white;
+.jumbotron {
+    background-color: inherit !important;
 }
 
 footer {
     padding: 20px;
     background-color: rgb(41, 40, 40);
     color: white;
-}
-
-@media (max-width: 575px) {
-    section {
-        padding: 20px;
-    }
-
-    #bemVindoContainer {
-        padding-right: 20px !important;
-    }
 }

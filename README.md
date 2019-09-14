@@ -80,3 +80,10 @@ trabalho da faculdade que envolve linguagens de programação web
 - Andar
 - Valor do Condomínio
 - Condomínio Possui Portaria 24 Horas
+
+## Informações relativas ao interesse em um imóvel
+
+- Nome do usuário
+- Email do usuário
+- Telefone do usuário
+- Descrição da proposta

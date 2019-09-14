@@ -11,41 +11,50 @@
     </head>
     <body>
         <section>
-            <div class="container">
-                <div class="row mt-4">
-                    <div class="col-sm-12 p-0 mt-4">
-                        <header class="text-center h-100 pt-1 pb-2 mt-4" id="page-header">
-                            <h1 class="mt-4">Administração</h1>
-                        </header>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12 p-0">
+                        <nav class="navbar navbar-expand-lg navbar-light sticky-top pt-0">
+                            <a class="navbar-brand pt-0" href="#">
+                                <img class="logo-bonfins" src="../assets/images/logo-bonfins3.png">
+                            </a>
+                            <button class="navbar-toggler mt-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                    
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="mt-2 mr-3"><a href="cadastroFuncionario/cadastroFuncionario.html">Cadastrar Funcionário</a></li>
+                                    <li class="mt-2 mr-3"><a href="cadastroCliente/cadastroCliente.html">Cadastrar Cliente</a></li>
+                                    <li class="mt-2 mr-3"><a href="cadastroImovel/cadastroImovel.html">Cadastrar Imóvel</a></li>
+                                    <li class="mt-2 mr-3"><a href="listagemFuncionario/listagemFuncionario.html">Listar Funcionários</a></li>
+                                    <li class="mt-2 mr-3"><a href="listagemCliente/listagemCliente.html">Listar Clientes</a></li>
+                                    <li class="mt-2 mr-3"><a href="listagemImovel/listagemImovel.html">Listar Imóveis</a></li>
+                                    <li class="mt-2 mr-3"><a href="#">Listar Interesses</a></li>
+                                    <li class="mt-2 mr-3"><a href="#">Sair</a></li>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 px-0 text-left">
-                        <nav class="w-100">
-                            <ul>
-                                <li><a href="cadastroFuncionario/cadastroFuncionario.html">Cadastrar Funcionário</a></li>
-                                <li class="mt-2"><a href="cadastroCliente/cadastroCliente.html">Cadastrar Cliente</a></li>
-                                <li class="mt-2"><a href="cadastroImovel/cadastroImovel.html">Cadastrar Imóvel</a></li>
-                                <li class="mt-2"><a href="listagemFuncionario/listagemFuncionario.html">Listar Funcionários</a></li>
-                                <li class="mt-2"><a href="listagemCliente/listagemCliente.html">Listar Clientes</a></li>
-                                <li class="mt-2"><a href="listagemImovel/listagemImovel.html">Listar Imóveis</a></li>
-                                <li class="mt-2"><a href="#">Listar Interesses</a></li>
-                                <li class="mt-2"><a href="#">Sair</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-sm-8 px-0">
-                        <div id="bemVindoContainer" class="pr-1">
-                            <h1>Bem vindo</h1>
-                            <p>Esta é a página de administração da Imobiliária Bonfins.</p>
-                            <p>No menu ao lado você pode gerenciar seus funcionários, clientes e imóveis a venda. Pode também visualiza-los com a opção listar</p>
-                            <p>Com a opção Listar Interesses você poderá visualizar oque chama a atenção de seus clientes nos imóveis disponíveis</p>
+                    <div class="col-sm-12 px-0">
+                        <div id="bemVindoContainer">
+                            <div class="container">
+                                    <div class="jumbotron">
+                                        <h1 class="display-4">Bem vindo</h1>
+                                        <p class="lead">Esta é a página de administração da Imobiliária Bonfins.</p>
+                                        <hr class="my-4">
+                                        <p class="ml-2">No menu ao lado você pode gerenciar seus funcionários, clientes e imóveis a venda. Pode também visualiza-los com a opção listar</p>
+                                        <p class="ml-2">Com a opção Listar Interesses você poderá visualizar oque chama a atenção de seus clientes nos imóveis disponíveis</p>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 p-0">
-                        <footer class="text-center" id=footer>
+                        <footer class="text-center p-0" id=footer>
                             <small>Imobiliária Bonfins<span>&reg</span></small>
                         </footer>
                     </div>
