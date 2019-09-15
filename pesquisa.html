@@ -1,182 +1,185 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<title>Pesquisa</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="css/pesquisa.css">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	</head>
-	<body>
-	    <nav class="navbar navbar-expand-lg navbar-light sticky-top pt-0">
-	        <a class="navbar-brand pt-0" href="#">
-	            <img class="logo-bonfins" src="assets/images/logo-bonfins3.png">
-	        </a>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<head>
+    <title>Pesquisa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/pesquisa.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top pt-0">
+        <a class="navbar-brand pt-0" href="#">
+            <img class="logo-bonfins" src="assets/images/logo-bonfins3.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	            <span class="navbar-toggler-icon"></span>
 	        </button>
 
-	        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	            <ul class="navbar-nav ml-auto">
-	                <li class="nav-item"><a class="nav-link " href="homePublica.html">Home</a></li>
-	                <li class="nav-item">
-	                    <a class="nav-link " href="#galeria">Galeria</a>
-	                </li>
-	                <li class="nav-item"><a class="nav-link " href="# ">Cadastro</a></li>
-	                <li class="nav-item"><a class="nav-link " href="# ">Login</a></li>
-	                <li class="nav-item"><a class="nav-link " href="# ">Pesquisar Imóvel</a></li>
-	                <li class="nav-item"><a class="nav-link " href="#quem-somos">Quem somos?</a></li>
-	                <li class="nav-item"><a class="nav-link " href="#contato">Contato</a></li>
-	            </ul>
-	        </div>
-	    </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link " href="homePublica.html">Home</a></li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#galeria">Galeria</a>
+                </li>
+                <li class="nav-item"><a class="nav-link " href="# ">Cadastro</a></li>
+                <li class="nav-item"><a class="nav-link " href="# ">Login</a></li>
+                <li class="nav-item"><a class="nav-link " href="pesquisa.html">Pesquisar Imóvel</a></li>
+                <li class="nav-item"><a class="nav-link " href="#quem-somos">Quem somos?</a></li>
+                <li class="nav-item"><a class="nav-link " href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
 
-		<section id="corpo">
-			<div class="row m-0" id="conteudoCorpo">
-				<div class="col-md-3 border-right border-warning">
-					<form>
-						<div>
-							<label class="col-form-label" for="proposito">Propósito:</label>
-							<div style="margin-top: -10px; margin-bottom: 5px;">
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="proposito" id="proposito1" value="Aquisicao">
-								  <label class="form-check-label" for="proposito1">Aquisição</label>
-								</div>
-								<div class="form-check form-check-inline">
-								  <input class="form-check-input" type="radio" name="proposito" id="proposito2" value="Locacao">
-								  <label class="form-check-label" for="proposito2">Locação</label>
-								</div>
-							</div>
-						</div>
+    <section id="corpo">
+        <div class="row m-0" id="conteudoCorpo">
+            <div class="col-md-3 border-right border-warning">
+                <form>
+                    <div>
+                        <label class="col-form-label" for="proposito">Propósito:</label>
+                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="proposito" id="proposito1" value="Aquisicao">
+                                <label class="form-check-label" for="proposito1">Aquisição</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="proposito" id="proposito2" value="Locacao">
+                                <label class="form-check-label" for="proposito2">Locação</label>
+                            </div>
+                        </div>
+                    </div>
 
-					    <div class="form-group">
-					      <label for="bairro">Bairro:</label>
-					      <select class="form-control" id="bairro">
+                    <div class="form-group">
+                        <label for="bairro">Bairro:</label>
+                        <select class="form-control" id="bairro">
 					        <option>Martins</option>
 					        <option>Martins2</option>
 					        <option>Martins3</option>
 					      </select>
-					    </div>
+                    </div>
 
-					    <div class="form-group">
-					      <label for="valorMin">Valor mínimo:</label>
-					      <input type="number" class="form-control" id="valorMin" name="valorMin">
-					    </div>
+                    <div class="form-group">
+                        <label for="valorMin">Valor mínimo:</label>
+                        <input type="number" class="form-control" id="valorMin" name="valorMin">
+                    </div>
 
-					    <div class="form-group">
-					      <label for="valorMax">Valor máximo:</label>
-					      <input type="number" class="form-control" id="valorMax" name="valorMax">
-					    </div>
+                    <div class="form-group">
+                        <label for="valorMax">Valor máximo:</label>
+                        <input type="number" class="form-control" id="valorMax" name="valorMax">
+                    </div>
 
-				      <div class="form-group">
-						    <label for="informacoes">Outras Informações:</label>
-						    <textarea class="form-control" id="informacoes" rows="3"></textarea>
-					  </div>
-					  <div class="text-center">
-					  <button type="button" class="btn btn-outline-secondary">Buscar</button>
-					  </div>
-					</form>
-				</div>
+                    <div class="form-group">
+                        <label for="informacoes">Outras Informações:</label>
+                        <textarea class="form-control" id="informacoes" rows="3"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-secondary">Buscar</button>
+                    </div>
+                </form>
+            </div>
 
-				<div class="col-md-9 h-100" id="corpoResultado">
-					<div class="row mx-2 my-1 corpoImovel border border-warning">
-						<div class="col-lg-3 ">
-							<ul class="list-unstyled text-center">
-								<li>Apartamento</li>
-								<li>Uberlandia</li>
-								<li>Martins</li>
-								<li>2 Quartos</li>
-								<li>2 Banheiros</li>
-								<li>?? m²</li>
-								<li>Preço: R$9999,99</li>
-								<li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
-							</ul>
-						</div>
-						<div class="col-lg-9 border-left border-top border-warning" >
-							<div class="row h-50 align-middle corpo-imagens">
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-							</div>
-						</div>
-					</div>
+            <div class="col-md-9 h-100" id="corpoResultado">
+                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 border-left border-top border-warning">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-					<div class="row mx-2 my-1 corpoImovel border border-warning">
-						<div class="col-lg-3 ">
-							<ul class="list-unstyled text-center">
-								<li>Apartamento</li>
-								<li>Uberlandia</li>
-								<li>Martins</li>
-								<li>2 Quartos</li>
-								<li>2 Banheiros</li>
-								<li>?? m²</li>
-								<li>Preço: R$9999,99</li>
-								<li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
-							</ul>
-						</div>
-						<div class="col-lg-9 border-left border-top border-warning" >
-							<div class="row h-50 align-middle corpo-imagens">
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-							</div>
-						</div>
-					</div>
+                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 border-left border-top border-warning">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-					<div class="row mx-2 my-1 corpoImovel border border-warning">
-						<div class="col-lg-3 ">
-							<ul class="list-unstyled text-center">
-								<li>Apartamento</li>
-								<li>Uberlandia</li>
-								<li>Martins</li>
-								<li>2 Quartos</li>
-								<li>2 Banheiros</li>
-								<li>?? m²</li>
-								<li>Preço: R$9999,99</li>
-								<li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
-							</ul>
-						</div>
-						<div class="col-lg-9 border-left border-top border-warning" >
-							<div class="row h-50 align-middle corpo-imagens">
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-								<div class="col-lg-4 text-center">
-									<img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-    	</section>
-
-		<div class="fixed-bottom text-center" id="footer">
-            <div>
-                <footer>
-                    <small>Imobiliária Bonfins<span>&reg</span></small>
-                </footer>
+                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 border-left border-top border-warning">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-	</body>
-	<script src="../jquery/jquery-3.4.1.js "></script>
-	<script src="../popper/popper.min.js "></script>
-	<script src="../js/bootstrap.js "></script>
+    <div class="fixed-bottom text-center" id="footer">
+        <div>
+            <footer>
+                <small>Imobiliária Bonfins<span>&reg</span></small>
+            </footer>
+        </div>
+    </div>
+
+</body>
+<script src="../jquery/jquery-3.4.1.js "></script>
+<script src="../popper/popper.min.js "></script>
+<script src="../js/bootstrap.js "></script>
+
 </html>
