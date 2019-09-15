@@ -71,6 +71,16 @@ footer {
     color: white;
 }
 
+::-webkit-scrollbar {
+    background-color: rgb(54, 53, 53);
+    width: 1.5vh;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(214, 97, 18);
+    ;
+}
+
 @media (min-width: 1470px) {
     nav li a {
         margin-right: 1.5rem !important;
