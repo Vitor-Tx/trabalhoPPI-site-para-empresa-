@@ -83,7 +83,8 @@ trabalho da faculdade que envolve linguagens de programação web
 
 ## Informações relativas ao interesse em um imóvel
 
-- Nome do usuário
-- Email do usuário
-- Telefone do usuário
+- Nome do cliente
+- Imóvel em questão
+- Email do cliente
+- Telefone do cliente
 - Descrição da proposta
