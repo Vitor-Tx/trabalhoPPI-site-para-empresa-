@@ -1,15 +1,11 @@
 @font-face {
     font-family: 'Caviar Dreams';
-    src: url('../assets/fonts/CaviarDreams.ttf');
+    src: url('../../assets/fonts/CaviarDreams.ttf');
 }
 
 body {
-    background: gray;
+    background: rgb(41, 40, 40);
     height: 96vh;
-}
-
-.card {
-    border: none;
 }
 
 .logo-bonfins {
@@ -45,23 +41,44 @@ nav li a:hover {
     text-decoration: none;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#bemVindoContainer {
+#admContainer {
     padding: 20px;
-    background-color: #f1f1f1 !important;
+    padding-top: 0;
+    background-color: #f1f1f1;
     min-height: 82.3vh;
 }
 
 .jumbotron {
     background-color: inherit !important;
+    font-family: 'Caviar Dreams' !important;
+}
+
+.jumbotron h1 {
+    font-size: 5rem;
+}
+
+.jumbotron .lead {
+    font-size: 1.7rem;
+}
+
+.jumbotron p {
+    font-size: 1.3rem;
 }
 
 footer {
     padding: 20px;
     background-color: rgb(41, 40, 40);
     color: white;
+}
+
+@media (min-width: 1470px) {
+    nav li a {
+        margin-right: 1.5rem !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
 }

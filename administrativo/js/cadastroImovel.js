@@ -74,7 +74,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div id='dadosTransacao'></div>" +
                             "<div class='text-center'>" +
-                                "<button type='button' class='btn btn-primary'>Cadastrar</button>" +
+                                "<button type='button' class='btn btn-orange'>Cadastrar</button>" +
                             "</div>");
     } else if ($(this).val() === '2') {
         $("#campos").empty();
@@ -163,7 +163,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div id='dadosTransacao'></div>" +
                             "<div class='text-center'>" +
-                                "<button type='button' class='btn btn-primary'>Cadastrar</button>" +
+                                "<button type='button' class='btn btn-orange'>Cadastrar</button>" +
                             "</div>");
     } else {
         $("#campos").empty();

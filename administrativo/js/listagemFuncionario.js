@@ -1,11 +1,11 @@
 window.onload = () => {
     funcionarios.forEach(function(funcionario) {
-        $("#container-funcionarios").append(
+        $("#admContainer").append(
             "<div class='row pt-4'>" +
                 "<div class='container'>" +
-                    "<div class='col-sm-12 box-funcionario'>" +
+                    "<div class='col-sm-12 admBox'>" +
                         "<div class='row'>" +
-                            "<h4>" + funcionario.nome + " <span class='badge badge-secondary'>" + funcionario.cargo + "</span></h4>" +
+                            "<h1>" + funcionario.nome + " <span class='badge badge-info'>" + funcionario.cargo + "</span></h1>" +
                         "</div>" +
                         "<hr>" +
                         "<div class='row mt-2 ml-1'>" +

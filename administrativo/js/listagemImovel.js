@@ -6,9 +6,9 @@ window.onload = () => {
         if (imovel.tipo === 1) {
             saida += ("<div class='row pt-4'>" +
                         "<div class='container'>" +
-                            "<div class='col-sm-12 box-imovel'>" +
+                            "<div class='col-sm-12 admBox'>" +
                                 "<div class='row'>" +
-                                    "<h4>" + imovel.endereco + "</h4>" +
+                                    "<h1>" + imovel.endereco + "</h1>" +
                                 "</div>" +
                                 "<hr>" +
                                 "<div class='row mt-2 ml-1'>" +
@@ -16,13 +16,13 @@ window.onload = () => {
                                     "<span name='tipo'>Casa</span>" +
                                 "</div>" +
                                 "<div class='row mt-2 ml-1'>" +
-                                    "<label for='tipoTransacao'><strong>Tipo de Transacao:&nbsp&nbsp</strong></label>" +
+                                    "<label for='tipoTransacao'><strong>Tipo de Transação:&nbsp&nbsp</strong></label>" +
                                     "<span name='tipoTransacao'>" + imovel.tipoTransacao + "</span>" +
                                 "</div>");
 
             imovel.proprietarios.forEach(function(proprietario) {
                 saida += ("<div class='row mt-2 ml-1'>" +
-                            "<label for='proprietario" + counterProprietario + "'><strong>Proprietario" + counterProprietario + ":&nbsp&nbsp</strong></label>" +
+                            "<label for='proprietario" + counterProprietario + "'><strong>Proprietário" + counterProprietario + ":&nbsp&nbsp</strong></label>" +
                             "<span name='proprietario" + counterProprietario + "'>" + proprietario + "</span>" +
                         "</div>");
 
@@ -34,7 +34,7 @@ window.onload = () => {
                             "<span name='qtdQuartos'>" + imovel.qtdQuartos + "</span>" +
                         "</div>" +
                         "<div class='row mt-2 ml-1'>" +
-                            "<label for='qtdSuites'><strong>Quantidade de Suites:&nbsp&nbsp</strong></label>" +
+                            "<label for='qtdSuites'><strong>Quantidade de Suítes:&nbsp&nbsp</strong></label>" +
                             "<span name='qtdSuites'>" + imovel.qtdSuites + "</span>" +
                         "</div>" +
                         "<div class='row mt-2 ml-1'>" +
@@ -72,7 +72,7 @@ window.onload = () => {
                               "<span name='valorRealVenda'>" + imovel.valorRealVenda + "</span>" +
                           "</div>" +
                           "<div class='row mt-2 ml-1'>" +
-                              "<label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliaria:&nbsp&nbsp</strong></label>" +
+                              "<label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliária:&nbsp&nbsp</strong></label>" +
                               "<span name='porcentagemImobiliaria'>" + imovel.porcentagemImobiliaria + "</span>" +
                           "</div>" +
                           "<div class='row mt-2 ml-1'>" +
@@ -129,9 +129,9 @@ window.onload = () => {
         } else if (imovel.tipo === 2) {
             saida += ("<div class='row pt-4'>" +
             "<div class='container'>" +
-                "<div class='col-sm-12 box-imovel'>" +
+                "<div class='col-sm-12 admBox'>" +
                     "<div class='row'>" +
-                        "<h4>" + imovel.endereco + "</h4>" +
+                        "<h1>" + imovel.endereco + "</h1>" +
                     "</div>" +
                     "<hr>" +
                     "<div class='row mt-2 ml-1'>" +
@@ -262,6 +262,6 @@ window.onload = () => {
                     "</div>");
         }
 
-        $("#container-imoveis").append(saida);
+        $("#admContainer").append(saida);
     });
 }

@@ -1,0 +1,20 @@
+#listagemContainer {
+    padding: 20px;
+    background-color: #f1f1f1;
+    min-height: 82.3vh;
+}
+
+.admBox {
+    background: rgb(114, 46, 0);
+    padding: 30px;
+    color: white;
+}
+
+.admBox h1 {
+    font-size: 2.5rem !important;
+    color: rgb(238, 216, 94);
+}
+
+label {
+    color: rgb(214, 97, 18);
+}

@@ -1,0 +1,23 @@
+#cadastroContainer {
+    padding: 20px;
+    background-color: #f1f1f1;
+    min-height: 82.3vh;
+}
+
+input,
+select,
+textarea {
+    width: 100% !important;
+}
+
+.btn-orange {
+    color: #fff;
+    background-color: rgb(214, 97, 18);
+    border-color: rgb(214, 97, 18);
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: rgb(189, 85, 16);
+    border-color: rgb(189, 85, 16);
+}

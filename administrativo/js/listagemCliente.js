@@ -3,9 +3,9 @@ window.onload = () => {
         var counterTelefone = 1;
         var saida = ("<div class='row pt-4'>" +
                         "<div class='container'>" +
-                            "<div class='col-sm-12 box-cliente'>" +
+                            "<div class='col-sm-12 admBox'>" +
                                 "<div class='row'>" +
-                                    "<h4>" + cliente.nome + "</h4>" +
+                                    "<h1>" + cliente.nome + "</h1>" +
                                 "</div>" +
                                 "<hr>" +
                                 "<div class='row mt-2 ml-1'>" +
@@ -46,6 +46,6 @@ window.onload = () => {
                       "</div>" +
                   "</div>");
 
-        $("#container-clientes").append(saida);
+        $("#admContainer").append(saida);
     });
 }
