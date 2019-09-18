@@ -36,11 +36,11 @@
 
     <section id="corpo">
         <div class="row m-0" id="conteudoCorpo">
-            <div class="col-md-3 border-right border-warning">
-                <form>
+            <div class="col-md-3">
+                <form class="border mt-3 px-4 py-1 border-warning" id="pesquisa">
                     <div>
                         <label class="col-form-label" for="proposito">Propósito:</label>
-                        <div style="margin-top: -10px; margin-bottom: 5px;">
+                        <div id="radio">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="proposito" id="proposito1" value="Aquisicao">
                                 <label class="form-check-label" for="proposito1">Aquisição</label>
@@ -76,13 +76,13 @@
                         <textarea class="form-control" id="informacoes" rows="3"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-outline-secondary">Buscar</button>
+                        <button type="button" class="btn btn-outline-warning cor-btn">Buscar</button>
                     </div>
                 </form>
             </div>
 
             <div class="col-md-9 h-100" id="corpoResultado">
-                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                <div class="row mx-2 my-3 corpoImovel border">
                     <div class="col-lg-3 ">
                         <ul class="list-unstyled text-center">
                             <li>Apartamento</li>
@@ -92,10 +92,10 @@
                             <li>2 Banheiros</li>
                             <li>?? m²</li>
                             <li>Preço: R$9999,99</li>
-                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
                         </ul>
                     </div>
-                    <div class="col-lg-9 border-left border-top border-warning">
+                    <div class="col-lg-9 imagens-pesquisa">
                         <div class="row h-50 align-middle corpo-imagens">
                             <div class="col-lg-4 text-center">
                                 <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                <div class="row mx-2 my-3 corpoImovel border">
                     <div class="col-lg-3 ">
                         <ul class="list-unstyled text-center">
                             <li>Apartamento</li>
@@ -120,10 +120,10 @@
                             <li>2 Banheiros</li>
                             <li>?? m²</li>
                             <li>Preço: R$9999,99</li>
-                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
                         </ul>
                     </div>
-                    <div class="col-lg-9 border-left border-top border-warning">
+                    <div class="col-lg-9 imagens-pesquisa">
                         <div class="row h-50 align-middle corpo-imagens">
                             <div class="col-lg-4 text-center">
                                 <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="row mx-2 my-1 corpoImovel border border-warning">
+                <div class="row mx-2 my-3 corpoImovel border">
                     <div class="col-lg-3 ">
                         <ul class="list-unstyled text-center">
                             <li>Apartamento</li>
@@ -148,10 +148,94 @@
                             <li>2 Banheiros</li>
                             <li>?? m²</li>
                             <li>Preço: R$9999,99</li>
-                            <li class="mt-1"><button type="button" class="btn btn-outline-warning">Tenho interesse</button></li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
                         </ul>
                     </div>
-                    <div class="col-lg-9 border-left border-top border-warning">
+                    <div class="col-lg-9 imagens-pesquisa">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mx-2 my-3 corpoImovel border">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 imagens-pesquisa">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mx-2 my-3 corpoImovel border">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 imagens-pesquisa">
+                        <div class="row h-50 align-middle corpo-imagens">
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mx-2 my-3 mb-5 corpoImovel border">
+                    <div class="col-lg-3 ">
+                        <ul class="list-unstyled text-center">
+                            <li>Apartamento</li>
+                            <li>Uberlandia</li>
+                            <li>Martins</li>
+                            <li>2 Quartos</li>
+                            <li>2 Banheiros</li>
+                            <li>?? m²</li>
+                            <li>Preço: R$9999,99</li>
+                            <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn">Tenho interesse</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 imagens-pesquisa">
                         <div class="row h-50 align-middle corpo-imagens">
                             <div class="col-lg-4 text-center">
                                 <img src="assets/images/img1.jpg" alt="imagem 1 da casa" class="imagensCasas">
@@ -169,7 +253,7 @@
         </div>
     </section>
 
-    <div class="fixed-bottom text-center" id="footer">
+    <div class="text-center fixed-bottom" id="footer">
         <div>
             <footer>
                 <small>Imobiliária Bonfins<span>&reg</span></small>
