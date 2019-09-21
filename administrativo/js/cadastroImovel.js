@@ -37,12 +37,8 @@ $("#inputTipoImovel").change(function() {
                                 "<input type='number' name='qtdQuartos' id='inputQtdQuartos' placeholder='Digite o Número de Quartos' class='form-control'>" +
                             "</div>" +
                             "<div class='form-group'>" +
-                                "<label for='qtdQuartos'>Quantidade de Quartos</label>" +
-                                "<input type='number' name='qtdQuartos' id='inputQtdQuartos' placeholder='Digite o Número de Quartos' class='form-control'>" +
-                            "</div>" +
-                            "<div class='form-group'>" +
                                 "<label for='qtdSuites'>Quantidade de Suítes</label>" +
-                                "<input type='number' name='qtdQuartos' id='inputQtdQuartos' placeholder='Digite o Número de Quartos' class='form-control'>" +
+                                "<input type='number' name='qtdSuites' id='inputQtdSuites' placeholder='Digite o Número de Suítes' class='form-control'>" +
                             "</div>" +
                             "<div class='form-group'>" +
                                 "<label for='qtdSalaEstar'>Quantidade de Salas de Estar</label>" +
@@ -74,7 +70,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div id='dadosTransacao'></div>" +
                             "<div class='text-center'>" +
-                                "<button type='button' class='btn btn-orange'>Cadastrar</button>" +
+                                "<button type='button' class='btn btn-orange' id='btnCadastrar'>Cadastrar</button>" +
                             "</div>");
     } else if ($(this).val() === '2') {
         $("#campos").empty();
@@ -163,7 +159,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div id='dadosTransacao'></div>" +
                             "<div class='text-center'>" +
-                                "<button type='button' class='btn btn-orange'>Cadastrar</button>" +
+                                "<button type='button' class='btn btn-orange' id='btnCadastrar'>Cadastrar</button>" +
                             "</div>");
     } else {
         $("#campos").empty();
@@ -210,7 +206,7 @@ function getProprietarios(removivel) {
     var selectPropietarios = "";
 
     if (removivel) {
-        selectPropietarios = ("<select class='form-control removivel mt-2' name='proprietario' id='inputProprietario'>" +
+        selectPropietarios = ("<select class='form-control removivel mt-2' name='proprietario'>" +
                                   "<option value='0' selected>Selecione um</option>");
     } else {
         selectPropietarios = ("<select class='form-control' name='proprietario' id='inputProprietario'>" +
@@ -225,3 +221,24 @@ function getProprietarios(removivel) {
 
     return selectPropietarios;
 }
+
+$("#btnCadastrar").on('click', function() {
+    var inputRua = $("#inputRua").val();
+    var inputBairro = $("#inputBairro").val();
+    var inputCidade = $("#inputCidade").val();
+    var inputEstado = $("#inputEstado").val();
+    var inputProprietario = $("#inputProprietario").val();
+    var inputTipoTransacao = $("#inputTipoTransacao").val();
+    var inputQtdQuartos = $("#inputQtdQuartos").val();
+    var inputQtdSuites = $("#inputQtdSuites").val();
+    var inputQtdSalaEstar = $("#inputQtdSalaEstar").val();
+    var inputQtdSalaEstar = $("#inputQtdSalaEstar").val();
+    var inputQtdSalaJantar = $("#inputQtdSalaJantar").val();
+    var inputQtdVagasGaragem = $("#inputQtdVagasGaragem").val();
+    var inputArea = $("#inputArea").val();
+    var inputArmarioEmbutido = $("#inputArmarioEmbutido").val();
+    var inputDescricao = $("#inputDescricao").val();
+    var inputAndar = $("#inputAndar").val();
+    var inputValorCondominio = $("#inputValorCondominio").val();
+    var inputPortaria24horas = $("#inputPortaria24horas").val();
+});
