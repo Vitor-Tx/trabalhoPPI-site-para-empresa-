@@ -54,7 +54,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div class='form-group'>" +
                                 "<label for='area'>Área</label>" +
-                                "<input type='number' name='area' id='inputArea' placeholder='Digite a Área (m²)' class='form-control'>" +
+                                "<input type='text' name='area' id='inputArea' placeholder='Digite a Área (m²)' class='form-control'>" +
                             "</div>" +
                             "<div class='form-group'>" +
                                 "<label for='armarioEmbutido'>Possui Armário Embutido</label>" +
@@ -127,7 +127,7 @@ $("#inputTipoImovel").change(function() {
                             "</div>" +
                             "<div class='form-group'>" +
                                 "<label for='area'>Área</label>" +
-                                "<input type='number' name='area' id='inputArea' placeholder='Digite a Área (m²)' class='form-control'>" +
+                                "<input type='text' name='area' id='inputArea' placeholder='Digite a Área (m²)' class='form-control'>" +
                             "</div>" +
                             "<div class='form-group'>" +
                                 "<label for='armarioEmbutido'>Possui Armário Embutido</label>" +
@@ -170,25 +170,41 @@ $("#inputTipoImovel").change(function() {
             $("#dadosTransacao").empty();
             $("#dadosTransacao").append("<div class='form-group'>" +
                                             "<label for='valorVenda'>Valor de Venda</label>" +
-                                            "<input type='number' name='valorVenda' id='inputValorVenda' placeholder='Digite o Valor de Venda' class='form-control'>" +
+                                            "<input type='text' name='valorVenda' id='inputValorVenda' placeholder='Digite o Valor de Venda' class='form-control valor'>" +
                                         "</div>" +
                                         "<div class='form-group'>" +
                                             "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
-                                            "<input type='number' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
+                                            "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
                                         "</div>");
         } else if ($(this).val() === "2") {
             $("#dadosTransacao").empty();
             $("#dadosTransacao").append("<div class='form-group'>" +
                                             "<label for='valorAluguel'>Valor de Aluguel</label>" +
-                                            "<input type='number' name='valorAluguel' id='inputValorAluguel' placeholder='Digite o Valor de Aluguel' class='form-control'>" +
+                                            "<input type='text' name='valorAluguel' id='inputValorAluguel' placeholder='Digite o Valor de Aluguel' class='form-control valor'>" +
                                         "</div>" +
                                         "<div class='form-group'>" +
                                             "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
-                                            "<input type='number' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
+                                            "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
                                         "</div>");
         } else {
             $("#dadosTransacao").empty();
         }
+
+        $(".valor").mask("###0.00 R$", {reverse: true});
+
+        $(".valor").on('keyup', function() {
+            if (this.value.trim() == "R$") {
+                this.value = "";
+            }
+        });
+
+        $("#inputPorcentagemImobiliaria").mask('##0,00 %', {reverse: true});
+
+        $("#inputPorcentagemImobiliaria").on('keyup', function() {
+            if (this.value.trim() == "%") {
+                this.value = "";
+            }
+        });
     });
 
     $("#adicionarProprietario").on('click', function() {
@@ -322,6 +338,14 @@ $("#inputTipoImovel").change(function() {
                     alert("Tudo OK!");
                 }
             }
+        }
+    });
+
+    $("#inputArea").mask("###0 m²", {reverse: true});
+
+    $("#inputArea").on('keyup', function() {
+        if (this.value.trim() == "m²") {
+            this.value = "";
         }
     });
 });

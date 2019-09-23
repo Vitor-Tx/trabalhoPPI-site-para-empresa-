@@ -1,3 +1,21 @@
+window.onload = function() {
+    $("#inputCPF").mask('000.000.000-00');
+
+    $(".phoneField").mask('(00) 0000-0000');
+
+    $(".phoneField").on('keydown', function(e) {
+        var aux;
+
+        if (this.value.length == 14) {
+            $(this).mask('(00) 00000-0000');
+        } else if (e.keyCode == 8 && this.value.length == 15) {
+            aux = $(this).val();
+            $(this).mask('(00) 0000-0000');
+            $(this).val(aux);
+        }
+    });
+}
+
 $("#btnCadastrar").on('click', function() {
     var inputNome = $("#inputNome").val();
     var inputTelefone = $("#inputTelefone").val();

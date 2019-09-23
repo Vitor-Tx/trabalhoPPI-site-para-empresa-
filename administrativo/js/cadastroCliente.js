@@ -1,6 +1,37 @@
+window.onload = function() {
+    $("#inputCPF").mask('000.000.000-00');
+    $(".phoneField").mask('(00) 0000-0000');
+
+    $(".phoneField").on('keydown', function(e) {
+        var aux;
+
+        if (this.value.length == 14) {
+            $(this).mask('(00) 00000-0000');
+        } else if (e.keyCode == 8 && this.value.length == 15) {
+            aux = $(this).val();
+            $(this).mask('(00) 0000-0000');
+            $(this).val(aux);
+        }
+    });
+}
+
 $("#adicionarTelefone").on('click', function () {
-    $("#numeros").append("<input type='number' name='telefone' placeholder='Digite o Telefone' class='form-control inputField phoneField aditionalNumber mt-2'>");
+    $("#numeros").append("<input type='text' name='telefone' placeholder='Digite o Telefone' class='form-control inputField phoneField aditionalNumber mt-2'>");
     setLimpaCampo();
+
+    $(".phoneField").last().mask('(00) 0000-0000');
+
+    $(".phoneField").on('keydown', function(e) {
+        var aux;
+
+        if (this.value.length == 14) {
+            $(this).mask('(00) 00000-0000');
+        } else if (e.keyCode == 8 && this.value.length == 15) {
+            aux = $(this).val();
+            $(this).mask('(00) 0000-0000');
+            $(this).val(aux);
+        }
+    });
 });
 
 function setLimpaCampo() {
