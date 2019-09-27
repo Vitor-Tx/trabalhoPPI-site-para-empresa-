@@ -36,6 +36,11 @@ html {
     color: azure;
 }
 
+#aboutSection {
+    position: relative;
+    top: -13vh;
+}
+
 #about h2,
 #showcase h2 {
     color: rgb(238, 216, 94);
