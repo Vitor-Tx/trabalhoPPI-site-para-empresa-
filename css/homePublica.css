@@ -36,6 +36,11 @@ html {
     color: azure;
 }
 
+#about h2,
+#showcase h2 {
+    color: rgb(238, 216, 94);
+}
+
 .bonfins-brown {
     background-color: rgb(114, 46, 0) !important;
 }
