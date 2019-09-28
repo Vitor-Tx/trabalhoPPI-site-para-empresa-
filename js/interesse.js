@@ -36,8 +36,6 @@ window.onload = function() {
     });
 
     $(".phoneField").on('keyup', function(e) {
-        var aux;
-
         if (e.keyCode == 8 && this.value.length == 14) {
             $(this).mask('(00) 0000-0000');
         }
