@@ -1,16 +1,22 @@
 window.onload = function() {
     $("#inputCPF").mask('000.000.000-00');
-    $(".phoneField").mask('(00) 0000-0000');
+    $(".phoneField").last().mask('(00) 0000-0000');
 
     $(".phoneField").on('keydown', function(e) {
+        if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8) {
+            if (this.value.length == 14 && e.keyCode != 8) {
+                $(this).mask('(00) 00000-0000');
+            } else if (this.value.length < 14) {
+                $(this).mask('(00) 0000-0000');
+            }
+        }
+    });
+
+    $(".phoneField").on('keyup', function(e) {
         var aux;
 
-        if (this.value.length == 14) {
-            $(this).mask('(00) 00000-0000');
-        } else if (e.keyCode == 8 && this.value.length == 15) {
-            aux = $(this).val();
+        if (e.keyCode == 8 && this.value.length == 14) {
             $(this).mask('(00) 0000-0000');
-            $(this).val(aux);
         }
     });
 }
