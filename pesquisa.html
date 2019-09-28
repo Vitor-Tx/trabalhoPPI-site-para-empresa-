@@ -44,9 +44,10 @@
                         <div class="form-group">
                             <label for="bairro">Bairro:</label>
                             <select class="form-control" id="bairro">
+                                <option selected>Selecione um...</option>
                                 <option>Martins</option>
-                                <option>Martins2</option>
-                                <option>Martins3</option>
+                                <option>Roosevelt</option>
+                                <option>Morumbi</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -239,14 +240,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control" id="telefone" name="telefone" required>
+                                <input type="text" class="form-control phoneField" id="telefone" name="telefone" required>
                             </div>
                             <div class="form-group">
                                 <label for="descricaoProposta">Descrição da Proposta:</label>
                                 <textarea class="form-control" id="descricaoProposta" rows="3" required></textarea>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-outline-warning cor-btn">Enviar</button>
+                                <button type="submit" class="btn btn-outline-warning cor-btn">Enviar</button>
                             </div>
                         </form>
                     </div>
@@ -287,5 +288,7 @@
         <script src="popper/popper.min.js "></script>
         <script src="js/bootstrap.js "></script>
         <script src="js/login.js"></script>
+        <script src="jquery/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+        <script src="js/interesse.js"></script>
     </body>
 </html>
