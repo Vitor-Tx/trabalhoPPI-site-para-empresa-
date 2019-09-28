@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Caviar Dreams';
-    src: url('../assets/fonts/CaviarDreams.ttf');
+    src: url('../../assets/fonts/CaviarDreams.ttf');
 }
 
 .logo-bonfins {
@@ -102,13 +102,13 @@ h2 {
 }
 
 #prlx1 {
-    background-image: url("../assets/images/casa15.png");
+    background-image: url("../../assets/images/casa15.png");
     height: 300px;
     opacity: 0.65;
 }
 
 #prlx2 {
-    background-image: url("../assets/images/casa16.jpg");
+    background-image: url("../../assets/images/casa16.jpg");
     height: 300px;
     opacity: 0.65;
 }
