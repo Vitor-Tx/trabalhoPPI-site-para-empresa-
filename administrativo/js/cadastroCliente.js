@@ -62,11 +62,22 @@ $("#btnCadastrar").on('click', function() {
     var inputEstadoCivil = $("#inputEstadoCivil").val();
     var inputProfissao = $("#inputProfissao").val();
     var inputSexo = false;
+    var inputSexoVal = "";
     var radioSexo = document.getElementsByName("sexo");
 
     for (var x = 0; x < radioSexo.length; x++) {
         if (radioSexo[x].checked == true) {
             inputSexo = true;
+            inputSexoVal = radioSexo[x].value;
+        }
+    }
+
+    var inputTelefones = [];
+    var telefones = document.getElementsByName("telefone");
+
+    for (var x = 0; x < telefones.length; x++) {
+        if (telefones[x].value != "" && telefones[x].value.length >= 14) {
+            inputTelefones.push(telefones[x].value);
         }
     }
 
@@ -87,6 +98,24 @@ $("#btnCadastrar").on('click', function() {
     } else if (inputProfissao == "" || inputProfissao == null || inputProfissao == undefined) {
         alert("Campo Profissão não preenchido!");
     } else {
-        alert("Tudo OK!")
+        $.ajax({
+            method: "POST",
+            url: "../php/cadastraCliente.php",
+            data:
+            {
+                nome: inputNome,
+                cpf: inputCPF,
+                endereco: inputEndereco,
+                telefones: inputTelefones,
+                email: inputEmail,
+                estadoCivil: inputEstadoCivil,
+                profissao: inputProfissao,
+                sexo: inputSexoVal,
+            },
+            success: function(result)
+            {
+                alert(result);
+            }
+        });
     }
 });
