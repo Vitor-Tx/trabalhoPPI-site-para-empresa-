@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 16-Out-2019 às 13:23
+-- Host: localhost
+-- Tempo de geração: 16/10/2019 às 14:46
 -- Versão do servidor: 10.4.8-MariaDB
--- versão do PHP: 7.3.10
+-- Versão do PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -40,29 +40,31 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`ID`, `Nome`, `Cpf`, `Endereco`, `Email`, `Sexo`, `EstadoCivil`, `Profissao`) VALUES
 (1, 'Maria', '123.456.789-02', 'Rua A, Bairro B, Araguari - MG', 'maria@email.com', 'f', 4, 'Piloto de Caça'),
-(2, 'Guilherme Bartasson', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', 'guilhermebnj@gmail.com', 'm', 2, 'Programador');
+(2, 'Guilherme Bartasson', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', 'guilhermebnj@gmail.com', 'm', 2, 'Programador'),
+(3, 'Teste', '123.456.789-05', 'Rua C, Bairro D', 'teste@teste.com', 'f', 1, 'Tester'),
+(4, 'Teste2', '123.456.789-03', 'Rua F, Bairro G', 'teste1@teste1.com', 'm', 5, 'Tester');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estadocivil`
+-- Estrutura para tabela `estadoCivil`
 --
 
-CREATE TABLE `estadocivil` (
+CREATE TABLE `estadoCivil` (
   `ID` int(4) UNSIGNED NOT NULL,
   `Nome` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `estadocivil`
+-- Despejando dados para a tabela `estadoCivil`
 --
 
-INSERT INTO `estadocivil` (`ID`, `Nome`) VALUES
+INSERT INTO `estadoCivil` (`ID`, `Nome`) VALUES
 (1, 'Casado(a)'),
 (2, 'Solteiro(a)'),
 (3, 'Divorciado(a)'),
@@ -72,7 +74,7 @@ INSERT INTO `estadocivil` (`ID`, `Nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `telefone`
+-- Estrutura para tabela `telefone`
 --
 
 CREATE TABLE `telefone` (
@@ -83,7 +85,7 @@ CREATE TABLE `telefone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `telefone`
+-- Despejando dados para a tabela `telefone`
 --
 
 INSERT INTO `telefone` (`ID`, `PessoaID`, `TipoPessoa`, `Numero`) VALUES
@@ -91,81 +93,84 @@ INSERT INTO `telefone` (`ID`, `PessoaID`, `TipoPessoa`, `Numero`) VALUES
 (2, 1, 1, '(03) 98252-0938'),
 (3, 1, 1, '(48) 09583-4960'),
 (4, 2, 1, '(34) 3223-8957'),
-(5, 2, 1, '(34) 99813-4380');
+(5, 2, 1, '(34) 99813-4380'),
+(6, 3, 1, '(23) 45678-9045'),
+(7, 4, 1, '(45) 67890-4567');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipopessoa`
+-- Estrutura para tabela `tipoPessoa`
 --
 
-CREATE TABLE `tipopessoa` (
+CREATE TABLE `tipoPessoa` (
   `ID` int(1) UNSIGNED NOT NULL,
   `Nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `tipopessoa`
+-- Despejando dados para a tabela `tipoPessoa`
 --
 
-INSERT INTO `tipopessoa` (`ID`, `Nome`) VALUES
+INSERT INTO `tipoPessoa` (`ID`, `Nome`) VALUES
 (1, 'Cliente'),
 (2, 'Funcionário');
 
 --
--- Índices para tabelas despejadas
+-- Índices de tabelas apagadas
 --
 
 --
--- Índices para tabela `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Cpf` (`Cpf`);
+
+--
+-- Índices de tabela `estadoCivil`
+--
+ALTER TABLE `estadoCivil`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Índices para tabela `estadocivil`
---
-ALTER TABLE `estadocivil`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Índices para tabela `telefone`
+-- Índices de tabela `telefone`
 --
 ALTER TABLE `telefone`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Índices para tabela `tipopessoa`
+-- Índices de tabela `tipoPessoa`
 --
-ALTER TABLE `tipopessoa`
+ALTER TABLE `tipoPessoa`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de tabela `estadocivil`
+-- AUTO_INCREMENT de tabela `estadoCivil`
 --
-ALTER TABLE `estadocivil`
+ALTER TABLE `estadoCivil`
   MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de tabela `tipopessoa`
+-- AUTO_INCREMENT de tabela `tipoPessoa`
 --
-ALTER TABLE `tipopessoa`
+ALTER TABLE `tipoPessoa`
   MODIFY `ID` int(1) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

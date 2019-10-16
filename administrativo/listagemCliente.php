@@ -53,6 +53,7 @@
 
                                             $arrayClientes = null;
                                             $msgErro = "";
+                                            $telefones = null;
 
                                             try {
                                                 $arrayClientes = getClientes($conn);  
@@ -63,7 +64,82 @@
 
                                             if ($arrayClientes != null) {
                                                 foreach ($arrayClientes as $cliente) {
-                                                    echo $cliente->nome;
+                                                    $counterTelefone = 1;
+                                                    $sql = "SELECT Numero FROM telefone WHERE PessoaID = $cliente->id AND TipoPessoa = 1";
+
+                                                    $result = $conn->query($sql);
+                                                    if (! $result)
+                                                        throw new Exception("Falha na busca dos telefones: " . $conn->error);
+
+                                                    if ($result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            $telefones[] = $row["Numero"];
+                                                        }
+                                                    }
+
+                                                    echo "
+                                                        <div class='row pt-4'>
+                                                            <div class='container'>
+                                                                <div class='col-sm-12 admBox'>
+                                                                    <div class='row'>
+                                                                        <h1>$cliente->nome</h1>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='cpf'>
+                                                                            <strong>CPF:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='cpf'>$cliente->cpf</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='endereco'>
+                                                                            <strong>Endereço:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='endereco'>$cliente->endereco</span>
+                                                                    </div>";
+
+                                                    for ($x = 0; $x < count($telefones); $x++) {
+                                                        echo "
+                                                            <div class='row mt-2 ml-1'>
+                                                                <label for='telefone$counterTelefone'>
+                                                                    <strong>Telefone$counterTelefone:&nbsp&nbsp</strong>
+                                                                </label>
+                                                                <span name='telefone$counterTelefone'>$telefones[$x]</span>
+                                                            </div>";
+
+                                                        $counterTelefone++;
+                                                    }
+
+                                                    echo "
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='email'>
+                                                                            <strong>Email:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='email'>$cliente->email</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='sexo'>
+                                                                            <strong>Sexo:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='sexo'>$cliente->sexo</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='estadoCivil'>
+                                                                            <strong>Estado Civil:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='estadoCivil'>$cliente->estadoCivil</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='profissao'>
+                                                                            <strong>Profissão:&nbsp&nbsp</strong>
+                                                                        </label>
+                                                                        <span name='profissao'>$cliente->profissao</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>";
+
+                                                    $telefones = null;
                                                 }
                                             }
                                         
@@ -88,6 +164,4 @@
     <script src="../jquery/jquery-3.4.1.js"></script>
     <script src="../popper/popper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="js/listagemCliente.js"></script>
-    <script src="js/clientes.js"></script>
 </html>

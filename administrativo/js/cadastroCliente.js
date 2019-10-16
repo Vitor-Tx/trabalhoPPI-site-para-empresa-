@@ -115,6 +115,7 @@ $("#btnCadastrar").on('click', function() {
             success: function(result)
             {
                 alert(result);
+                window.location.reload();
             }
         });
     }
