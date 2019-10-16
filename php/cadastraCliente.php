@@ -30,15 +30,6 @@
             $telefones[$x] = filtraEntrada($telefones[$x]);
         }
 
-        // echo $nome. "\n";
-        // echo $cpf. "\n";
-        // echo $endereco. "\n";
-        // print_r($telefones);
-        // echo $email. "\n";
-        // echo $sexo. "\n";
-        // echo $estadoCivil. "\n";
-        // echo $profissao. "\n";
-
         try {
             $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 

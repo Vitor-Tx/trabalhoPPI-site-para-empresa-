@@ -45,7 +45,30 @@
                                 <div class="jumbotron px-2">
                                     <h1 class="display-4">Listagem de Clientes</h1>
                                     <hr class="my-3">
-                                    <div id="admContainer"></div>
+                                    <div id="admContainer">
+                                        <?php 
+                                        
+                                            require "../php/conexaoMysql.php";
+                                            require "../php/cliente.php";
+
+                                            $arrayClientes = null;
+                                            $msgErro = "";
+
+                                            try {
+                                                $arrayClientes = getClientes($conn);  
+                                            } catch (Exception $e) {
+                                                $msgErro = $e->getMessage();
+                                                echo $msgErro;
+                                            }
+
+                                            if ($arrayClientes != null) {
+                                                foreach ($arrayClientes as $cliente) {
+                                                    echo $cliente->nome;
+                                                }
+                                            }
+                                        
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

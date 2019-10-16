@@ -1,4 +1,13 @@
 window.onload = () => {
+    $.ajax({
+        method: "POST",
+        url: "../php/listaClientes.php",
+        success: function(result)
+        {
+            alert(result);
+        }
+    });
+
     clientes.forEach(function(cliente) {
         var counterTelefone = 1;
         var saida = ("<div class='row pt-4'>" +

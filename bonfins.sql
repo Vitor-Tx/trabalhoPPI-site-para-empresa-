@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Out-2019 às 05:21
+-- Tempo de geração: 16-Out-2019 às 13:23
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -46,6 +46,28 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` (`ID`, `Nome`, `Cpf`, `Endereco`, `Email`, `Sexo`, `EstadoCivil`, `Profissao`) VALUES
 (1, 'Maria', '123.456.789-02', 'Rua A, Bairro B, Araguari - MG', 'maria@email.com', 'f', 4, 'Piloto de Caça'),
 (2, 'Guilherme Bartasson', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', 'guilhermebnj@gmail.com', 'm', 2, 'Programador');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `estadocivil`
+--
+
+CREATE TABLE `estadocivil` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `Nome` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `estadocivil`
+--
+
+INSERT INTO `estadocivil` (`ID`, `Nome`) VALUES
+(1, 'Casado(a)'),
+(2, 'Solteiro(a)'),
+(3, 'Divorciado(a)'),
+(4, 'Viúvo(a)'),
+(5, 'União estável');
 
 -- --------------------------------------------------------
 
@@ -101,6 +123,12 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Índices para tabela `estadocivil`
+--
+ALTER TABLE `estadocivil`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Índices para tabela `telefone`
 --
 ALTER TABLE `telefone`
@@ -121,6 +149,12 @@ ALTER TABLE `tipopessoa`
 --
 ALTER TABLE `cliente`
   MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `estadocivil`
+--
+ALTER TABLE `estadocivil`
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
