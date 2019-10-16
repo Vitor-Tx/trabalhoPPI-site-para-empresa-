@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 16/10/2019 às 16:54
+-- Tempo de geração: 16/10/2019 às 19:44
 -- Versão do servidor: 10.4.8-MariaDB
 -- Versão do PHP: 7.3.10
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bonfins`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cargo`
+--
+
+CREATE TABLE `cargo` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `Nome` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `SalarioBase` float UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `cargo`
+--
+
+INSERT INTO `cargo` (`ID`, `Nome`, `SalarioBase`) VALUES
+(1, 'Diretor', 3000),
+(2, 'Vendedor', 1200),
+(3, 'Estagiário', 600);
 
 -- --------------------------------------------------------
 
@@ -85,7 +106,9 @@ CREATE TABLE `funcionario` (
   `Endereco` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `TelefoneContato` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `TelefoneCelular` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `Cargo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `DataIngresso` date NOT NULL,
+  `Cargo` int(4) UNSIGNED NOT NULL,
+  `Comissao` float UNSIGNED NOT NULL,
   `Login` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `Senha` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `Salt` varchar(22) COLLATE utf8_unicode_ci NOT NULL
@@ -95,8 +118,8 @@ CREATE TABLE `funcionario` (
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `TelefoneContato`, `TelefoneCelular`, `Cargo`, `Login`, `Senha`, `Salt`) VALUES
-(1, 'Guilherme Bartasson', '(34) 99812-4380', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', 'Diretor', 'guilherme.bonfins', '$2a$04$oR6TICVZV5G2FGicSdXDb.AcnOuB3tkFcUu5818P27dbrArCdn/6q', 'oR6TICVZV5G2FGicSdXDbG');
+INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `TelefoneContato`, `TelefoneCelular`, `DataIngresso`, `Cargo`, `Comissao`, `Login`, `Senha`, `Salt`) VALUES
+(4, 'Guilherme Bartasson', '(34) 3223-8957', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', '2019-10-16', 1, 0, 'guilherme.bonfins', '$2a$04$s6CTAFW6BhP8Be1UAZuh2.UGnFIbDFl3d6MD2fYbuvFOjSaNt.H9m', 's6CTAFW6BhP8Be1UAZuh2A');
 
 -- --------------------------------------------------------
 
@@ -148,6 +171,13 @@ INSERT INTO `tipoPessoa` (`ID`, `Nome`) VALUES
 --
 
 --
+-- Índices de tabela `cargo`
+--
+ALTER TABLE `cargo`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nome` (`Nome`);
+
+--
 -- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
@@ -184,6 +214,12 @@ ALTER TABLE `tipoPessoa`
 --
 
 --
+-- AUTO_INCREMENT de tabela `cargo`
+--
+ALTER TABLE `cargo`
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
@@ -199,7 +235,7 @@ ALTER TABLE `estadoCivil`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`

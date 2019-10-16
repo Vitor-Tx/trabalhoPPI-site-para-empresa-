@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Listagem de Clientes</title>
+        <title>Listagem de Funcionários</title>
 
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="css/administrativo.css">
@@ -29,7 +29,7 @@
                                     <li class="mt-2 mr-3"><a href="cadastroFuncionario.php">Cadastrar Funcionário</a></li>
                                     <li class="mt-2 mr-3"><a href="cadastroCliente.html">Cadastrar Cliente</a></li>
                                     <li class="mt-2 mr-3"><a href="cadastroImovel.html">Cadastrar Imóvel</li>
-                                    <li class="mt-2 mr-3"><a href="listagemFuncionario.php">Listar Funcionários</a></li>
+                                    <li class="mt-2 mr-3"><a href="listagemCliente.php">Listar Clientes</a></li>
                                     <li class="mt-2 mr-3"><a href="listagemImovel.html">Listar Imóveis</a></li>
                                     <li class="mt-2 mr-3"><a href="listagemInteresse.html">Listar Interesses</a></li>
                                     <li class="mt-2 mr-3"><a href="../homePublica.html">Sair</a></li>
@@ -43,108 +43,83 @@
                         <div id="listagemContainer" class="px-0">
                             <div class="container px-0">
                                 <div class="jumbotron px-2">
-                                    <h1 class="display-4">Listagem de Clientes</h1>
+                                    <h1 class="display-4">Listagem de Funcionários</h1>
                                     <hr class="my-3">
                                     <div id="admContainer">
                                         <?php 
-                                        
-                                            require "../php/conexaoMysql.php";
-                                            require "../php/cliente.php";
 
-                                            $arrayClientes = null;
+                                            require "../php/conexaoMysql.php";
+                                            require "../php/funcionario.php";
+
+                                            $arrayFuncionarios = null;
                                             $msgErro = "";
-                                            $telefones = null;
 
                                             try {
-                                                $arrayClientes = getClientes($conn);  
+                                                $arrayFuncionarios = getFuncionarios($conn);  
                                             } catch (Exception $e) {
                                                 $msgErro = $e->getMessage();
                                                 echo $msgErro;
                                             }
 
-                                            if ($arrayClientes != null) {
-                                                foreach ($arrayClientes as $cliente) {
-                                                    $counterTelefone = 1;
-                                                    $sql = "SELECT Numero FROM telefone WHERE PessoaID = $cliente->id AND TipoPessoa = 1";
-
-                                                    $result = $conn->query($sql);
-                                                    if (! $result)
-                                                        throw new Exception("Falha na busca dos telefones: " . $conn->error);
-
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $telefones[] = $row["Numero"];
-                                                        }
-                                                    }
-
+                                            if ($arrayFuncionarios != null) {
+                                                foreach ($arrayFuncionarios as $funcionario) {
                                                     echo "
                                                         <div class='row pt-4'>
                                                             <div class='container'>
                                                                 <div class='col-sm-12 admBox'>
                                                                     <div class='row'>
-                                                                        <h1>$cliente->nome</h1>
+                                                                        <h1>$funcionario->nome<span class='badge badge-info'>$funcionario->cargo</span></h1>
                                                                     </div>
                                                                     <hr>
                                                                     <div class='row mt-2 ml-1'>
-                                                                        <label for='cpf'>
-                                                                            <strong>CPF:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='cpf'>$cliente->cpf</span>
+                                                                        <label for='cpf'><strong>CPF:&nbsp&nbsp</strong></label>
+                                                                        <span name='cpf'>$funcionario->cpf</span>
                                                                     </div>
                                                                     <div class='row mt-2 ml-1'>
-                                                                        <label for='endereco'>
-                                                                            <strong>Endereço:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='endereco'>$cliente->endereco</span>
-                                                                    </div>";
-
-                                                    for ($x = 0; $x < count($telefones); $x++) {
-                                                        echo "
-                                                            <div class='row mt-2 ml-1'>
-                                                                <label for='telefone$counterTelefone'>
-                                                                    <strong>Telefone$counterTelefone:&nbsp&nbsp</strong>
-                                                                </label>
-                                                                <span name='telefone$counterTelefone'>$telefones[$x]</span>
-                                                            </div>";
-
-                                                        $counterTelefone++;
-                                                    }
-
-                                                    echo "
-                                                                    <div class='row mt-2 ml-1'>
-                                                                        <label for='email'>
-                                                                            <strong>Email:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='email'>$cliente->email</span>
+                                                                        <label for='endereco'><strong>Endereço:&nbsp&nbsp</strong></label>
+                                                                        <span name='endereco'>$funcionario->endereco</span>
                                                                     </div>
                                                                     <div class='row mt-2 ml-1'>
-                                                                        <label for='sexo'>
-                                                                            <strong>Sexo:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='sexo'>$cliente->sexo</span>
+                                                                        <label for='telefone'><strong>Telefone:&nbsp&nbsp</strong></label>
+                                                                        <span name='telefone'>$funcionario->telefone</span>
                                                                     </div>
                                                                     <div class='row mt-2 ml-1'>
-                                                                        <label for='estadoCivil'>
-                                                                            <strong>Estado Civil:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='estadoCivil'>$cliente->estadoCivil</span>
+                                                                        <label for='telefoneContato'><strong>Telefone de Contato:&nbsp&nbsp</strong></label>
+                                                                        <span name='telefoneContato'>$funcionario->telefoneContato</span>
                                                                     </div>
                                                                     <div class='row mt-2 ml-1'>
-                                                                        <label for='profissao'>
-                                                                            <strong>Profissão:&nbsp&nbsp</strong>
-                                                                        </label>
-                                                                        <span name='profissao'>$cliente->profissao</span>
+                                                                        <label for='telefoneCelular'><strong>Telefone Celular:&nbsp&nbsp</strong></label>
+                                                                        <span name='telefoneCelular'>$funcionario->telefoneCelular</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='dataIngresso'><strong>Data de Ingresso:&nbsp&nbsp</strong></label>
+                                                                        <span name='telefone'>$funcionario->dataIngresso</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='salarioBase'><strong>Salário Base:&nbsp&nbsp</strong></label>
+                                                                        <span name='salarioBase'>$funcionario->salarioBase</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='comissao'><strong>Comissão:&nbsp&nbsp</strong></label>
+                                                                        <span name='comissao'>$funcionario->comissao</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='salario'><strong>Salário:&nbsp&nbsp</strong></label>
+                                                                        <span name='salario'>$funcionario->salario</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='login'><strong>Login:&nbsp&nbsp</strong></label>
+                                                                        <span name='login' class='text-break'>$funcionario->login</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>";
-
-                                                    $telefones = null;
+                                                        </div>
+                                                    ";
                                                 }
                                             }
 
                                             $conn->close();
-                                        
+
                                         ?>
                                     </div>
                                 </div>

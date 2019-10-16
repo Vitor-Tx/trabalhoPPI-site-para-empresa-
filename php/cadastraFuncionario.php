@@ -52,7 +52,9 @@
                         Endereco, 
                         TelefoneContato, 
                         TelefoneCelular,
+                        DataIngresso,
                         Cargo,
+                        Comissao,
                         Login,
                         Senha,
                         Salt
@@ -65,7 +67,9 @@
                         '$endereco',
                         '$telefoneContato',
                         '$telefoneCelular',
+                        NOW(),
                         '$cargo',
+                        0.0,
                         '$login',
                         '$hash',
                         '$salt'
@@ -81,5 +85,7 @@
             echo $e->getMessage();
         }
     }
+
+    $conn->close();
 
 ?>

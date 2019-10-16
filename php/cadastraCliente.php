@@ -60,7 +60,8 @@
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-
     }
+
+    $conn->close();
 
 ?>
