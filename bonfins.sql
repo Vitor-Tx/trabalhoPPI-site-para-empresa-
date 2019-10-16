@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Out-2019 às 12:40
+-- Tempo de geração: 16-Out-2019 às 05:21
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -39,6 +39,14 @@ CREATE TABLE `cliente` (
   `Profissao` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`ID`, `Nome`, `Cpf`, `Endereco`, `Email`, `Sexo`, `EstadoCivil`, `Profissao`) VALUES
+(1, 'Maria', '123.456.789-02', 'Rua A, Bairro B, Araguari - MG', 'maria@email.com', 'f', 4, 'Piloto de Caça'),
+(2, 'Guilherme Bartasson', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', 'guilhermebnj@gmail.com', 'm', 2, 'Programador');
+
 -- --------------------------------------------------------
 
 --
@@ -46,10 +54,22 @@ CREATE TABLE `cliente` (
 --
 
 CREATE TABLE `telefone` (
+  `ID` int(4) UNSIGNED NOT NULL,
   `PessoaID` int(4) UNSIGNED NOT NULL,
   `TipoPessoa` int(1) UNSIGNED NOT NULL,
   `Numero` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `telefone`
+--
+
+INSERT INTO `telefone` (`ID`, `PessoaID`, `TipoPessoa`, `Numero`) VALUES
+(1, 1, 1, '(56) 98738-9475'),
+(2, 1, 1, '(03) 98252-0938'),
+(3, 1, 1, '(48) 09583-4960'),
+(4, 2, 1, '(34) 3223-8957'),
+(5, 2, 1, '(34) 99813-4380');
 
 -- --------------------------------------------------------
 
@@ -84,7 +104,7 @@ ALTER TABLE `cliente`
 -- Índices para tabela `telefone`
 --
 ALTER TABLE `telefone`
-  ADD PRIMARY KEY (`PessoaID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Índices para tabela `tipopessoa`
@@ -100,7 +120,13 @@ ALTER TABLE `tipopessoa`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `telefone`
+--
+ALTER TABLE `telefone`
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tipopessoa`
