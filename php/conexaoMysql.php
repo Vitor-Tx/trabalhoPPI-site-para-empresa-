@@ -13,6 +13,4 @@
     // Verifica se ocorreu alguma falha durante a conexão
     if ($conn->connect_error)
         die("Falha na conexão com o MySQL: " . $conn->connect_error);
-    else
-        echo "Conectado ao MySQL";
 ?>

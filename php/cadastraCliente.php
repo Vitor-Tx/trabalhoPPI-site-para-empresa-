@@ -40,7 +40,7 @@
         // echo $profissao. "\n";
 
         try {
-            $conn = conectaAoMySQL();
+            $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 
             $sql = "
                 INSERT INTO cliente (Nome, Cpf, Endereco, Email, Sexo, EstadoCivil, Profissao) 
@@ -50,7 +50,22 @@
             if (! $conn->query($sql))
                 throw new Exception("Falha na inserção dos dados: " . $conn->error);
                 
-            
+            $sql = "SELECT @id := LAST_INSERT_ID();";
+
+            if (! $conn->query($sql))
+                throw new Exception("Falha na inserção dos dados: " . $conn->error);
+
+            for ($y = 0; $y < count($telefones); $y++) {
+                $sql = "INSERT INTO telefone (PessoaID, TipoPessoa, Numero) VALUES (@id, 1, '$telefones[$y]');";
+
+                if (! $conn->query($sql))
+                    throw new Exception("Falha na inserção dos dados: " . $conn->error);
+            }
+
+            $conn->commit();
+
+            echo "Cliente cadastrado com sucesso";
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
