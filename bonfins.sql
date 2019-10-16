@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 16/10/2019 às 14:46
+-- Tempo de geração: 16/10/2019 às 16:54
 -- Versão do servidor: 10.4.8-MariaDB
 -- Versão do PHP: 7.3.10
 
@@ -74,6 +74,33 @@ INSERT INTO `estadoCivil` (`ID`, `Nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `funcionario`
+--
+
+CREATE TABLE `funcionario` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `Nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `Telefone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Cpf` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
+  `Endereco` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `TelefoneContato` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `TelefoneCelular` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Cargo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Login` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `Senha` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `Salt` varchar(22) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `TelefoneContato`, `TelefoneCelular`, `Cargo`, `Login`, `Senha`, `Salt`) VALUES
+(1, 'Guilherme Bartasson', '(34) 99812-4380', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', 'Diretor', 'guilherme.bonfins', '$2a$04$oR6TICVZV5G2FGicSdXDb.AcnOuB3tkFcUu5818P27dbrArCdn/6q', 'oR6TICVZV5G2FGicSdXDbG');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `telefone`
 --
 
@@ -134,6 +161,13 @@ ALTER TABLE `estadoCivil`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Índices de tabela `funcionario`
+--
+ALTER TABLE `funcionario`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Cpf` (`Cpf`);
+
+--
 -- Índices de tabela `telefone`
 --
 ALTER TABLE `telefone`
@@ -160,6 +194,12 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `estadoCivil`
   MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `funcionario`
+--
+ALTER TABLE `funcionario`
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`

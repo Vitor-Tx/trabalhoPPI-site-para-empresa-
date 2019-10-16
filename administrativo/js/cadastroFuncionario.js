@@ -50,6 +50,26 @@ $("#btnCadastrar").on('click', function() {
     } else if (inputSenha == "" || inputSenha == null || inputSenha == undefined) {
         alert("Campo Senha não preenchido!");
     } else {
-        alert("Tudo OK!");
+        $.ajax({
+            method: "POST",
+            url: "../php/cadastraFuncionario.php",
+            data:
+            {
+                nome: inputNome,
+                telefone: inputTelefone,
+                cpf: inputCPF,
+                endereco: inputEndereco,
+                telefoneContato: inputTelefoneContato,
+                telefoneCelular: inputTelefoneCelular,
+                cargo: inputCargo,
+                login: inputLogin,
+                senha: inputSenha,
+            },
+            success: function(result)
+            {
+                alert(result);
+                window.location.reload();
+            }
+        });
     }
 });
