@@ -1,6 +1,16 @@
+var imagens = [];
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
 $("#inputTipoImovel").change(function() {
     var clientes;
     var saida;
+    imagens = [];
 
     $.ajax({
         method: "POST",
@@ -104,8 +114,14 @@ $("#inputTipoImovel").change(function() {
 
         saida +=    "<div id='dadosTransacao'></div>";
 
+        saida +=    "<div>" +
+                        "<button type='button' class='btn btn-success' id='btnEnviar'>Enviar Imagem</button>" +
+                        "<input type='file' accept='image/*' id='inputImagens' class='hidden'>" +
+                    "</div>" +
+                    "<div id='imagens' class='text-center pt-4'></div>";
+
         saida +=    "<div class='text-center'>" +
-                        "<button type='button' class='btn btn-orange' id='btnCadastrar'>Cadastrar</button>" +
+                        "<button type='button' class='btn btn-orange mt-4' id='btnCadastrar'>Cadastrar</button>" +
                     "</div>";
 
         $("#campos").append(saida);
@@ -116,6 +132,22 @@ $("#inputTipoImovel").change(function() {
             if (this.value.trim() == "R$") {
                 this.value = "";
             }
+        });
+
+        $("#btnEnviar").on("click", (e) => {
+            e.preventDefault();
+            $("#inputImagens").click();
+        });
+
+        $("#inputImagens").on("change", () => {
+            fileInput = document.getElementById("inputImagens");
+
+            const file = fileInput.files[fileInput.files.length - 1];
+            toBase64(file).then(result => {
+                imagens.push(result);
+                $("#imagens").append("<img src='" + imagens[imagens.length - 1] +"'" + 
+                                     "class='image-cadastro d-inline mx-2 my-2'>");
+            });
         });
     }
 
@@ -293,7 +325,6 @@ $("#inputTipoImovel").change(function() {
 });
 
 function getProprietarios(removivel, clientes) {
-    console.log(clientes);
     var selectPropietarios = "";
 
     if (removivel) {
