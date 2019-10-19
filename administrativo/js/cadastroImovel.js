@@ -1,4 +1,17 @@
 var imagens = [];
+var controlPressed = false;
+
+window.onkeyup = function (e) {
+    if (e.which == 17) {
+        controlPressed = false;
+    }
+}
+
+window.onkeydown = function (e) {
+    if (e.which == 17) {
+        controlPressed = true;
+    }
+}
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -146,7 +159,9 @@ $("#inputTipoImovel").change(function() {
             toBase64(file).then(result => {
                 imagens.push(result);
                 $("#imagens").append("<img src='" + imagens[imagens.length - 1] +"'" + 
-                                     "class='image-cadastro d-inline mx-2 my-2'>");
+                                     "class='image-cadastro d-inline mx-2 my-2'"+
+                                     "onclick='excluiImagem(this)'>");
+                fileInput.value = "";
             });
         });
     }
@@ -239,6 +254,17 @@ $("#inputTipoImovel").change(function() {
         var inputPorcentagemImobiliaria = $("#inputPorcentagemImobiliaria").val();
 
         var ok = false;
+
+        var inputProprietarios = []
+        var proprietarios = document.getElementsByName("proprietario");
+
+        for (var x = 0; x < proprietarios.length; x++) {
+            if (proprietarios[x].value != "0" && 
+                proprietarios[x].value != null && 
+                proprietarios[x].value != undefined) {
+                    inputProprietarios.push(proprietarios[x]);
+                }
+        }
     
         if (inputRua == "" || inputRua == null || inputRua == undefined) {
             alert("Campo Rua não preenchido!");
@@ -311,7 +337,41 @@ $("#inputTipoImovel").change(function() {
         }
 
         if (ok) {
-            alert("Tudo OK!");
+            // $.ajax({
+            //     method: "POST",
+            //     url: "../php/cadastraImovel.php",
+            //     data:
+            //     {
+            //         tipoImovel: $("#inputTipoImovel").val(),
+            //         rua: inputRua,
+            //         bairro: inputBairro,
+            //         cidade: inputCidade,
+            //         estado: inputTelefones,
+            //         proprietarios: inputProprietarios,
+            //         tipoTransacao: inputTipoTransacao,
+            //         quantidadeQuartos: inputQtdQuartos,
+            //         quantidadeSuites: inputQtdSuites,
+            //         quantidadeSalaEstar: inputQtdSalaEstar,
+            //         quantidadeSalaJantar: inputQtdSalaJantar,
+            //         quantidadeVagasGaragem: inputQtdVagasGaragem,
+            //         area: inputArea,
+            //         armarioEmbutido: inputArmarioEmbutido,
+            //         descricao: inputDescricao,
+            //         tipoTransacao: inputTipoTransacao,
+            //         valorVenda: inputValorVenda,
+            //         valorAluguel: inputValorAluguel,
+            //         porcentagemImobiliaria: inputPorcentagemImobiliaria,
+            //         andar: inputAndar,
+            //         valorCondominio: inputValorCondominio,
+            //         portaria24horas: inputPortaria24horas,
+            //         imagens: imagens
+            //     },
+            //     success: function(result)
+            //     {
+            //         alert(result);
+            //     }
+            // });
+            alert("Tudo OK")
         }
     });
 
@@ -342,4 +402,16 @@ function getProprietarios(removivel, clientes) {
     selectPropietarios += "</select>";
 
     return selectPropietarios;
+}
+
+function excluiImagem(imagem) {
+    if (controlPressed) {
+        for (var x = 0; x < imagens.length; x++) {
+            if (imagens[x] == $(imagem).attr('src')) {
+                imagens.splice(x, 1);
+            }
+        }
+    
+        $(imagem).remove();
+    }
 }
