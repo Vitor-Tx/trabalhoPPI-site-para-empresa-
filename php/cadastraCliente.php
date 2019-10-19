@@ -44,7 +44,7 @@
             $sql = "SELECT @id := LAST_INSERT_ID();";
 
             if (! $conn->query($sql))
-                throw new Exception("Falha na inserção dos dados: " . $conn->error);
+                throw new Exception("Falha ao recuperar o ID: " . $conn->error);
 
             for ($y = 0; $y < count($telefones); $y++) {
                 $sql = "INSERT INTO telefone (PessoaID, TipoPessoa, Numero) VALUES (@id, 1, '$telefones[$y]');";

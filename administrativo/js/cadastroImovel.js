@@ -40,7 +40,11 @@ $("#inputTipoImovel").change(function() {
     if ($(this).val() !== '0') {
         saida = "<div class='form-group'>" +
                     "<label for='rua'>Rua</label>" +
-                    "<input type='text' name='rua' id='inputRua' placeholder='Digite o Nome da Rua e o Número da Casa' class='form-control'>" +
+                    "<input type='text' name='rua' id='inputRua' placeholder='Digite o Nome da Rua' class='form-control'>" +
+                "</div>" +
+                "<div class='form-group'>" +
+                    "<label for='numero'>Número</label>" +
+                    "<input type='number' name='numero' id='inputNumero' placeholder='Digite o Número do Imóvel' class='form-control'>" +
                 "</div>" +
                 "<div class='form-group'>" +
                     "<label for='bairro'>Bairro</label>" +
@@ -52,7 +56,36 @@ $("#inputTipoImovel").change(function() {
                 "</div>" +
                 "<div class='form-group'>" +
                     "<label for='estado'>Estado</label>" +
-                    "<input type='text' name='estado' id='inputEstado' placeholder='Digite o Nome do Estado' class='form-control'>" +
+                    "<select name='estado' id='inputEstado' class='form-control'>" +
+                        "<option value='' selected>Selecione um ...</option>" +
+                        "<option value='AC'>Acre</option>" +
+                        "<option value='AL'>Alagoas</option>" +
+                        "<option value='AP'>Amapá</option>" +
+                        "<option value='AM'>Amazonas</option>" +
+                        "<option value='BA'>Bahia</option>" +
+                        "<option value='CE'>Ceará</option>" +
+                        "<option value='DF'>Distrito Federal</option>" +
+                        "<option value='ES'>Espírito Santo</option>" +
+                        "<option value='GO'>Goiás</option>" +
+                        "<option value='MA'>Maranhão</option>" +
+                        "<option value='MT'>Mato Grosso</option>" +
+                        "<option value='MS'>Mato Grosso do Sul</option>" +
+                        "<option value='MG'>Minas Gerais</option>" +
+                        "<option value='PA'>Pará</option>" +
+                        "<option value='PB'>Paraíba</option>" +
+                        "<option value='PR'>Paraná</option>" +
+                        "<option value='PE'>Pernambuco</option>" +
+                        "<option value='PI'>Piauí</option>" +
+                        "<option value='RJ'>Rio de Janeiro</option>" +
+                        "<option value='RN'>Rio Grande do Norte</option>" +
+                        "<option value='RS'>Rio Grande do Sul</option>" +
+                        "<option value='RO'>Rondônia</option>" +
+                        "<option value='RR'>Roraima</option>" +
+                        "<option value='SC'>Santa Catarina</option>" +
+                        "<option value='SP'>São Paulo</option>" +
+                        "<option value='SE'>Sergipe</option>" +
+                        "<option value='TO'>Tocantins</option>" +
+                    "</select>" +
                 "</div>" +
                 "<div class='form-group'>" +
                     "<label for='proprietario'>Proprietário</label>" +
@@ -232,6 +265,7 @@ $("#inputTipoImovel").change(function() {
 
     $("#btnCadastrar").on('click', function() {
         var inputRua = $("#inputRua").val();
+        var inputNumero = $("#inputNumero").val();
         var inputBairro = $("#inputBairro").val();
         var inputCidade = $("#inputCidade").val();
         var inputEstado = $("#inputEstado").val();
@@ -239,7 +273,6 @@ $("#inputTipoImovel").change(function() {
         var inputTipoTransacao = $("#inputTipoTransacao").val();
         var inputQtdQuartos = $("#inputQtdQuartos").val();
         var inputQtdSuites = $("#inputQtdSuites").val();
-        var inputQtdSalaEstar = $("#inputQtdSalaEstar").val();
         var inputQtdSalaEstar = $("#inputQtdSalaEstar").val();
         var inputQtdSalaJantar = $("#inputQtdSalaJantar").val();
         var inputQtdVagasGaragem = $("#inputQtdVagasGaragem").val();
@@ -252,6 +285,7 @@ $("#inputTipoImovel").change(function() {
         var inputValorVenda = $("#inputValorVenda").val();
         var inputValorAluguel = $("#inputValorAluguel").val();
         var inputPorcentagemImobiliaria = $("#inputPorcentagemImobiliaria").val();
+        var inputTipoImovel = $("#inputTipoImovel").val();
 
         var ok = false;
 
@@ -262,12 +296,14 @@ $("#inputTipoImovel").change(function() {
             if (proprietarios[x].value != "0" && 
                 proprietarios[x].value != null && 
                 proprietarios[x].value != undefined) {
-                    inputProprietarios.push(proprietarios[x]);
+                    inputProprietarios.push(proprietarios[x].value);
                 }
         }
     
         if (inputRua == "" || inputRua == null || inputRua == undefined) {
             alert("Campo Rua não preenchido!");
+        } else if (inputNumero == "" || inputNumero == null || inputNumero == undefined) {
+            alert("Campo Número não preenchido!");
         } else if (inputBairro == "" || inputBairro == null || inputBairro == undefined) {
             alert("Campo Bairro não preenchido!");
         } else if (inputCidade == "" || inputCidade == null || inputCidade == undefined) {
@@ -299,8 +335,10 @@ $("#inputTipoImovel").change(function() {
                 alert("Campo Valor de Venda não preenchido!");
             } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
                 alert("Campo Porcentagem da Imobiliária não preenchido!");
+            } else if (imagens.length == 0) {
+                alert("Você não selecionou nenhuma imagem!");
             } else {
-                if ($("#inputTipoImovel").val() == '2') {
+                if (inputTipoImovel == '2') {
                     if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
                         alert("Campo Andar não preenchido!");
                     } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
@@ -319,8 +357,10 @@ $("#inputTipoImovel").change(function() {
                 alert("Campo Valor do Aluguel não preenchido!");
             } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
                 alert("Campo Porcentagem da Imobiliária não preenchido!");
+            } else if (imagens.length == 0) {
+                alert("Você não selecionou nenhuma imagem!");
             } else {
-                if ($("#inputTipoImovel").val() == '2') {
+                if (inputTipoImovel == '2') {
                     if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
                         alert("Campo Andar não preenchido!");
                     } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
@@ -337,41 +377,41 @@ $("#inputTipoImovel").change(function() {
         }
 
         if (ok) {
-            // $.ajax({
-            //     method: "POST",
-            //     url: "../php/cadastraImovel.php",
-            //     data:
-            //     {
-            //         tipoImovel: $("#inputTipoImovel").val(),
-            //         rua: inputRua,
-            //         bairro: inputBairro,
-            //         cidade: inputCidade,
-            //         estado: inputTelefones,
-            //         proprietarios: inputProprietarios,
-            //         tipoTransacao: inputTipoTransacao,
-            //         quantidadeQuartos: inputQtdQuartos,
-            //         quantidadeSuites: inputQtdSuites,
-            //         quantidadeSalaEstar: inputQtdSalaEstar,
-            //         quantidadeSalaJantar: inputQtdSalaJantar,
-            //         quantidadeVagasGaragem: inputQtdVagasGaragem,
-            //         area: inputArea,
-            //         armarioEmbutido: inputArmarioEmbutido,
-            //         descricao: inputDescricao,
-            //         tipoTransacao: inputTipoTransacao,
-            //         valorVenda: inputValorVenda,
-            //         valorAluguel: inputValorAluguel,
-            //         porcentagemImobiliaria: inputPorcentagemImobiliaria,
-            //         andar: inputAndar,
-            //         valorCondominio: inputValorCondominio,
-            //         portaria24horas: inputPortaria24horas,
-            //         imagens: imagens
-            //     },
-            //     success: function(result)
-            //     {
-            //         alert(result);
-            //     }
-            // });
-            alert("Tudo OK")
+            $.ajax({
+                method: "POST",
+                url: "../php/cadastraImovel.php",
+                data:
+                {
+                    tipoImovel: inputTipoImovel,
+                    rua: inputRua,
+                    numero: inputNumero,
+                    bairro: inputBairro,
+                    cidade: inputCidade,
+                    estado: inputEstado,
+                    proprietarios: inputProprietarios,
+                    tipoTransacao: inputTipoTransacao,
+                    quantidadeQuartos: inputQtdQuartos,
+                    quantidadeSuites: inputQtdSuites,
+                    quantidadeSalaEstar: inputQtdSalaEstar,
+                    quantidadeSalaJantar: inputQtdSalaJantar,
+                    quantidadeVagasGaragem: inputQtdVagasGaragem,
+                    area: inputArea,
+                    armarioEmbutido: inputArmarioEmbutido,
+                    descricao: inputDescricao,
+                    valorVenda: inputValorVenda,
+                    valorAluguel: inputValorAluguel,
+                    porcentagemImobiliaria: inputPorcentagemImobiliaria,
+                    andar: inputAndar,
+                    valorCondominio: inputValorCondominio,
+                    portaria24horas: inputPortaria24horas,
+                    imagens: imagens
+                },
+                success: function(result)
+                {
+                    alert(result);
+                    window.location.reload();
+                }
+            });
         }
     });
 
