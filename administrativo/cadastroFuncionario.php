@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-sm-12 p-0">
                         <nav class="navbar navbar-expand-lg navbar-light sticky-top pt-0">
-                            <a class="navbar-brand pt-0" href="../homePublica.html">
+                            <a class="navbar-brand pt-0" href="../index.html">
                                 <img class="logo-bonfins" src="../assets/images/logo-bonfins3.png">
                             </a>
                             <button class="navbar-toggler mt-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="mt-2 mr-3">
-                                        <a href="homeRestrita.html">Home</a>
+                                        <a href="index.html">Home</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="cadastroCliente.html">Cadastrar Cliente</a>
@@ -47,7 +47,7 @@
                                         <a href="listagemInteresse.html">Listar Interesses</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="../homePublica.html">Sair</a>
+                                        <a href="../index.html">Sair</a>
                                     </li>
                                 </ul>
                             </div>
