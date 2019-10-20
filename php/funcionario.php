@@ -37,28 +37,26 @@
                     f.Cargo = c.ID";
 
         $result = $conn->query($sql);
-        if (! $result)
-            throw new Exception('Ocorreu uma falha ao gerar o relatorio de funcionarios: ' . $conn->error);
+        if ($result == false)
+            throw new Exception('Ocorreu uma falha ao buscar os funcionários de funcionarios: ' . $conn->error);
     
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $funcionario = new Funcionario();
-                
-                $funcionario->nome            = $row["Nome"];
-                $funcionario->cargo           = $row["Cargo"];
-                $funcionario->cpf             = $row["Cpf"];
-                $funcionario->endereco        = $row["Endereco"];
-                $funcionario->telefone        = $row["Telefone"];
-                $funcionario->telefoneContato = $row["TelefoneContato"];
-                $funcionario->telefoneCelular = $row["TelefoneCelular"];
-                $funcionario->dataIngresso    = $row["DataIngresso"];
-                $funcionario->salarioBase     = $row["SalarioBase"];
-                $funcionario->comissao        = $row["Comissao"];
-                $funcionario->salario         = $row["SalarioBase"] + $row["Comissao"];
-                $funcionario->login           = $row["Login"];
+        while ($row = $result->fetch()) {
+            $funcionario = new Funcionario();
+            
+            $funcionario->nome            = $row["Nome"];
+            $funcionario->cargo           = $row["Cargo"];
+            $funcionario->cpf             = $row["Cpf"];
+            $funcionario->endereco        = $row["Endereco"];
+            $funcionario->telefone        = $row["Telefone"];
+            $funcionario->telefoneContato = $row["TelefoneContato"];
+            $funcionario->telefoneCelular = $row["TelefoneCelular"];
+            $funcionario->dataIngresso    = $row["DataIngresso"];
+            $funcionario->salarioBase     = $row["SalarioBase"];
+            $funcionario->comissao        = $row["Comissao"];
+            $funcionario->salario         = $row["SalarioBase"] + $row["Comissao"];
+            $funcionario->login           = $row["Login"];
 
-                $array_funcionarios[] = $funcionario;
-            }
+            $array_funcionarios[] = $funcionario;
         }
 
         return $array_funcionarios;

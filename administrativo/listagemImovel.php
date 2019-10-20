@@ -102,12 +102,11 @@
                                                     $result = $conn->query($sql);
                                                     if (!$result)
                                                         throw new Exception("Falha na busca dos proprietarios: " . $conn->error);
-
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $proprietarios[] = $row["Nome"];
-                                                        }
+                                                    
+                                                    while ($row = $result->fetch()) {
+                                                        $proprietarios[] = $row["Nome"];
                                                     }
+                                                    
 
                                                     $sql = "SELECT
                                                                 Imagem
@@ -122,10 +121,8 @@
                                                     if (! $result)
                                                         throw new Exception("Falha na busca das imagens: " . $conn->error);
 
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $imagem = $row["Imagem"];
-                                                        }
+                                                    while ($row = $result->fetch()) {
+                                                        $imagem = $row["Imagem"];
                                                     }
 
                                                     echo "
@@ -200,7 +197,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorCondominio'><strong>Valor do Condomínio:&nbsp&nbsp</strong></label>
-                                                                <span name='valorCondominio'>R$ $imovel->valorCondominio</span>
+                                                                <span name='valorCondominio'>$imovel->valorCondominio</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='portaria24horas'><strong>Possui Portaria 24 Horas:&nbsp&nbsp</strong></label>
@@ -213,7 +210,7 @@
                                                         echo "
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorVenda'><strong>Valor de Venda:&nbsp&nbsp</strong></label>
-                                                                <span name='valorVenda'>R$ $imovel->valorVenda</span>
+                                                                <span name='valorVenda'>$imovel->valorVenda</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorRealVenda'><strong>Valor Real de Venda:&nbsp&nbsp</strong></label>
@@ -221,7 +218,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliária:&nbsp&nbsp</strong></label>
-                                                                <span name='porcentagemImobiliaria'>$imovel->porcentagemImobiliaria %</span>
+                                                                <span name='porcentagemImobiliaria'>$imovel->porcentagemImobiliaria</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataInicioVenda'><strong>Data de Início da Venda:&nbsp&nbsp</strong></label>
@@ -244,7 +241,7 @@
                                                         echo "
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorAluguel'><strong>Valor do    Aluguel:&nbsp&nbsp</strong></label>
-                                                                <span name='valorAluguel'>R$ $imovel->valorAluguel</span>
+                                                                <span name='valorAluguel'>$imovel->valorAluguel</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorRealAluguel'><strong>Valor Real do Aluguel:&nbsp&nbsp</strong></label>
@@ -252,7 +249,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliaria:&nbsp&nbsp</strong></label>
-                                                                <span name='porcentagemImobiliaria'>$imovel->porcentagemImobiliaria %</span>
+                                                                <span name='porcentagemImobiliaria'>$imovel->porcentagemImobiliaria</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataInicioAluguel'><strong>Data de Início do Aluguel:&nbsp&nbsp</strong></label>
@@ -287,7 +284,7 @@
                                                 }
                                             }
 
-                                            $conn->close();
+                                            $conn = null;
 
                                         ?>
                                     </div>

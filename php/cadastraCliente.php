@@ -31,37 +31,63 @@
         }
 
         try {
-            $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $conn->beginTransaction();
 
-            $sql = "
-                INSERT INTO cliente (Nome, Cpf, Endereco, Email, Sexo, EstadoCivil, Profissao) 
-                VALUES ('$nome', '$cpf', '$endereco', '$email', '$sexo', '$estadoCivil', '$profissao')
-            ";
+            $sql = "INSERT INTO cliente (
+                        Nome, 
+                        Cpf, 
+                        Endereco, 
+                        Email, 
+                        Sexo, 
+                        EstadoCivil, 
+                        Profissao
+                    ) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            if (! $conn->query($sql))
-                throw new Exception("Falha na inserção dos dados: " . $conn->error);
+            try {
+                $st = $conn->prepare($sql);
+                $st->execute(
+                    [
+                        $nome,
+                        $cpf,
+                        $endereco,
+                        $email,
+                        $sexo,
+                        $estadoCivil,
+                        $profissao
+                    ]
+                );
+            } catch (Exception $e) {
+                $conn->rollback();
+                throw $e;
+            }
                 
-            $sql = "SELECT @id := LAST_INSERT_ID();";
+            $sql = "SELECT @id := MAX(ID) FROM cliente";
 
             if (! $conn->query($sql))
                 throw new Exception("Falha ao recuperar o ID: " . $conn->error);
 
-            for ($y = 0; $y < count($telefones); $y++) {
-                $sql = "INSERT INTO telefone (PessoaID, TipoPessoa, Numero) VALUES (@id, 1, '$telefones[$y]');";
+            $sql = "INSERT INTO telefone (PessoaID, TipoPessoa, Numero) VALUES (@id, 1, ?);";
 
-                if (! $conn->query($sql))
-                    throw new Exception("Falha na inserção dos dados: " . $conn->error);
+            try {
+                $st = $conn->prepare($sql);
+
+                foreach ($telefones as $telefone) {
+                    $st->execute([$telefone]);
+                }
+
+                $conn->commit();
+
+                echo "Cliente cadastrado com sucesso";
+            } catch (Exception $e) {
+                $conn->rollback();
+                throw $e;
             }
-
-            $conn->commit();
-
-            echo "Cliente cadastrado com sucesso";
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    $conn->close();
+    $conn = null;
 
 ?>

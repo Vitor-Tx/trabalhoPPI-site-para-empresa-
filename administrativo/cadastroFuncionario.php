@@ -25,14 +25,30 @@
                     
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="mt-2 mr-3"><a href="homeRestrita.html">Home</a></li>
-                                    <li class="mt-2 mr-3"><a href="cadastroCliente.html">Cadastrar Cliente</a></li>
-                                    <li class="mt-2 mr-3"><a href="cadastroImovel.html">Cadastrar Imóvel</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemFuncionario.php">Listar Funcionários</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemCliente.php">Listar Clientes</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemImovel.html">Listar Imóveis</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemInteresse.html">Listar Interesses</a></li>
-                                    <li class="mt-2 mr-3"><a href="../homePublica.html">Sair</a></li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="homeRestrita.html">Home</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="cadastroCliente.html">Cadastrar Cliente</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="cadastroImovel.html">Cadastrar Imóvel</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemFuncionario.php">Listar Funcionários</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemCliente.php">Listar Clientes</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemImovel.php">Listar Imóveis</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemInteresse.html">Listar Interesses</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="../homePublica.html">Sair</a>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -72,7 +88,6 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="cargo">Cargo</label>
-                                            <!-- <input type="text" name="cargo" id="inputCargo" placeholder="Digite o Cargo" class="form-control"> -->
                                             <select name="cargo" id="inputCargo" class="form-control">
                                                 <option value="0" selected>Selecione um</option>
                                                 <?php 
@@ -85,15 +100,13 @@
                                                     if (! $result)
                                                         throw new Exception("Falha na busca dos cargos: " . $conn->error);
 
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $id = $row["ID"];
-                                                            $nome = $row["Nome"];
-                                                            echo "<option value='$id'>$nome</option>";
-                                                        }
+                                                    while ($row = $result->fetch()) {
+                                                        $id = $row["ID"];
+                                                        $nome = $row["Nome"];
+                                                        echo "<option value='$id'>$nome</option>";
                                                     }
 
-                                                    $conn->close();
+                                                    $conn == null;
 
                                                 ?>
                                             </select>

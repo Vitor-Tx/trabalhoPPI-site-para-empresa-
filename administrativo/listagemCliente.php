@@ -48,7 +48,7 @@
                                         <a href="listagemFuncionario.php">Listar Funcionários</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="listagemImovel.html">Listar Imóveis</a>
+                                        <a href="listagemImovel.php">Listar Imóveis</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="listagemInteresse.html">Listar Interesses</a>
@@ -97,13 +97,11 @@
                                                                 TipoPessoa = 1";
 
                                                     $result = $conn->query($sql);
-                                                    if (! $result)
+                                                    if ($result == false)
                                                         throw new Exception("Falha na busca dos telefones: " . $conn->error);
 
-                                                    if ($result->num_rows > 0) {
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $telefones[] = $row["Numero"];
-                                                        }
+                                                    while ($row = $result->fetch()) {
+                                                        $telefones[] = $row["Numero"];
                                                     }
 
                                                     echo "
@@ -172,7 +170,7 @@
                                                 }
                                             }
 
-                                            $conn->close();
+                                            $conn = null;
                                         
                                         ?>
                                     </div>

@@ -75,7 +75,7 @@
         }
 
         try {
-            $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $conn->beginTransaction();
 
             $sql = "INSERT INTO imovel (
                         Rua,
@@ -102,37 +102,36 @@
                     )
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            $stmt = $conn->prepare($sql);
-
-            if (!$stmt)
-                throw new Exception("Falha ao preparar a inserção de imóvel: " . $conn->error);
-
-            $stmt->bind_param("sisssiiiiiisisididddi", 
-                $rua,
-                $numero,
-                $bairro, 
-                $cidade, 
-                $estado, 
-                $tipoTransacao,
-                $qtdQuartos,
-                $qtdSuites,
-                $qtdSalaEstar,
-                $qtdSalaJantar,
-                $qtdVagasGaragem,
-                $area,
-                $armarioEmbutido,
-                $descricao,
-                $andar,
-                $valorCondominio,
-                $portaria24horas,
-                $valorVenda,
-                $valorAluguel,
-                $porcentagemImobiliaria,
-                $tipoImovel);
-
-            if (!$stmt->execute()) {
-                throw new Exception("Falha na inserção do imóvel: " . $conn->error);
+            try {
+                $st = $conn->prepare($sql);
+                $st->execute(
+                    [
+                        $rua,
+                        $numero,
+                        $bairro,
+                        $cidade,
+                        $estado,
+                        $tipoTransacao,
+                        $qtdQuartos,
+                        $qtdSuites,
+                        $qtdSalaEstar,
+                        $qtdSalaJantar,
+                        $qtdVagasGaragem,
+                        $area,
+                        $armarioEmbutido,
+                        $descricao,
+                        $andar,
+                        $valorCondominio,
+                        $portaria24horas,
+                        $valorVenda,
+                        $valorAluguel,
+                        $porcentagemImobiliaria,
+                        $tipoImovel
+                    ]
+                );
+            } catch (Exception $e) {
                 $conn->rollback();
+                throw new Exception("Falha ao cadastrar o imóvel: " . $e);
             }
                 
             $sql = "SELECT @id := MAX(ID) FROM imovel;";
@@ -140,28 +139,26 @@
             if (! $conn->query($sql))
                 throw new Exception("Falha ao recuperar o ID: " . $conn->error);
 
-            $stmt = $conn->prepare("INSERT INTO imagem (Imagem, ImovelID) VALUES (?, @id)");
+            try {
+                $st = $conn->prepare("INSERT INTO imagem (Imagem, ImovelID) VALUES (?, @id)");
 
-            $stmt->bind_param("s", $imagem);
-
-            for ($y = 0; $y < count($imagens); $y++) {
-                $imagem = $imagens[$y];
-                if (!$stmt->execute()) {
-                    throw new Exception("Falha na inserção das Imagens: " . $conn->error);
-                    $conn->rollback();
+                foreach ($imagens as $imagem) {
+                    $st->execute([$imagem]);
                 }
+            } catch (Exception $e) {
+                $conn->rollback();
+                throw $e;
             }
 
-            $stmt = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");
+            try {
+                $st = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");
 
-            $stmt->bind_param("i", $proprietario);
-
-            for ($z = 0; $z < count($proprietarios); $z++) {
-                $proprietario = $proprietarios[$z];
-                if (!$stmt->execute()) {
-                    throw new Exception("Falha na inserção dos Proprietários: " . $conn->error);
-                    $conn->rollback();
+                foreach ($proprietarios as $proprietario) {
+                    $st->execute([$proprietario]);
                 }
+            } catch (Exception $e) {
+                $conn->rollback();
+                throw $e;
             }
 
             $conn->commit();
@@ -173,6 +170,6 @@
         }
     }
 
-    $conn->close();
+    $conn = null;
 
 ?>

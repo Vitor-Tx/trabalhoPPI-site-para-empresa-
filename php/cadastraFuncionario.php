@@ -42,10 +42,9 @@
         $hash = crypt($senha, '$2a$' . $custo . '$' . $salt . '$');
 
         try {
-            $conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $conn->beginTransaction();
 
-            $sql = "INSERT INTO funcionario
-                    (
+            $sql = "INSERT INTO funcionario (
                         Nome, 
                         Telefone, 
                         Cpf, 
@@ -59,33 +58,36 @@
                         Senha,
                         Salt
                     )
-                    VALUES 
-                    (
-                        '$nome',
-                        '$telefone',
-                        '$cpf',
-                        '$endereco',
-                        '$telefoneContato',
-                        '$telefoneCelular',
-                        NOW(),
-                        '$cargo',
-                        0.0,
-                        '$login',
-                        '$hash',
-                        '$salt'
-                    )";
+                    VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, 0.0, ?, ?, ?)";
 
-            if (! $conn->query($sql))
-                throw new Exception("Falha na inserção dos dados: " . $conn->error);
-
-            $conn->commit();
-
-            echo "Funcionário cadastrado com sucesso";
+            try {
+                $st = $conn->prepare($sql);
+                $st->execute(
+                    [
+                        $nome, 
+                        $telefone,
+                        $cpf,
+                        $endereco,
+                        $telefoneContato,
+                        $telefoneCelular,
+                        $cargo,
+                        $login,
+                        $hash,
+                        $salt
+                    ]
+                );
+                
+                $conn->commit();
+                echo "Funcionário cadastrado com sucesso";
+            } catch (Exception $e) {
+                $conn->rollback();
+                throw $e;
+            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    $conn->close();
+    $conn = null;
 
 ?>
