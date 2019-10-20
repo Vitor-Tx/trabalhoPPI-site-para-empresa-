@@ -19,20 +19,43 @@
                             <a class="navbar-brand pt-0" href="../homePublica.html">
                                 <img class="logo-bonfins" src="../assets/images/logo-bonfins3.png">
                             </a>
-                            <button class="navbar-toggler mt-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <button 
+                            class="navbar-toggler mt-2" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#navbarSupportedContent" 
+                            aria-controls="navbarSupportedContent" 
+                            aria-expanded="false" 
+                            aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                     
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="mt-2 mr-3"><a href="homeRestrita.html">Home</a></li>
-                                    <li class="mt-2 mr-3"><a href="cadastroFuncionario.php">Cadastrar Funcionário</a></li>
-                                    <li class="mt-2 mr-3"><a href="cadastroCliente.html">Cadastrar Cliente</a></li>
-                                    <li class="mt-2 mr-3"><a href="cadastroImovel.html">Cadastrar Imóvel</li>
-                                    <li class="mt-2 mr-3"><a href="listagemFuncionario.php">Listar Funcionários</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemImovel.html">Listar Imóveis</a></li>
-                                    <li class="mt-2 mr-3"><a href="listagemInteresse.html">Listar Interesses</a></li>
-                                    <li class="mt-2 mr-3"><a href="../homePublica.html">Sair</a></li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="homeRestrita.html">Home</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="cadastroFuncionario.php">Cadastrar Funcionário</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="cadastroCliente.html">Cadastrar Cliente</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="cadastroImovel.html">Cadastrar Imóvel</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemFuncionario.php">Listar Funcionários</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemImovel.html">Listar Imóveis</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="listagemInteresse.html">Listar Interesses</a>
+                                    </li>
+                                    <li class="mt-2 mr-3">
+                                        <a href="../homePublica.html">Sair</a>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -65,7 +88,13 @@
                                             if ($arrayClientes != null) {
                                                 foreach ($arrayClientes as $cliente) {
                                                     $counterTelefone = 1;
-                                                    $sql = "SELECT Numero FROM telefone WHERE PessoaID = $cliente->id AND TipoPessoa = 1";
+                                                    $sql = "SELECT 
+                                                                Numero 
+                                                            FROM 
+                                                                telefone 
+                                                            WHERE 
+                                                                PessoaID = $cliente->id AND 
+                                                                TipoPessoa = 1";
 
                                                     $result = $conn->query($sql);
                                                     if (! $result)
