@@ -13,6 +13,7 @@ $("#btnEnviarInteresse").on('click', function() {
     } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
         $("#erro").text("Campo Descrição não preenchido!");
     } else {
+        $("#erro").text("");
         $.ajax({
             method: "POST",
             url: "../php/cadastraInteresse.php",
@@ -27,9 +28,9 @@ $("#btnEnviarInteresse").on('click', function() {
             success: function(result)
             {
                 alert(result);
-                //window.location.reload();
             }
         });
+        $('#modalInteresse').modal("hide");
     }
 });
 

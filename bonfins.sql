@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 21/10/2019 às 14:24
+-- Tempo de geração: 22/10/2019 às 01:08
 -- Versão do servidor: 10.4.8-MariaDB
 -- Versão do PHP: 7.3.10
 
@@ -123,7 +123,10 @@ INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `Telefon
 (4, 'Guilherme Bartasson', '(34) 3223-8957', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', '2019-10-16', 1, 0, 'guilherme.bonfins', '$2a$04$s6CTAFW6BhP8Be1UAZuh2.UGnFIbDFl3d6MD2fYbuvFOjSaNt.H9m', 's6CTAFW6BhP8Be1UAZuh2A'),
 (5, 'Teste3', '(34) 34567-8907', '123.456.789-56', 'Rua C, Bairro Z Uberlândia MG', '(45) 67890-7890', '(67) 8906-7890', '2019-10-20', 2, 0, 'bonfins_teste3', '$2a$04$w3cJubBPwYnm3dDuY7t1nuGiTWj6WbhuOQuamnVzUchL6jPNJRZ8a', 'w3cJubBPwYnm3dDuY7t1nv'),
 (6, 'Teste 4', '(45) 67890-6789', '456.789.067-89', 'Rua A, Bairro B Uberlândia Mg', '(34) 56789-0789', '(56) 78905-6789', '2019-10-20', 3, 0, 'bonfins_teste4', '$2a$04$uz4Fte6UuHPBd5sic6UKlO62Eaz4.FVfCsmgEzAlvnR9yb2tRThXq', 'uz4Fte6UuHPBd5sic6UKlP'),
-(8, 'Teste5', '(34) 56789-0678', '234.567.890-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9678', '(56) 7890-7890', '2019-10-20', 1, 0, 'bonfins_teste5', '$2a$04$mRVAq3Lw1UmjZAfDZ0dZu.weHec514ssTZvPBewt4qmejNSQkq73q', 'mRVAq3Lw1UmjZAfDZ0dZuG');
+(8, 'Teste5', '(34) 56789-0678', '234.567.890-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9678', '(56) 7890-7890', '2019-10-20', 1, 0, 'bonfins_teste5', '$2a$04$mRVAq3Lw1UmjZAfDZ0dZu.weHec514ssTZvPBewt4qmejNSQkq73q', 'mRVAq3Lw1UmjZAfDZ0dZuG'),
+(9, 'Guilherme Bartasson Naves Junker', '(23) 45678-9456', '345.678.905-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(67) 8905-6789', '2019-10-21', 1, 0, 'bonfins_guilherme', '$2a$04$GCaL5dPrxqX14VLugXLxjeU.4y6FyumgM01q7S5/4cbNFD.nctrsS', 'GCaL5dPrxqX14VLugXLxjh'),
+(10, 'Vitor Manoel Gonçalves Teixeira', '(23) 45678-9045', '456.789.045-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78905-6789', '2019-10-21', 1, 0, 'bonfins_vitor', '$2a$04$gk2qGlRyW5PkfScz4SGeKelSH1Gu0rp1fSUdWuuEROkgG51Q3MVwS', 'gk2qGlRyW5PkfScz4SGeKm'),
+(11, 'Diego Batistuta Ribeiro de Andrade', '(12) 34567-8903', '345.678.904-56', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78903-4567', '2019-10-21', 1, 0, 'bonfins_diego', '$2a$04$FFva7zFPyGcMNIaBq4z9q.HHeeAeFXS1BZUvFxGCJELTdnOnleUsy', 'FFva7zFPyGcMNIaBq4z9qM');
 
 -- --------------------------------------------------------
 
@@ -335,6 +338,7 @@ ALTER TABLE `estadoCivil`
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Cpf` (`Cpf`),
+  ADD UNIQUE KEY `Login` (`Login`),
   ADD KEY `fk_cargo` (`Cargo`);
 
 --
@@ -412,7 +416,7 @@ ALTER TABLE `estadoCivil`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `imagem`

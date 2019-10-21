@@ -148,17 +148,20 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <form class="" id="login">
+                        <form>
                             <div class="form-group">
                                 <label for="user">Usuário:</label>
-                                <input type="text" class="form-control" id="user" name="user" required>
+                                <input type="text" class="form-control" id="user" name="user">
                             </div>
                             <div class="form-group">
                                 <label for="senha">Senha:</label>
-                                <input type="password" class="form-control" id="senha" name="senha" required>
+                                <input type="password" class="form-control" id="senha" name="senha">
+                            </div>
+                            <div class="form-group">
+                                <label id="erro" class="text-danger"></label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-warning cor-btn">Enviar</button>
+                                <button type="button" class="btn cor-btn" id="btnLogar">Enviar</button>
                             </div>
                         </form>
                     </div>

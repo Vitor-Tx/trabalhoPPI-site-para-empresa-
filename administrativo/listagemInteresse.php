@@ -1,3 +1,9 @@
+<?php 
+    if (!isset($_COOKIE["sessionID"])) {
+        header("Location: ../");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -26,16 +32,16 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="mt-2 mr-3">
-                                        <a href="index.html">Home</a>
+                                        <a href="index.php">Home</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="cadastroFuncionario.php">Cadastrar Funcionário</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="cadastroCliente.html">Cadastrar Cliente</a>
+                                        <a href="cadastroCliente.php">Cadastrar Cliente</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="cadastroImovel.html">Cadastrar Imóvel</a>
+                                        <a href="cadastroImovel.php">Cadastrar Imóvel</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="listagemFuncionario.php">Listar Funcionários</a>
