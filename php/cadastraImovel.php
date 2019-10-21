@@ -98,9 +98,38 @@
                         ValorVenda,
                         ValorAluguel,
                         PorcentagemImobiliaria,
-                        TipoImovel
+                        TipoImovel,
+                        ValorReal,
+                        DataInicio,
+                        DataFim,
+                        Vendido_Alugado
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    VALUES (
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?, 
+                        ?,
+                        NULL,
+                        NOW(),
+                        NULL,
+                        0)";
 
             try {
                 $st = $conn->prepare($sql);

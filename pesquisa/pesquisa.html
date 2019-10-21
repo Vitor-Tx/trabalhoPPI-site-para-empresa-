@@ -62,7 +62,7 @@
                             <textarea class="form-control" id="informacoes" rows="3"></textarea>
                         </div>
                         <div class="text-center mb-3">
-                            <button type="button" class="btn btn-outline-warning cor-btn">Buscar</button>
+                            <button type="button" class="btn cor-btn">Buscar</button>
                         </div>
                     </form>
                 </div>
@@ -77,8 +77,21 @@
                                 <li>2 Banheiros</li>
                                 <li>?? m²</li>
                                 <li>Preço: R$9999,99</li>
-                                <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#maisInformacoes">Mais informações</button></li>
-                                <li class="mt-2"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#modalInteresse">Tenho interesse</button></li>
+                                <li class="mt-1">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn" 
+                                    data-toggle="modal" 
+                                    data-target="#maisInformacoes">Mais informações</button>
+                                </li>
+                                <li class="mt-2">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn btn-interesse" 
+                                    data-toggle="modal" 
+                                    data-target="#modalInteresse"
+                                    data-imovel-id="14">Tenho interesse</button>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-9 imagens-pesquisa">
@@ -105,8 +118,21 @@
                                 <li>2 Banheiros</li>
                                 <li>?? m²</li>
                                 <li>Preço: R$9999,99</li>
-                                <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#maisInformacoes">Mais informações</button></li>
-                                <li class="mt-2"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#modalInteresse">Tenho interesse</button></li>
+                                <li class="mt-1">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn" 
+                                    data-toggle="modal" 
+                                    data-target="#maisInformacoes">Mais informações</button>
+                                </li>
+                                <li class="mt-2">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn btn-interesse" 
+                                    data-toggle="modal" 
+                                    data-target="#modalInteresse"
+                                    data-imovel-id="15">Tenho interesse</button>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-9 imagens-pesquisa">
@@ -133,8 +159,21 @@
                                 <li>2 Banheiros</li>
                                 <li>?? m²</li>
                                 <li>Preço: R$9999,99</li>
-                                <li class="mt-1"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#maisInformacoes">Mais informações</button></li>
-                                <li class="mt-2"><button type="button" class="btn btn-outline-warning cor-btn" data-toggle="modal" data-target="#modalInteresse">Tenho interesse</button></li>
+                                <li class="mt-1">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn" 
+                                    data-toggle="modal" 
+                                    data-target="#maisInformacoes">Mais informações</button>
+                                </li>
+                                <li class="mt-2">
+                                    <button 
+                                    type="button" 
+                                    class="btn cor-btn btn-interesse" 
+                                    data-toggle="modal" 
+                                    data-target="#modalInteresse"
+                                    data-imovel-id="16">Tenho interesse</button>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-sm-9 imagens-pesquisa">
@@ -228,25 +267,28 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="" id="interesse">
+                        <form>
                             <div class="form-group">
                                 <label for="nome">Nome Completo:</label>
-                                <input type="text" class="form-control" id="nome" name="nome" required>
+                                <input type="text" class="form-control" id="nome" name="nome">
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control phoneField" id="telefone" name="telefone" required>
+                                <input type="text" class="form-control phoneField" id="telefone" name="telefone">
                             </div>
                             <div class="form-group">
                                 <label for="descricaoProposta">Descrição da Proposta:</label>
-                                <textarea class="form-control" id="descricaoProposta" rows="3" required></textarea>
+                                <textarea class="form-control" id="descricaoProposta" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label id="erro" class="text-danger"></label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-warning cor-btn">Enviar</button>
+                                <button type="button" class="btn cor-btn" id="btnEnviarInteresse">Enviar</button>
                             </div>
                         </form>
                     </div>
@@ -275,7 +317,7 @@
                                 <input type="password" class="form-control" id="senha" name="senha" required>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-warning cor-btn">Enviar</button>
+                                <button type="submit" class="btn cor-btn">Enviar</button>
                             </div>
                         </form>
                     </div>

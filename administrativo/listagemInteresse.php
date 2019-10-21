@@ -61,7 +61,56 @@
                                 <div class="jumbotron px-2">
                                     <h1 class="display-4">Listagem de Interesses</h1>
                                     <hr class="my-3">
-                                    <div id="admContainer"></div>
+                                    <div id="admContainer">
+                                        <?php 
+                                        
+                                            require "../php/conexaoMysql.php";
+                                            require "../php/interesse.php";
+
+                                            $arrayInteresses = null;
+
+                                            try {
+                                                $arrayInteresses = getInteresses($conn);  
+                                            } catch (Exception $e) {
+                                                $msgErro = $e->getMessage();
+                                                echo $msgErro;
+                                            }
+                                        
+                                            if ($arrayInteresses != null) {
+                                                foreach ($arrayInteresses as $interesse) {
+                                                    echo "
+                                                        <div class='row pt-4'>
+                                                            <div class='container'>
+                                                                <div class='col-sm-12 admBox'>
+                                                                    <div class='row'>
+                                                                        <h1>$interesse->nome</h1>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='imovel'><strong>Imóvel:&nbsp&nbsp</strong></label>
+                                                                        <span name='imovel'>$interesse->endereco</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='telefoneCliente'><strong>Telefone do Cliente:&nbsp&nbsp</strong></label>
+                                                                        <span name='telefoneCliente'>$interesse->telefone</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='emailCliente'><strong>Email do CLiente:&nbsp&nbsp</strong></label>
+                                                                        <span name='emailCliente'>$interesse->email</span>
+                                                                    </div>
+                                                                    <div class='row mt-2 ml-1'>
+                                                                        <label for='proposta'><strong>Proposta:&nbsp&nbsp</strong></label>
+                                                                        <span name='proposta'>$interesse->proposta</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ";
+                                                }
+                                            }
+
+                                            $conn = null;
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -81,6 +130,4 @@
     <script src="../jquery/jquery-3.4.1.js"></script>
     <script src="../popper/popper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="js/listagemInteresse.js"></script>
-    <script src="js/interesses.js"></script>
 </html>

@@ -51,7 +51,7 @@
                                         <a href="listagemCliente.php">Listar Clientes</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="listagemInteresse.html">Listar Interesses</a>
+                                        <a href="listagemInteresse.php">Listar Interesses</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="../index.html">Sair</a>
@@ -99,9 +99,12 @@
                                                                 p.ImovelID = $imovel->id AND
                                                                 p.PessoaID = c.ID";
 
-                                                    $result = $conn->query($sql);
-                                                    if (!$result)
-                                                        throw new Exception("Falha na busca dos proprietarios: " . $conn->error);
+                                                    try {
+                                                        $result = $conn->query($sql);
+                                                    } catch (Exception $e) {
+                                                        echo 'Falha na busca do proprietarios: ';
+                                                        var_dump($e->getMessage());
+                                                    }
                                                     
                                                     while ($row = $result->fetch()) {
                                                         $proprietarios[] = $row["Nome"];
@@ -117,9 +120,12 @@
                                                             LIMIT 1;
                                                             ";
 
-                                                    $result = $conn->query($sql);
-                                                    if (! $result)
-                                                        throw new Exception("Falha na busca das imagens: " . $conn->error);
+                                                    try {
+                                                        $result = $conn->query($sql);
+                                                    } catch (Exception $e) {
+                                                        echo 'Falha na busca das imagens: ';
+                                                        var_dump($e->getMessage());
+                                                    }
 
                                                     while ($row = $result->fetch()) {
                                                         $imagem = $row["Imagem"];
@@ -214,7 +220,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorRealVenda'><strong>Valor Real de Venda:&nbsp&nbsp</strong></label>
-                                                                <span name='valorRealVenda'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='valorRealVenda'>$imovel->valorReal</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliária:&nbsp&nbsp</strong></label>
@@ -222,15 +228,15 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataInicioVenda'><strong>Data de Início da Venda:&nbsp&nbsp</strong></label>
-                                                                <span name='dataInicioVenda'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='dataInicioVenda'>$imovel->dataInicio</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataFimVenda'><strong>Data de Fim da Venda:&nbsp&nbsp</strong></label>
-                                                                <span name='dataFimVenda'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='dataFimVenda'>$imovel->dataFim</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='vendido'><strong>Vendido:&nbsp&nbsp</strong></label>
-                                                                <span name='vendido'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='vendido'>$imovel->vendido_alugado</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='funcionarioResponsavel'><strong>Funcionário Responsável:&nbsp&nbsp</strong></label>
@@ -245,7 +251,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='valorRealAluguel'><strong>Valor Real do Aluguel:&nbsp&nbsp</strong></label>
-                                                                <span name='valorRealAluguel'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='valorRealAluguel'>$imovel->valorReal</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='porcentagemImobiliaria'><strong>Porcentagem da Imobiliaria:&nbsp&nbsp</strong></label>
@@ -253,15 +259,15 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataInicioAluguel'><strong>Data de Início do Aluguel:&nbsp&nbsp</strong></label>
-                                                                <span name='dataInicioAluguel'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='dataInicioAluguel'>$imovel->dataInicio</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='dataFimAluguel'><strong>Data de Fim do Aluguel:&nbsp&nbsp</strong></label>
-                                                                <span name='dataFimAluguel'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='dataFimAluguel'>$imovel->dataFim</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='alugado'><strong>Alugado:&nbsp&nbsp</strong></label>
-                                                                <span name='alugado'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='alugado'>$imovel->vendido_alugado</span>
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='funcionarioResponsavel'><strong>Funcionário Responsável:&nbsp&nbsp</strong></label>

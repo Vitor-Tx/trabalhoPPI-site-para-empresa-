@@ -2,9 +2,6 @@
 
     require "conexaoMysql.php";
 
-    // Valida uma string removendo alguns caracteres
-    // especiais que poderiam ser provenientes
-    // de ataques do tipo HTML/CSS/JavaScript Injection
     function filtraEntrada($dado) 
     {
         $dado = trim($dado);               // remove espaços no inicio e no final da string

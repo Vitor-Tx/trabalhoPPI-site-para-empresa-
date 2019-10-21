@@ -23,6 +23,10 @@
         public $valorAluguel;
         public $porcentagemImobiliaria;
         public $tipoImovel;
+        public $valorReal;
+        public $dataInicio;
+        public $dataFim;
+        public $vendido_alugado;
     }
 
     function getImoveis($conn) {
@@ -50,7 +54,11 @@
                     i.ValorVenda,
                     i.ValorAluguel,
                     i.PorcentagemImobiliaria,
-                    ti.Nome as TipoImovel 
+                    ti.Nome as TipoImovel,
+                    i.ValorReal,
+                    i.DataInicio,
+                    i.DataFim,
+                    i.Vendido_Alugado
                 FROM 
                     imovel as i, 
                     tipoImovel as ti
@@ -98,6 +106,27 @@
             $imovel->valorAluguel           = $row["ValorAluguel"];
             $imovel->porcentagemImobiliaria = $row["PorcentagemImobiliaria"];
             $imovel->tipoImovel             = $row["TipoImovel"];
+            if ($row["ValorReal"] == null && $imovel->tipoTransacao == "Venda") {
+                $imovel->valorReal          = "Não foi vendido ainda";
+            } else if ($row["ValorReal"] == null && $imovel->tipoTransacao == "Aluguel") {
+                $imovel->valorReal          = "Não foi alugado ainda";
+            } else {
+                $imovel->valorReal          = $row["ValorReal"];
+            }
+            $imovel->dataInicio             = $row["DataInicio"];
+            if ($row["DataFim"] == null && $imovel->tipoTransacao == "Venda") {
+                $imovel->dataFim            = "Não foi vendido ainda";
+            } else if ($row["DataFim"] == null && $imovel->tipoTransacao == "Aluguel") {
+                $imovel->dataFim            = "Não foi alugado ainda";
+            } else {
+                $imovel->dataFim            = $row["DataFim"];
+            }
+            if ($row["Vendido_Alugado"] == 0) {
+                $imovel->vendido_alugado    = "Não"; 
+            } else if ($row["Vendido_Alugado"] == 1) {
+                $imovel->vendido_alugado    = "Sim"; 
+            }
+
 
             $array_imoveis[] = $imovel;
         }

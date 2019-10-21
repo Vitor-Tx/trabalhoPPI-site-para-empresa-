@@ -30,7 +30,7 @@
                     c.EstadoCivil = e.ID";
 
         $result = $conn->query($sql);
-        if ($result == false)
+        if (! $result)
             throw new Exception('Ocorreu uma falha ao buscar os clientes: ' . $conn->error);
     
         while ($row = $result->fetch()) {

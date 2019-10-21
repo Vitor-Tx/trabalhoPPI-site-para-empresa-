@@ -44,7 +44,7 @@
                                         <a href="listagemImovel.php">Listar Imóveis</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="listagemInteresse.html">Listar Interesses</a>
+                                        <a href="listagemInteresse.php">Listar Interesses</a>
                                     </li>
                                     <li class="mt-2 mr-3">
                                         <a href="../index.html">Sair</a>
