@@ -77,7 +77,11 @@
             $imovel = new Imovel();
 
             $imovel->id                     = $row["ID"];
-            $imovel->rua                    = $row["Rua"];
+            if (trim(strtolower(substr($row["Rua"], 0, 4))) == "rua") {
+                $imovel->rua                = substr($row["Rua"], 4, strlen($row["Rua"]) - 4);    
+            } else {
+                $imovel->rua                = $row["Rua"];
+            }
             $imovel->numero                 = $row["Numero"];
             $imovel->bairro                 = $row["Bairro"];
             $imovel->cidade                 = $row["Cidade"];
