@@ -16,6 +16,8 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $msgErro = "";
+
+        $login = $_COOKIE["login"];
         
         $tipoImovel             =   filtraEntrada($_POST["tipoImovel"]);
         $rua                    =   filtraEntrada($_POST["rua"]);
@@ -77,6 +79,10 @@
         try {
             $conn->beginTransaction();
 
+            $sql = "SELECT @id := ID FROM funcionario WHERE Login = '$login'";
+
+            $conn->query($sql);
+
             $sql = "INSERT INTO imovel (
                         Rua,
                         Numero,
@@ -102,7 +108,8 @@
                         ValorReal,
                         DataInicio,
                         DataFim,
-                        Vendido_Alugado
+                        Vendido_Alugado,
+                        FuncionarioResponsavel
                     )
                     VALUES (
                         ?, 
@@ -129,7 +136,8 @@
                         NULL,
                         NOW(),
                         NULL,
-                        0)";
+                        0,
+                        @id)";
 
             try {
                 $st = $conn->prepare($sql);

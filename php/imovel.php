@@ -27,6 +27,7 @@
         public $dataInicio;
         public $dataFim;
         public $vendido_alugado;
+        public $funcionarioResponsavel;
     }
 
     function getImoveis($conn) {
@@ -58,12 +59,15 @@
                     i.ValorReal,
                     i.DataInicio,
                     i.DataFim,
-                    i.Vendido_Alugado
+                    i.Vendido_Alugado,
+                    f.Nome as FuncionarioResponsavel
                 FROM 
                     imovel as i, 
-                    tipoImovel as ti
+                    tipoImovel as ti,
+                    funcionario as f
                 WHERE
-                    i.TipoImovel = ti.ID";
+                    i.TipoImovel = ti.ID AND
+                    i.FuncionarioResponsavel = f.ID";
 
         $result = $conn->query($sql);
         if ($result == false)
@@ -126,7 +130,7 @@
             } else if ($row["Vendido_Alugado"] == 1) {
                 $imovel->vendido_alugado    = "Sim"; 
             }
-
+            $imovel->funcionarioResponsavel = $row["FuncionarioResponsavel"];
 
             $array_imoveis[] = $imovel;
         }

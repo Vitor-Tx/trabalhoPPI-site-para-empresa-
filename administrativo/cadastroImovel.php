@@ -1,4 +1,6 @@
-<?php 
+<?php
+    session_start();
+
     if (!isset($_COOKIE["sessionID"])) {
         header("Location: ../");
     }
@@ -60,7 +62,7 @@
                                         <a href="listagemInteresse.php">Listar Interesses</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="../index.html">Sair</a>
+                                        <a href="../php/logout.php">Sair</a>
                                     </li>
                                 </ul>
                             </div>

@@ -35,6 +35,7 @@
                     session_start();
 
                     setcookie('sessionID', session_id(), time() + 864000, '/');
+                    setcookie('login', $login, time() + 864000, '/');
 
                     echo "Logado com sucesso";
                 } else {

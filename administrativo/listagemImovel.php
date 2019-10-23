@@ -1,4 +1,6 @@
-<?php 
+<?php
+    session_start();
+
     if (!isset($_COOKIE["sessionID"])) {
         header("Location: ../");
     }
@@ -60,7 +62,7 @@
                                         <a href="listagemInteresse.php">Listar Interesses</a>
                                     </li>
                                     <li class="mt-2 mr-3">
-                                        <a href="../index.html">Sair</a>
+                                        <a href="../php/logout.php">Sair</a>
                                     </li>
                                 </ul>
                             </div>
@@ -246,7 +248,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='funcionarioResponsavel'><strong>Funcionário Responsável:&nbsp&nbsp</strong></label>
-                                                                <span name='funcionarioResponsavel'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='funcionarioResponsavel'>$imovel->funcionarioResponsavel</span>
                                                             </div>
                                                         ";
                                                     } else if ($imovel->tipoTransacao == "Aluguel") {
@@ -277,7 +279,7 @@
                                                             </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='funcionarioResponsavel'><strong>Funcionário Responsável:&nbsp&nbsp</strong></label>
-                                                                <span name='funcionarioResponsavel'>------ A SER IMPLEMENTADO ------</span>
+                                                                <span name='funcionarioResponsavel'>$imovel->funcionarioResponsavel</span>
                                                             </div>
                                                         ";
                                                     }
