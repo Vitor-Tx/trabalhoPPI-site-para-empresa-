@@ -36,18 +36,7 @@
         $armarioEmbutido        =   filtraEntrada($_POST["armarioEmbutido"]);
         $descricao              =   filtraEntrada($_POST["descricao"]);
         $porcentagemImobiliaria =   filtraEntrada($_POST["porcentagemImobiliaria"]);
-
-        if (isset($_POST["valorVenda"])) {
-            $valorVenda         =   filtraEntrada($_POST["valorVenda"]);
-        } else {
-            $valorVenda         =   null;
-        }
-
-        if (isset($_POST["valorAluguel"])) {
-            $valorAluguel       =   filtraEntrada($_POST["valorAluguel"]);
-        } else {
-            $valorAluguel       =   null;
-        }
+        $valor                  =   filtraEntrada($_POST["valor"]);
 
         if (isset($_POST["andar"])) {
             $andar              =   filtraEntrada($_POST["andar"]);
@@ -101,8 +90,7 @@
                         Andar,
                         ValorCondominio,
                         Portaria24Horas,
-                        ValorVenda,
-                        ValorAluguel,
+                        Valor,
                         PorcentagemImobiliaria,
                         TipoImovel,
                         ValorReal,
@@ -112,7 +100,6 @@
                         FuncionarioResponsavel
                     )
                     VALUES (
-                        ?, 
                         ?, 
                         ?, 
                         ?, 
@@ -160,8 +147,7 @@
                         $andar,
                         $valorCondominio,
                         $portaria24horas,
-                        $valorVenda,
-                        $valorAluguel,
+                        $valor,
                         $porcentagemImobiliaria,
                         $tipoImovel
                     ]

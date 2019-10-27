@@ -158,7 +158,14 @@ $("#inputTipoImovel").change(function() {
                         "</div>";
         }
 
-        saida +=    "<div id='dadosTransacao'></div>";
+        saida +=    "<div class='form-group'>" +
+                        "<label for='valorVenda'>Valor</label>" +
+                        "<input type='text' name='valorVenda' id='inputValor' placeholder='Digite o Valor de Venda' class='form-control valor'>" +
+                    "</div>" +
+                    "<div class='form-group'>" +
+                        "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
+                        "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
+                    "</div>";
 
         saida +=    "<div>" +
                         "<button type='button' class='btn btn-success' id='btnEnviar'>Enviar Imagem</button>" +
@@ -182,7 +189,11 @@ $("#inputTipoImovel").change(function() {
 
         $("#btnEnviar").on("click", (e) => {
             e.preventDefault();
-            $("#inputImagens").click();
+            if (imagens.length < 6) {
+                $("#inputImagens").click();
+            } else {
+                alert("Você pode enviar no máximo 6 imagens!")
+            }
         });
 
         $("#inputImagens").on("change", () => {
@@ -197,32 +208,6 @@ $("#inputTipoImovel").change(function() {
                 fileInput.value = "";
             });
         });
-    }
-
-    $("#inputTipoTransacao").change(function() {
-        if ($(this).val() === "1") {
-            $("#dadosTransacao").empty();
-            $("#dadosTransacao").append("<div class='form-group'>" +
-                                            "<label for='valorVenda'>Valor de Venda</label>" +
-                                            "<input type='text' name='valorVenda' id='inputValorVenda' placeholder='Digite o Valor de Venda' class='form-control valor'>" +
-                                        "</div>" +
-                                        "<div class='form-group'>" +
-                                            "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
-                                            "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
-                                        "</div>");
-        } else if ($(this).val() === "2") {
-            $("#dadosTransacao").empty();
-            $("#dadosTransacao").append("<div class='form-group'>" +
-                                            "<label for='valorAluguel'>Valor de Aluguel</label>" +
-                                            "<input type='text' name='valorAluguel' id='inputValorAluguel' placeholder='Digite o Valor de Aluguel' class='form-control valor'>" +
-                                        "</div>" +
-                                        "<div class='form-group'>" +
-                                            "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
-                                            "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
-                                        "</div>");
-        } else {
-            $("#dadosTransacao").empty();
-        }
 
         $(".valor").mask("###0.00 R$", {reverse: true});
 
@@ -239,7 +224,7 @@ $("#inputTipoImovel").change(function() {
                 this.value = "";
             }
         });
-    });
+    }
 
     $("#adicionarProprietario").on('click', function() {
         var clientes;
@@ -282,8 +267,7 @@ $("#inputTipoImovel").change(function() {
         var inputAndar = $("#inputAndar").val();
         var inputValorCondominio = $("#inputValorCondominio").val();
         var inputPortaria24horas = $("#inputPortaria24horas").val();
-        var inputValorVenda = $("#inputValorVenda").val();
-        var inputValorAluguel = $("#inputValorAluguel").val();
+        var inputValor = $("#inputValor").val();
         var inputPorcentagemImobiliaria = $("#inputPorcentagemImobiliaria").val();
         var inputTipoImovel = $("#inputTipoImovel").val();
 
@@ -330,50 +314,34 @@ $("#inputTipoImovel").change(function() {
             alert("Campo Possui Armário Embutido não preenchido!");
         } else if (inputDescricao == "" || inputDescricao == null || inputDescricao == undefined) {
             alert("Campo Descrição não preenchido!");
-        } else if (inputTipoTransacao == "1") {
-            if (inputValorVenda == "" || inputValorVenda == null || inputValorVenda == undefined) {
-                alert("Campo Valor de Venda não preenchido!");
-            } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
-                alert("Campo Porcentagem da Imobiliária não preenchido!");
-            } else if (imagens.length == 0) {
-                alert("Você não selecionou nenhuma imagem!");
+        } else if (inputTipoImovel == '2') {
+            if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
+                alert("Campo Andar não preenchido!");
+            } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
+                alert("Campo Valor do Condomínio não preenchido!");
+            } else if (inputPortaria24horas == "0" || inputPortaria24horas == null || inputPortaria24horas == undefined) {
+                alert("Campo Possui Portaria 24 Horas não preenchido!");
             } else {
-                if (inputTipoImovel == '2') {
-                    if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
-                        alert("Campo Andar não preenchido!");
-                    } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
-                        alert("Campo Valor do Condomínio não preenchido!");
-                    } else if (inputPortaria24horas == "0" || inputPortaria24horas == null || inputPortaria24horas == undefined) {
-                        alert("Campo Possui Portaria 24 Horas não preenchido!");
-                    } else {
-                        ok = true;
-                    }
+                if (inputValor == "" || inputValor == null || inputValor == undefined) {
+                    alert("Campo Valor não preenchido!");
+                } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
+                    alert("Campo Porcentagem da Imobiliária não preenchido!");
+                } else if (imagens.length == 0) {
+                    alert("Você não selecionou nenhuma imagem!");
                 } else {
                     ok = true;
+                    inputValor = inputValor.slice(0, inputValor.length - 3);
                 }
             }
-        } else if (inputTipoTransacao == "2") {
-            if (inputValorAluguel == "" || inputValorAluguel == null || inputValorAluguel == undefined) {
-                alert("Campo Valor do Aluguel não preenchido!");
-            } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
-                alert("Campo Porcentagem da Imobiliária não preenchido!");
-            } else if (imagens.length == 0) {
-                alert("Você não selecionou nenhuma imagem!");
-            } else {
-                if (inputTipoImovel == '2') {
-                    if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
-                        alert("Campo Andar não preenchido!");
-                    } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
-                        alert("Campo Valor do Condomínio não preenchido!");
-                    } else if (inputPortaria24horas == "0" || inputPortaria24horas == null || inputPortaria24horas == undefined) {
-                        alert("Campo Possui Portaria 24 Horas não preenchido!");
-                    } else {
-                        ok = true;
-                    }
-                } else {
-                    ok = true;
-                }
-            }
+        } else if (inputValor == "" || inputValor == null || inputValor == undefined) {
+            alert("Campo Valor não preenchido!");
+        } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
+            alert("Campo Porcentagem da Imobiliária não preenchido!");
+        } else if (imagens.length == 0) {
+            alert("Você não selecionou nenhuma imagem!");
+        } else {
+            ok = true;
+            inputValor = inputValor.slice(0, inputValor.length - 3);
         }
 
         if (ok) {
@@ -398,8 +366,7 @@ $("#inputTipoImovel").change(function() {
                     area: inputArea,
                     armarioEmbutido: inputArmarioEmbutido,
                     descricao: inputDescricao,
-                    valorVenda: inputValorVenda,
-                    valorAluguel: inputValorAluguel,
+                    valor: inputValor,
                     porcentagemImobiliaria: inputPorcentagemImobiliaria,
                     andar: inputAndar,
                     valorCondominio: inputValorCondominio,

@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     if (!isset($_COOKIE["sessionID"])) {
         header("Location: ../");
     }
@@ -23,43 +21,7 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-12 p-0">
-                        <nav class="navbar navbar-expand-lg navbar-light sticky-top pt-0">
-                            <a class="navbar-brand pt-0" href="../index.html">
-                                <img class="logo-bonfins" src="../assets/images/logo-bonfins3.png">
-                            </a>
-                            <button class="navbar-toggler mt-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                    
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav ml-auto">
-                                    <li class="mt-2 mr-3">
-                                        <a href="index.php">Home</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="cadastroFuncionario.php">Cadastrar Funcionário</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="cadastroCliente.php">Cadastrar Cliente</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="cadastroImovel.php">Cadastrar Imóvel</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="listagemFuncionario.php">Listar Funcionários</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="listagemCliente.php">Listar Clientes</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="listagemImovel.php">Listar Imóveis</a>
-                                    </li>
-                                    <li class="mt-2 mr-3">
-                                        <a href="../php/logout.php">Sair</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
+                        <?php include "../php/navbarRestrita.php" ?>
                     </div>
                 </div>
                 <div class="row">
@@ -138,4 +100,5 @@
     <script src="../jquery/jquery-3.4.1.js"></script>
     <script src="../popper/popper.min.js"></script>
     <script src="../js/bootstrap.js"></script>
+    <script src="js/navbar.js"></script>
 </html>

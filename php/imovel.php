@@ -19,8 +19,7 @@
         public $andar;
         public $valorCondominio;
         public $portaria24Horas;
-        public $valorVenda;
-        public $valorAluguel;
+        public $valor;
         public $porcentagemImobiliaria;
         public $tipoImovel;
         public $valorReal;
@@ -52,8 +51,7 @@
                     i.Andar,
                     i.ValorCondominio,
                     i.Portaria24Horas,
-                    i.ValorVenda,
-                    i.ValorAluguel,
+                    i.Valor,
                     i.PorcentagemImobiliaria,
                     ti.Nome as TipoImovel,
                     i.ValorReal,
@@ -110,8 +108,7 @@
             } else if ($row["Portaria24Horas"] == 2) {
                 $imovel->portaria24Horas    = "Não";
             }
-            $imovel->valorVenda             = $row["ValorVenda"];
-            $imovel->valorAluguel           = $row["ValorAluguel"];
+            $imovel->valor                  = $row["Valor"];
             $imovel->porcentagemImobiliaria = $row["PorcentagemImobiliaria"];
             $imovel->tipoImovel             = $row["TipoImovel"];
             if ($row["ValorReal"] == null && $imovel->tipoTransacao == "Venda") {

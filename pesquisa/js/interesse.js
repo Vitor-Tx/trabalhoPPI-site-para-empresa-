@@ -1,44 +1,44 @@
-$("#btnEnviarInteresse").on('click', function() {
-    var nome = $("#nome").val();
-    var email = $("#email").val();
-    var telefone = $("#telefone").val();
-    var descricaoProposta = $("#descricaoProposta").val();
+function addInteresseJS() {
+    $("#btnEnviarInteresse").on('click', function() {
+        var nome = $("#nome").val();
+        var email = $("#email").val();
+        var telefone = $("#telefone").val();
+        var descricaoProposta = $("#descricaoProposta").val();
+    
+        if (nome == null || nome == undefined || nome == "") {
+            $("#erro").text("Campo Nome não preenchido!");
+        } else if (email == null || email == undefined || email == "") {
+            $("#erro").text("Campo Email não preenchido!");
+        } else if (telefone == null || telefone == undefined || telefone == "") {
+            $("#erro").text("Campo Telefone não preenchido!");
+        } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
+            $("#erro").text("Campo Descrição não preenchido!");
+        } else {
+            $("#erro").text("");
+            $.ajax({
+                method: "POST",
+                url: "../php/cadastraInteresse.php",
+                data:
+                {
+                    imovelID: localStorage.getItem('imovelSelecionado'),
+                    nome: nome,
+                    email: email,
+                    telefone: telefone,
+                    proposta: descricaoProposta
+                },
+                success: function(result)
+                {
+                    alert(result);
+                }
+            });
+            $('#modalInteresse').modal("hide");
+        }
+    });
+    
+    $(".btn-interesse").on('click', function() {
+        localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
+    });
 
-    if (nome == null || nome == undefined || nome == "") {
-        $("#erro").text("Campo Nome não preenchido!");
-    } else if (email == null || email == undefined || email == "") {
-        $("#erro").text("Campo Email não preenchido!");
-    } else if (telefone == null || telefone == undefined || telefone == "") {
-        $("#erro").text("Campo Telefone não preenchido!");
-    } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
-        $("#erro").text("Campo Descrição não preenchido!");
-    } else {
-        $("#erro").text("");
-        $.ajax({
-            method: "POST",
-            url: "../php/cadastraInteresse.php",
-            data:
-            {
-                imovelID: localStorage.getItem('imovelSelecionado'),
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                proposta: descricaoProposta
-            },
-            success: function(result)
-            {
-                alert(result);
-            }
-        });
-        $('#modalInteresse').modal("hide");
-    }
-});
-
-$(".btn-interesse").on('click', function() {
-    localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
-});
-
-window.onload = function() {
     localStorage.setItem('imovelSelecionado', '');
 
     $(".phoneField").last().mask('(00) 0000-0000');

@@ -21,9 +21,55 @@
                 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link " href="pesquisa/pesquisa.html">Pesquisar Imóvel</a></li>
-                    <li class="nav-item"><a class="nav-link " href="#aboutSection">Valores</a></li>
-                    <li class="nav-item"><a data-toggle="modal" data-target="#modalLogin" class="nav-link " href="# ">Login</a></li>
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link" 
+                        href="pesquisa/pesquisa.php">Pesquisar Imóvel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                        class="nav-link" 
+                        href="#aboutSection">Valores</a>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+
+                            require "php/conexaoMysql.php";
+
+                            if (isset($_COOKIE["login"])) {
+
+                                $login = $_COOKIE["login"];
+                                $nome = "";
+
+                                $sql = "SELECT Nome FROM funcionario WHERE Login = '$login'";
+
+                                try {
+                                    $result = $conn->query($sql);
+                                } catch (Exception $e) {
+                                    echo 'User404: ';
+                                    var_dump($e->getMessage());
+                                }
+
+                                $row = $result->fetch();
+                                $nome = substr($row["Nome"], 0, strpos($row["Nome"], ' '));
+
+                                echo "
+                                    <a  
+                                    class='nav-link' 
+                                    href='administrativo/'>$nome</a>
+                                ";
+                            } else {
+                                echo "
+                                    <a 
+                                    data-toggle='modal' 
+                                    data-target='#modalLogin' 
+                                    class='nav-link' 
+                                    href='#'>Login</a>
+                                ";
+                            }
+
+                        ?>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -129,50 +175,9 @@
                 </div>
             </div>
         </section>
-        <div class="text-center " id="footer">
-            <div>
-                <footer>
-                    <small>Imobiliária Bonfins<span>&reg</span></small>
-                </footer>
-            </div>
-        </div>
+        <?php include "php/footer.php" ?>
 
-        <!-- Modal Login -->
-        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModal">Login</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="user">Usuário:</label>
-                                <input type="text" class="form-control" id="user" name="user">
-                            </div>
-                            <div class="form-group">
-                                <label for="senha">Senha:</label>
-                                <input type="password" class="form-control" id="senha" name="senha">
-                            </div>
-                            <div class="form-group">
-                                <label id="erroLogin" class="text-danger"></label>
-                            </div>
-                            <div class="text-center">
-                                <button 
-                                type="button" 
-                                class="btn cor-btn" 
-                                id="btnLogar"
-                                data-path-login="php/login.php"
-                                data-path-redirect="administrativo/">Enviar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include "php/modalLogin.php"; ?>
 
         <script src="jquery/jquery-3.4.1.js "></script>
         <script src="popper/popper.min.js "></script>

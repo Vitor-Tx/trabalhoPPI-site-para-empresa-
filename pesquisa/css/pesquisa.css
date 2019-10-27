@@ -66,6 +66,12 @@ nav li a:hover {
     color: rgb(114, 46, 0);
 }
 
+#infoImovel {
+    overflow-y: auto;
+    height: 38vh;
+    overflow-x: hidden;
+}
+
 .imagem-carousel {
     height: 40vh;
 }
@@ -127,5 +133,9 @@ nav li a:hover {
 
     .imagem-carousel{
         height: 30vh;
+    }
+
+    #infoImovel {
+        height: 49vh;
     }
 }

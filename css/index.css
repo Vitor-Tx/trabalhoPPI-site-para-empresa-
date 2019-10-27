@@ -11,6 +11,20 @@ html {
     scroll-behavior: smooth;
 }
 
+h5 {
+    color: rgb(114, 46, 0);
+}
+
+.cor-btn{
+    color: rgb(114, 46, 0);
+    border-color: rgb(114, 46, 0);
+}
+
+.cor-btn:hover{
+    background-color: rgb(114, 46, 0);
+    color:white;
+}
+
 .carousel-img {
     height: 85.95vh !important;
 }
