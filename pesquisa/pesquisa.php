@@ -219,8 +219,6 @@
         <script src="../js/bootstrap.js"></script>
         <script src="../jquery/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
         <script src="js/pesquisa.js"></script>
-        <script src="js/interesse.js"></script>
-        <script src="js/informacoes.js"></script>
         <script src="../js/login.js"></script>
     </body>
 </html>

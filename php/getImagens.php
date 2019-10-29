@@ -11,7 +11,7 @@
 
         try {
 
-            $sql = "SELECT Imagem FROM imagem WHERE ImovelID = $id LIMIT $quantidade";
+            $sql = "SELECT DISTINCT Imagem FROM imagem WHERE ImovelID = $id LIMIT $quantidade";
 
             try {
                 $result = $conn->prepare($sql);

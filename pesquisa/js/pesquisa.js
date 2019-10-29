@@ -68,6 +68,12 @@ $("#btn-buscar").on("click", function() {
 
         $("#listaImoveis").empty();
 
+        $("body").append("<div id='loadingContainer' class='ml-auto'>" +
+                            "<img src='../assets/images/loading.gif' alt='Loading' id='loadingIcon'>" +
+                        "</div>");
+
+        carregando = 0;
+
         $.ajax({
             method: "POST",
             url: "../php/pesquisaImoveis.php",
@@ -162,8 +168,283 @@ $("#btn-buscar").on("click", function() {
                                         "</div>";
 
                                 $("#listaImoveis").append(saida);
-                                addInfoJS();
-                                addInteresseJS();
+                                
+                                $(".btn-informacoes").on('click', function() {
+                                    $(this).attr("disabled", "disabled");
+                                    localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
+                            
+                                    $("body").append("<div id='loadingContainer' class='ml-auto'>" +
+                                                        "<img src='../assets/images/loading.gif' alt='Loading' id='loadingIcon'>" +
+                                                    "</div>");
+                            
+                                    $("#carouselArrows").empty();
+                                    $("#carouselImages").empty();
+                                    $("#infoImovel").empty();
+                                
+                                    $.ajax({
+                                        method: "POST",
+                                        async: false,
+                                        url: "../php/getInfoImovel.php",
+                                        data:
+                                        {
+                                            id: localStorage.getItem('imovelSelecionado')  
+                                        },
+                                        success: function(result)
+                                        {
+                                            imoveis = JSON.parse(result);
+                            
+                                            $.ajax({
+                                                method: "POST",
+                                                url: "../php/getImagens.php",
+                                                async: false,
+                                                data:
+                                                {
+                                                    id: localStorage.getItem('imovelSelecionado'),
+                                                    quantidade: 6,
+                                                },
+                                                success: function(result)
+                                                {
+                                                    imagens = JSON.parse(result);
+                            
+                                                    $("#carouselArrows").append(
+                                                        "<li " +
+                                                        "data-target='#carouselMaisInformacoes'" + 
+                                                        "data-slide-to='0' " + 
+                                                        "class='active'></li>"
+                                                    );
+                            
+                                                    for (var i = 1; i < imagens.length; i++) {
+                                                        $("#carouselArrows").append(
+                                                            "<li " +
+                                                            "data-target='#carouselMaisInformacoes' " + 
+                                                            "data-slide-to='1'></li>" 
+                                                        );
+                                                    }
+                            
+                                                    $("#carouselImages").append(
+                                                        "<div class='carousel-item active'>" +
+                                                            "<img " +
+                                                            "class='d-block imagem-carousel w-100' " + 
+                                                            "src='"+ imagens[0].Imagem +"' " +
+                                                            "alt='Imagem 1 da casa'>" +
+                                                        "</div>"
+                                                    );
+                            
+                                                    for (var i = 1; i < imagens.length; i++) {
+                                                        $("#carouselImages").append(
+                                                            "<div class='carousel-item'>" +
+                                                                "<img " +
+                                                                "class='d-block imagem-carousel w-100' " + 
+                                                                "src='"+ imagens[i].Imagem +"' " +
+                                                                "alt='Imagem "+ i +" da casa'>" +
+                                                            "</div>"
+                                                        );
+                                                    }
+                            
+                                                    saida = "<div class='col-sm-12'>" +
+                                                                "<div class='row'>" +
+                                                                    "<h4>"+ imoveis[0].TipoImovel +"</h4>" +
+                                                                "</div>" +
+                                                                "<div class='row'>" +
+                                                                    "<h6>Rua "+ 
+                                                                        imoveis[0].Rua + 
+                                                                        " " + 
+                                                                        imoveis[0].Numero + 
+                                                                        ", Bairro " + 
+                                                                        imoveis[0].Bairro +
+                                                                        ", " + 
+                                                                        imoveis[0].Cidade +
+                                                                        " - " +
+                                                                        imoveis[0].Estado +
+                                                                        "</h6>" +
+                                                                "</div>";
+                            
+                                                    if (imoveis[0].TipoTransacao == 1) {
+                                                        saida +=    "<div class='row mt-2'>" +
+                                                                        "<div class='col-sm-12'>" +
+                                                                            "<h3>" +
+                                                                                "<strong>Preço: </strong> R$ " +
+                                                                                parseFloat(imoveis[0].Valor).toFixed(2) +
+                                                                            "</h3>" +
+                                                                        "</div>" +
+                                                                    "</div>";
+                                                    } else if (imoveis[0].TipoTransacao == 2) {
+                                                        saida +=    "<div class='row mt-2'>" +
+                                                                        "<div class='col-sm-12'>" +
+                                                                            "<h3>" +
+                                                                                "<strong>Aluguel: </strong> R$ " +
+                                                                                parseFloat(imoveis[0].Valor).toFixed(2) +
+                                                                            "</h3>" +
+                                                                        "</div>" +
+                                                                    "</div>";
+                                                    }
+                                                        
+                                                    saida +=    "<hr>" +
+                                                                "<div class='row mt-2'>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Quartos: </strong>"+ 
+                                                                            imoveis[0].QuantidadeQuartos +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Suítes: </strong>"+ 
+                                                                            imoveis[0].QuantidadeSuites +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Salas de Estar: </strong>"+ 
+                                                                            imoveis[0].QuantidadeSalaEstar +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Salas de Jantar: </strong>"+ 
+                                                                            imoveis[0].QuantidadeSalaJantar +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                "</div>" +
+                                                                "<div class='row mt-2'>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Vagas: </strong>"+ 
+                                                                            imoveis[0].QuantidadeVagasGaragem +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Area: </strong>"+ 
+                                                                            imoveis[0].Area +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Armario Embutido: </strong>"+ 
+                                                                            imoveis[0].ArmarioEmbutido +
+                                                                        "</span>" +
+                                                                    "</div>";
+                            
+                                                    if (imoveis[0].TipoImovel == "Apartamento") {
+                                                        condominio = imoveis[0].ValorCondominio.slice(0, 
+                                                            imoveis[0].ValorCondominio.length - 3)
+                            
+                                                        portaria = "";
+                            
+                                                        if (imoveis[0].Portaria24Horas == 1) {
+                                                            portaria = "Sim";
+                                                        } else {
+                                                            portaria = "Não";
+                                                        }
+                            
+                                                        saida +=    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Andar: </strong>"+ 
+                                                                            imoveis[0].Andar +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                "</div>" +
+                                                                "<div class='row mt-2'>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Condominio:</strong> R$"+ 
+                                                                            condominio +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                    "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Portaria 24hrs: </strong>"+ 
+                                                                            portaria +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                "</div>";
+                                                    }
+                            
+                                                    saida +=    "<div class='row mt-5'>" +
+                                                                    "<div class='col-sm-12'>" +
+                                                                        "<span>" +
+                                                                            imoveis[0].Descricao +
+                                                                        "</span>" +
+                                                                    "</div>" +
+                                                                "</div>" +
+                                                            "</div>";
+                            
+                                                    $("#infoImovel").append(saida);
+                                                }
+                                            });
+                                        }
+                                    });
+                            
+                                    $("#loadingContainer").remove();
+                                    $(this).removeAttr("disabled");
+                                });
+
+                                $("#btnEnviarInteresse").on('click', function() {
+                                    var nome = $("#nome").val();
+                                    var email = $("#email").val();
+                                    var telefone = $("#telefone").val();
+                                    var descricaoProposta = $("#descricaoProposta").val();
+                                
+                                    if (nome == null || nome == undefined || nome == "") {
+                                        $("#erro").text("Campo Nome não preenchido!");
+                                    } else if (email == null || email == undefined || email == "") {
+                                        $("#erro").text("Campo Email não preenchido!");
+                                    } else if (telefone == null || telefone == undefined || telefone == "") {
+                                        $("#erro").text("Campo Telefone não preenchido!");
+                                    } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
+                                        $("#erro").text("Campo Descrição não preenchido!");
+                                    } else {
+                                        $("#erro").text("");
+                                        $.ajax({
+                                            method: "POST",
+                                            url: "../php/cadastraInteresse.php",
+                                            data:
+                                            {
+                                                imovelID: localStorage.getItem('imovelSelecionado'),
+                                                nome: nome,
+                                                email: email,
+                                                telefone: telefone,
+                                                proposta: descricaoProposta
+                                            },
+                                            success: function(result)
+                                            {
+                                                alert(result);
+                                            }
+                                        });
+                                        $('#modalInteresse').modal("hide");
+                                    }
+                                });
+                                
+                                $(".btn-interesse").on('click', function() {
+                                    localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
+                                });
+                            
+                                localStorage.setItem('imovelSelecionado', '');
+                            
+                                $(".phoneField").last().mask('(00) 0000-0000');
+                            
+                                $(".phoneField").on('keydown', function(e) {
+                                    if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8) {
+                                        if (this.value.length == 14 && e.keyCode != 8) {
+                                            $(this).mask('(00) 00000-0000');
+                                        } else if (this.value.length < 14) {
+                                            $(this).mask('(00) 0000-0000');
+                                        }
+                                    }
+                                });
+                            
+                                $(".phoneField").on('keyup', function(e) {
+                                    if (e.keyCode == 8 && this.value.length == 14) {
+                                        $(this).mask('(00) 0000-0000');
+                                    }
+                                });
+
+                                carregando++;
+
+                                if (carregando == imoveis.length) {
+                                    $("#loadingContainer").remove();
+                                }
                             }
                         });
                     }

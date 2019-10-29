@@ -111,6 +111,20 @@ nav li a:hover {
     color:white;
 }
 
+#loadingContainer {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    background-color: rgba(20, 20, 20, 0.9);
+}
+
+#loadingIcon {
+    width: 7vh;
+    margin-top: 50vh;
+    margin-left: 48vw;
+}
 
 ::-webkit-scrollbar {
     background-color: rgb(54, 53, 53);
