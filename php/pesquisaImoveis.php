@@ -87,7 +87,6 @@
             if ($st->rowCount() > 0) {
 	    
                 while($row = $st->fetch()) {
-                    $row = array_map('utf8_encode', $row);
                     array_push($dados, $row);
                 }
         

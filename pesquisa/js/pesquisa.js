@@ -6,6 +6,69 @@ $(".valor").on('keyup', function() {
     }
 });
 
+$("#login").on("click", function() {
+    $("#btnLogar").attr("data-path-login", "../php/login.php");
+    $("#btnLogar").attr("data-path-redirect", "../administrativo/");
+});
+
+$("#btnEnviarInteresse").on('click', function() {
+    var nome = $("#nome").val();
+    var email = $("#email").val();
+    var telefone = $("#telefone").val();
+    var descricaoProposta = $("#descricaoProposta").val();
+
+    if (nome == null || nome == undefined || nome == "") {
+        $("#erro").text("Campo Nome não preenchido!");
+    } else if (email == null || email == undefined || email == "") {
+        $("#erro").text("Campo Email não preenchido!");
+    } else if (telefone == null || telefone == undefined || telefone == "") {
+        $("#erro").text("Campo Telefone não preenchido!");
+    } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
+        $("#erro").text("Campo Descrição não preenchido!");
+    } else {
+        $("#erro").text("");
+        $.ajax({
+            method: "POST",
+            url: "../php/cadastraInteresse.php",
+            data:
+            {
+                imovelID: localStorage.getItem('imovelSelecionado'),
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                proposta: descricaoProposta
+            },
+            success: function(result)
+            {
+                alert(result);
+            }
+        });
+        $('#modalInteresse').modal("hide");
+    }
+});
+
+$(".btn-interesse").on('click', function() {
+    localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
+});
+
+$(".phoneField").last().mask('(00) 0000-0000');
+                            
+$(".phoneField").on('keydown', function(e) {
+    if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8) {
+        if (this.value.length == 14 && e.keyCode != 8) {
+            $(this).mask('(00) 00000-0000');
+        } else if (this.value.length < 14) {
+            $(this).mask('(00) 0000-0000');
+        }
+    }
+});
+
+$(".phoneField").on('keyup', function(e) {
+    if (e.keyCode == 8 && this.value.length == 14) {
+        $(this).mask('(00) 0000-0000');
+    }
+});
+
 $(".radio-proposito").change(function() {
     $.ajax({
         method: "POST",
@@ -158,7 +221,7 @@ $("#btn-buscar").on("click", function() {
                                 for (var z = 0; z < imagens.length - 1; z++) {
                                     saida +=        "<div class='col-sm-4 text-center my-auto'>" +
                                                         "<img " + 
-                                                        "src='"+ imagens[z + 1].Imagem +"' " + 
+                                                        "src='../assets/images/uploads/"+ imagens[z + 1].Imagem +"' " + 
                                                         "class='imagens-casas img-fluid'>" +
                                                     "</div>";
                                 }
@@ -225,7 +288,7 @@ $("#btn-buscar").on("click", function() {
                                                         "<div class='carousel-item active'>" +
                                                             "<img " +
                                                             "class='d-block imagem-carousel w-100' " + 
-                                                            "src='"+ imagens[0].Imagem +"' " +
+                                                            "src='../assets/images/uploads/"+ imagens[0].Imagem +"' " +
                                                             "alt='Imagem 1 da casa'>" +
                                                         "</div>"
                                                     );
@@ -235,7 +298,7 @@ $("#btn-buscar").on("click", function() {
                                                             "<div class='carousel-item'>" +
                                                                 "<img " +
                                                                 "class='d-block imagem-carousel w-100' " + 
-                                                                "src='"+ imagens[i].Imagem +"' " +
+                                                                "src='../assets/images/uploads/"+ imagens[i].Imagem +"' " +
                                                                 "alt='Imagem "+ i +" da casa'>" +
                                                             "</div>"
                                                         );
@@ -379,66 +442,8 @@ $("#btn-buscar").on("click", function() {
                                     $("#loadingContainer").remove();
                                     $(this).removeAttr("disabled");
                                 });
-
-                                $("#btnEnviarInteresse").on('click', function() {
-                                    var nome = $("#nome").val();
-                                    var email = $("#email").val();
-                                    var telefone = $("#telefone").val();
-                                    var descricaoProposta = $("#descricaoProposta").val();
-                                
-                                    if (nome == null || nome == undefined || nome == "") {
-                                        $("#erro").text("Campo Nome não preenchido!");
-                                    } else if (email == null || email == undefined || email == "") {
-                                        $("#erro").text("Campo Email não preenchido!");
-                                    } else if (telefone == null || telefone == undefined || telefone == "") {
-                                        $("#erro").text("Campo Telefone não preenchido!");
-                                    } else if (descricaoProposta == null || descricaoProposta == undefined || descricaoProposta == "") {
-                                        $("#erro").text("Campo Descrição não preenchido!");
-                                    } else {
-                                        $("#erro").text("");
-                                        $.ajax({
-                                            method: "POST",
-                                            url: "../php/cadastraInteresse.php",
-                                            data:
-                                            {
-                                                imovelID: localStorage.getItem('imovelSelecionado'),
-                                                nome: nome,
-                                                email: email,
-                                                telefone: telefone,
-                                                proposta: descricaoProposta
-                                            },
-                                            success: function(result)
-                                            {
-                                                alert(result);
-                                            }
-                                        });
-                                        $('#modalInteresse').modal("hide");
-                                    }
-                                });
-                                
-                                $(".btn-interesse").on('click', function() {
-                                    localStorage.setItem('imovelSelecionado', $(this).attr('data-imovel-id'));
-                                });
                             
                                 localStorage.setItem('imovelSelecionado', '');
-                            
-                                $(".phoneField").last().mask('(00) 0000-0000');
-                            
-                                $(".phoneField").on('keydown', function(e) {
-                                    if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8) {
-                                        if (this.value.length == 14 && e.keyCode != 8) {
-                                            $(this).mask('(00) 00000-0000');
-                                        } else if (this.value.length < 14) {
-                                            $(this).mask('(00) 0000-0000');
-                                        }
-                                    }
-                                });
-                            
-                                $(".phoneField").on('keyup', function(e) {
-                                    if (e.keyCode == 8 && this.value.length == 14) {
-                                        $(this).mask('(00) 0000-0000');
-                                    }
-                                });
 
                                 carregando++;
 
@@ -452,6 +457,8 @@ $("#btn-buscar").on("click", function() {
                     $("#listaImoveis").append(  "<div class='text-center mb-5 text-white'>"+
                                                     "<h1>"+ result +"</h1>"+
                                                 "</div>");
+
+                    $("#loadingContainer").remove();
                 }
             }
         });

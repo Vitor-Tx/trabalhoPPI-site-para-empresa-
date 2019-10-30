@@ -1,17 +1,17 @@
-var imagens = [];
-var controlPressed = false;
+// var imagens = [];
+// var controlPressed = false;
 
-window.onkeyup = function (e) {
-    if (e.which == 17) {
-        controlPressed = false;
-    }
-}
+// window.onkeyup = function (e) {
+//     if (e.which == 17) {
+//         controlPressed = false;
+//     }
+// }
 
-window.onkeydown = function (e) {
-    if (e.which == 17) {
-        controlPressed = true;
-    }
-}
+// window.onkeydown = function (e) {
+//     if (e.which == 17) {
+//         controlPressed = true;
+//     }
+// }
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -158,18 +158,14 @@ $("#inputTipoImovel").change(function() {
                         "</div>";
         }
 
-        saida +=    "<div class='form-group'>" +
-                        "<label for='valorVenda'>Valor</label>" +
-                        "<input type='text' name='valorVenda' id='inputValor' placeholder='Digite o Valor de Venda' class='form-control valor'>" +
-                    "</div>" +
-                    "<div class='form-group'>" +
-                        "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
-                        "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
-                    "</div>";
+        saida +=    "<div id='containerValores'></div>"
 
-        saida +=    "<div>" +
-                        "<button type='button' class='btn btn-success' id='btnEnviar'>Enviar Imagem</button>" +
-                        "<input type='file' accept='image/*' id='inputImagens' class='hidden'>" +
+        saida +=    "<div class='d-inline'>" +
+                        "<button type='button' class='btn btn-success mt-2 mr-3' id='btnEnviar'>Enviar Imagem</button>" +
+                        "<input type='file' accept='image/*' id='inputImagens' class='hidden' multiple  >" +
+                    "</div>" +
+                    "<div class='d-inline'>" +
+                        "<button type='button' class='btn btn-danger mt-2' id='btnLimpar'>Limpar</button>" +
                     "</div>" +
                     "<div id='imagens' class='text-center pt-4'></div>";
 
@@ -187,26 +183,59 @@ $("#inputTipoImovel").change(function() {
             }
         });
 
+        $("#inputTipoTransacao").change(function() {
+            $("#containerValores").empty();
+            if ($(this).val() == 1) {
+                saida =    "<div class='form-group'>" +
+                                "<label for='valor'>Valor</label>" +
+                                "<input type='text' name='valor' id='inputValor' placeholder='Digite o Valor de Venda' class='form-control valor'>" +
+                            "</div>" +
+                            "<div class='form-group'>" +
+                                "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
+                                "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
+                            "</div>";
+
+                $("#containerValores").append(saida);
+            } else if ($(this).val() == 2) {
+                saida =    "<div class='form-group'>" +
+                                "<label for='valor'>Valor</label>" +
+                                "<input type='text' name='valor' id='inputValor' placeholder='Digite o Valor do Aluguel' class='form-control valor'>" +
+                            "</div>" +
+                            "<div class='form-group'>" +
+                                "<label for='porcentagemImobiliaria'>Porcentagem da Imobiliária</label>" +
+                                "<input type='text' name='porcentagemImobiliaria' id='inputPorcentagemImobiliaria' placeholder='Digite a Porcentagem da Imobiliária' class='form-control'>" +
+                            "</div>";
+
+                $("#containerValores").append(saida);
+            }
+        });
+
         $("#btnEnviar").on("click", (e) => {
             e.preventDefault();
-            if (imagens.length < 6) {
+            if (document.getElementById("inputImagens").files.length < 6) {
                 $("#inputImagens").click();
             } else {
                 alert("Você pode enviar no máximo 6 imagens!")
             }
         });
 
+        $("#btnLimpar").on("click", (e) => {
+            e.preventDefault();
+            $("#imagens").empty();
+            document.getElementById("inputImagens").value = "";
+        });
+
         $("#inputImagens").on("change", () => {
             fileInput = document.getElementById("inputImagens");
 
-            const file = fileInput.files[fileInput.files.length - 1];
-            toBase64(file).then(result => {
-                imagens.push(result);
-                $("#imagens").append("<img src='" + imagens[imagens.length - 1] +"'" + 
-                                     "class='image-cadastro d-inline mx-2 my-2'"+
-                                     "onclick='excluiImagem(this)'>");
-                fileInput.value = "";
-            });
+            const files = fileInput.files;
+
+            for (var z = 0; z < files.length; z++) {
+                toBase64(files[z]).then(result => {
+                    $("#imagens").append("<img src='" + result +"'" + 
+                                         "class='image-cadastro d-inline mx-2 my-2'>");
+                });
+            }
         });
 
         $(".valor").mask("###0.00 R$", {reverse: true});
@@ -270,6 +299,7 @@ $("#inputTipoImovel").change(function() {
         var inputValor = $("#inputValor").val();
         var inputPorcentagemImobiliaria = $("#inputPorcentagemImobiliaria").val();
         var inputTipoImovel = $("#inputTipoImovel").val();
+        var fileInput = document.getElementById("inputImagens").files;
 
         var ok = false;
 
@@ -326,8 +356,10 @@ $("#inputTipoImovel").change(function() {
                     alert("Campo Valor não preenchido!");
                 } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
                     alert("Campo Porcentagem da Imobiliária não preenchido!");
-                } else if (imagens.length == 0) {
+                } else if (fileInput.length == 0) {
                     alert("Você não selecionou nenhuma imagem!");
+                } else if (fileInput.length > 6) {
+                    alert("Você pode enviar no máximo 6 imagens!");
                 } else {
                     ok = true;
                     inputValor = inputValor.slice(0, inputValor.length - 3);
@@ -337,8 +369,10 @@ $("#inputTipoImovel").change(function() {
             alert("Campo Valor não preenchido!");
         } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
             alert("Campo Porcentagem da Imobiliária não preenchido!");
-        } else if (imagens.length == 0) {
+        } else if (fileInput.length == 0) {
             alert("Você não selecionou nenhuma imagem!");
+        } else if (fileInput.length > 6) {
+            alert("Você pode enviar no máximo 6 imagens!");
         } else {
             ok = true;
             inputValor = inputValor.slice(0, inputValor.length - 3);
@@ -370,13 +404,36 @@ $("#inputTipoImovel").change(function() {
                     porcentagemImobiliaria: inputPorcentagemImobiliaria,
                     andar: inputAndar,
                     valorCondominio: inputValorCondominio,
-                    portaria24horas: inputPortaria24horas,
-                    imagens: imagens
+                    portaria24horas: inputPortaria24horas
                 },
                 success: function(result)
                 {
-                    alert(result);
-                    window.location.reload();
+                    result = JSON.parse(result);   
+                    var id = result[0].ID;
+
+                    var img_data = new FormData();
+
+                    var ins = document.getElementById('inputImagens').files.length;
+                    for (var x = 0; x < ins; x++) {
+                        img_data.append("imagens[]", document.getElementById('inputImagens').files[x]);
+                    }
+
+                    img_data.append("id", id);
+
+                    $.ajax({
+                        method: "POST",
+                        url: "../php/cadastraImagensImovel.php",
+                        data: img_data,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(result)
+                        {
+                            alert(result);
+                            window.location.reload();
+                        }
+                    });
+
                 }
             });
         }
@@ -409,16 +466,4 @@ function getProprietarios(removivel, clientes) {
     selectPropietarios += "</select>";
 
     return selectPropietarios;
-}
-
-function excluiImagem(imagem) {
-    if (controlPressed) {
-        for (var x = 0; x < imagens.length; x++) {
-            if (imagens[x] == $(imagem).attr('src')) {
-                imagens.splice(x, 1);
-            }
-        }
-    
-        $(imagem).remove();
-    }
 }

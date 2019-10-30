@@ -55,10 +55,7 @@
         } else {
             $portaria24horas    =   null;
         }
-        
-        $imagens                =   $_POST["imagens"];
 
-        $imagem = "";
         $proprietario = 0;
 
         for ($x = 0; $x < count($proprietarios); $x++) {
@@ -159,19 +156,9 @@
                 
             $sql = "SELECT @id := MAX(ID) FROM imovel;";
 
-            if (! $conn->query($sql))
+            $result = $conn->query($sql); 
+            if (!$result)
                 throw new Exception("Falha ao recuperar o ID: " . $conn->error);
-
-            try {
-                $st = $conn->prepare("INSERT INTO imagem (Imagem, ImovelID) VALUES (?, @id)");
-
-                foreach ($imagens as $imagem) {
-                    $st->execute([$imagem]);
-                }
-            } catch (Exception $e) {
-                $conn->rollback();
-                throw $e;
-            }
 
             try {
                 $st = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");
@@ -186,7 +173,17 @@
 
             $conn->commit();
 
-            echo "Imóvel cadastrado com sucesso";
+            $sql = "SELECT MAX(ID) as ID FROM imovel;";
+
+            $id = array();
+
+            $result = $conn->query($sql); 
+
+            $row = $result->fetch();
+            $row = array_map('utf8_encode', $row);
+            array_push($id, $row);
+
+            echo json_encode($id);
 
         } catch (Exception $e) {
             echo $e->getMessage();

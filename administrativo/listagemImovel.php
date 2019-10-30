@@ -97,11 +97,21 @@
                                                     echo "
                                                         <div class='row pt-4'>
                                                             <div class='container'>
-                                                                <div class='col-sm-12 admBox'>
+                                                                <div class='col-sm-12 admBox'>";
+
+                                                    if (strpos(strtolower($imovel->rua), "avenida ") === false) {
+                                                        echo "
                                                                     <div class='row'>
                                                                         <h1>Rua $imovel->rua $imovel->numero, Bairro $imovel->bairro, $imovel->cidade - $imovel->estado</h1>
-                                                                    </div>
-                                                                    <hr>
+                                                                    </div>";
+                                                    } else {
+                                                        echo "
+                                                                    <div class='row'>
+                                                                        <h1>$imovel->rua $imovel->numero, Bairro $imovel->bairro, $imovel->cidade - $imovel->estado</h1>
+                                                                    </div>";
+                                                    }
+                                                                    
+                                                    echo "          <hr>
                                                                     <div class='row mt-2 ml-1'>
                                                                         <label for='tipo'><strong>Tipo:&nbsp&nbsp</strong></label>
                                                                         <span name='tipo'>$imovel->tipoImovel</span>
@@ -241,7 +251,7 @@
 
                                                     echo "      <hr>
                                                                 <div class='row bg-orange mt-5 mb-3 mx-4'>
-                                                                   <img src='$imagem' class='w-75 mx-auto'>
+                                                                   <img src='../assets/images/uploads/$imagem' class='w-75 mx-auto'>
                                                                 </div>
                                                             </div>
                                                         </div>

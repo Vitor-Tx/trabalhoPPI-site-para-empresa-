@@ -75,7 +75,7 @@
             $imovel = new Imovel();
 
             $imovel->id                     = $row["ID"];
-            if (trim(strtolower(substr($row["Rua"], 0, 4))) == "rua") {
+            if (trim(strtolower(substr($row["Rua"], 0, 4))) == "rua" && trim(strtolower($row["Rua"])) != "rua") {
                 $imovel->rua                = substr($row["Rua"], 4, strlen($row["Rua"]) - 4);    
             } else {
                 $imovel->rua                = $row["Rua"];
