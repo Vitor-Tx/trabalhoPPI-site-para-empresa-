@@ -1,18 +1,3 @@
-// var imagens = [];
-// var controlPressed = false;
-
-// window.onkeyup = function (e) {
-//     if (e.which == 17) {
-//         controlPressed = false;
-//     }
-// }
-
-// window.onkeydown = function (e) {
-//     if (e.which == 17) {
-//         controlPressed = true;
-//     }
-// }
-
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -23,7 +8,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 $("#inputTipoImovel").change(function() {
     var clientes;
     var saida;
-    imagens = [];
+    imagens = 0;
 
     $.ajax({
         method: "POST",
@@ -208,6 +193,22 @@ $("#inputTipoImovel").change(function() {
 
                 $("#containerValores").append(saida);
             }
+
+            $(".valor").mask("###0.00 R$", {reverse: true});
+
+            $(".valor").on('keyup', function() {
+                if (this.value.trim() == "R$") {
+                    this.value = "";
+                }
+            });
+
+            $("#inputPorcentagemImobiliaria").mask('##0,00 %', {reverse: true});
+
+            $("#inputPorcentagemImobiliaria").on('keyup', function() {
+                if (this.value.trim() == "%") {
+                    this.value = "";
+                }
+            });
         });
 
         $("#btnEnviar").on("click", (e) => {
@@ -223,6 +224,7 @@ $("#inputTipoImovel").change(function() {
             e.preventDefault();
             $("#imagens").empty();
             document.getElementById("inputImagens").value = "";
+            imagens = 0;
         });
 
         $("#inputImagens").on("change", () => {
@@ -235,6 +237,7 @@ $("#inputTipoImovel").change(function() {
                     $("#imagens").append("<img src='" + result +"'" + 
                                          "class='image-cadastro d-inline mx-2 my-2'>");
                 });
+                imagens++;
             }
         });
 
@@ -242,14 +245,6 @@ $("#inputTipoImovel").change(function() {
 
         $(".valor").on('keyup', function() {
             if (this.value.trim() == "R$") {
-                this.value = "";
-            }
-        });
-
-        $("#inputPorcentagemImobiliaria").mask('##0,00 %', {reverse: true});
-
-        $("#inputPorcentagemImobiliaria").on('keyup', function() {
-            if (this.value.trim() == "%") {
                 this.value = "";
             }
         });
@@ -303,7 +298,7 @@ $("#inputTipoImovel").change(function() {
 
         var ok = false;
 
-        var inputProprietarios = []
+        var inputProprietarios = [];
         var proprietarios = document.getElementsByName("proprietario");
 
         for (var x = 0; x < proprietarios.length; x++) {
@@ -356,9 +351,9 @@ $("#inputTipoImovel").change(function() {
                     alert("Campo Valor não preenchido!");
                 } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
                     alert("Campo Porcentagem da Imobiliária não preenchido!");
-                } else if (fileInput.length == 0) {
+                } else if (imagens == 0) {
                     alert("Você não selecionou nenhuma imagem!");
-                } else if (fileInput.length > 6) {
+                } else if (imagens > 6) {
                     alert("Você pode enviar no máximo 6 imagens!");
                 } else {
                     ok = true;
@@ -369,9 +364,9 @@ $("#inputTipoImovel").change(function() {
             alert("Campo Valor não preenchido!");
         } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
             alert("Campo Porcentagem da Imobiliária não preenchido!");
-        } else if (fileInput.length == 0) {
+        } else if (imagens == 0) {
             alert("Você não selecionou nenhuma imagem!");
-        } else if (fileInput.length > 6) {
+        } else if (imagens > 6) {
             alert("Você pode enviar no máximo 6 imagens!");
         } else {
             ok = true;
@@ -379,61 +374,53 @@ $("#inputTipoImovel").change(function() {
         }
 
         if (ok) {
+            var data = new FormData();
+
+            $(this).attr("disabled", "disabled");
+
+            data.append("tipoImovel", inputTipoImovel);
+            data.append("rua", inputRua);
+            data.append("numero", inputNumero);
+            data.append("bairro", inputBairro);
+            data.append("cidade", inputCidade);
+            data.append("estado", inputEstado);
+            data.append("proprietarios[]", inputProprietarios);
+            data.append("tipoTransacao", inputTipoTransacao);
+            data.append("quantidadeQuartos", inputQtdQuartos);
+            data.append("quantidadeSuites", inputQtdSuites);
+            data.append("quantidadeSalaEstar", inputQtdSalaEstar);
+            data.append("quantidadeSalaJantar", inputQtdSalaJantar);
+            data.append("quantidadeVagasGaragem", inputQtdVagasGaragem);
+            data.append("area", inputArea);
+            data.append("armarioEmbutido", inputArmarioEmbutido);
+            data.append("descricao", inputDescricao);
+            data.append("valor", inputValor);
+            data.append("porcentagemImobiliaria", inputPorcentagemImobiliaria);
+            if (inputAndar != undefined) {
+                data.append("andar", inputAndar);
+            }
+            if (inputValorCondominio != undefined) {
+                data.append("valorCondominio", inputValorCondominio);
+            }
+            if (inputPortaria24horas != undefined) {
+                data.append("portaria24horas", inputPortaria24horas);
+            }
+
+            var ins = document.getElementById('inputImagens').files.length;
+            for (var x = 0; x < ins; x++) {
+                data.append("imagens[]", document.getElementById('inputImagens').files[x]);
+            }
+
             $.ajax({
                 method: "POST",
                 url: "../php/cadastraImovel.php",
-                data:
-                {
-                    tipoImovel: inputTipoImovel,
-                    rua: inputRua,
-                    numero: inputNumero,
-                    bairro: inputBairro,
-                    cidade: inputCidade,
-                    estado: inputEstado,
-                    proprietarios: inputProprietarios,
-                    tipoTransacao: inputTipoTransacao,
-                    quantidadeQuartos: inputQtdQuartos,
-                    quantidadeSuites: inputQtdSuites,
-                    quantidadeSalaEstar: inputQtdSalaEstar,
-                    quantidadeSalaJantar: inputQtdSalaJantar,
-                    quantidadeVagasGaragem: inputQtdVagasGaragem,
-                    area: inputArea,
-                    armarioEmbutido: inputArmarioEmbutido,
-                    descricao: inputDescricao,
-                    valor: inputValor,
-                    porcentagemImobiliaria: inputPorcentagemImobiliaria,
-                    andar: inputAndar,
-                    valorCondominio: inputValorCondominio,
-                    portaria24horas: inputPortaria24horas
-                },
-                success: function(result)
-                {
-                    result = JSON.parse(result);   
-                    var id = result[0].ID;
-
-                    var img_data = new FormData();
-
-                    var ins = document.getElementById('inputImagens').files.length;
-                    for (var x = 0; x < ins; x++) {
-                        img_data.append("imagens[]", document.getElementById('inputImagens').files[x]);
-                    }
-
-                    img_data.append("id", id);
-
-                    $.ajax({
-                        method: "POST",
-                        url: "../php/cadastraImagensImovel.php",
-                        data: img_data,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function(result)
-                        {
-                            alert(result);
-                            window.location.reload();
-                        }
-                    });
-
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    alert(result);
+                    window.location.reload();
                 }
             });
         }

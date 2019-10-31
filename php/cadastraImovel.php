@@ -149,42 +149,85 @@
                         $tipoImovel
                     ]
                 );
+
+                $sql = "SELECT @id := MAX(ID) FROM imovel;";
+
+                $result = $conn->query($sql); 
+                if (!$result)
+                    throw new Exception("Falha ao recuperar o ID: " . $conn->error);
+
+                try {
+                    $st = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");
+
+                    foreach ($proprietarios as $proprietario) {
+                        $st->execute([$proprietario]);
+                    }
+                } catch (Exception $e) {
+                    $conn->rollback();
+                    throw $e;
+                }
+
+                $sql = "SELECT MAX(ID) as ID FROM imovel;";
+
+                $result = $conn->query($sql); 
+
+                $row = $result->fetch(PDO::FETCH_ASSOC);
+                
+                $id = $row["ID"];
+
+                $targetDir  = "../assets/images/uploads/";
+                $allowTypes = array('jpg','png','jpeg');
+
+                $nomeArquivos = array();
+                $x = 0;
+
+                date_default_timezone_set("America/Sao_Paulo"); 
+
+                $statusMsg = $errorMsg = $insertValuesSQL = $errorUpload = $errorUploadType = '';
+                if (!empty(array_filter($_FILES["imagens"]["name"]))) {
+                    foreach ($_FILES["imagens"]["name"] as $key=>$val) {
+                        $x++;
+
+                        $fileName = $id . "-" . date('dmy-his-') . $x . "." . pathinfo($_FILES['imagens']['name'][$key], PATHINFO_EXTENSION); 
+
+                        $targetFilePath = $targetDir . $fileName;
+
+                        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                        if(in_array($fileType, $allowTypes)) {
+                            if(move_uploaded_file($_FILES["imagens"]["tmp_name"][$key], $targetFilePath)){
+                                array_push($nomeArquivos, $fileName);
+                            } else {
+                                $errorUpload .= $_FILES['imagens']['name'][$key].', ';
+                            }
+                        } else {
+                            $errorUploadType .= $_FILES['imagens']['name'][$key].', ';
+                        }
+                    }
+                }
+
+                if (count($nomeArquivos) > 0) {
+                    try {
+                        $st = $conn->prepare("INSERT INTO imagem (Imagem, ImovelID) VALUES (?, $id)");
+
+                        foreach ($nomeArquivos as $imagem) {
+                            $st->execute([$imagem]);
+                        }
+                    } catch (Exception $e) {
+                        $conn->rollback();
+                        throw $e;
+                    }
+                }
+
+                if ($errorUpload != "") {
+                    echo $errorUpload;
+                } else {
+                    $conn->commit();
+                    echo "Imóvel cadastrado com sucesso";
+                }
             } catch (Exception $e) {
                 $conn->rollback();
                 throw new Exception("Falha ao cadastrar o imóvel: " . $e);
             }
-                
-            $sql = "SELECT @id := MAX(ID) FROM imovel;";
-
-            $result = $conn->query($sql); 
-            if (!$result)
-                throw new Exception("Falha ao recuperar o ID: " . $conn->error);
-
-            try {
-                $st = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");
-
-                foreach ($proprietarios as $proprietario) {
-                    $st->execute([$proprietario]);
-                }
-            } catch (Exception $e) {
-                $conn->rollback();
-                throw $e;
-            }
-
-            $conn->commit();
-
-            $sql = "SELECT MAX(ID) as ID FROM imovel;";
-
-            $id = array();
-
-            $result = $conn->query($sql); 
-
-            $row = $result->fetch();
-            $row = array_map('utf8_encode', $row);
-            array_push($id, $row);
-
-            echo json_encode($id);
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
