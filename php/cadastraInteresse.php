@@ -12,7 +12,7 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $imovel_id  = filtraEntrada($_POST["imovelID"]);
+        $imovelId   = filtraEntrada($_POST["imovelID"]);
         $nome       = filtraEntrada($_POST["nome"]);
         $email      = filtraEntrada($_POST["email"]);
         $telefone   = filtraEntrada($_POST["telefone"]);
@@ -20,6 +20,8 @@
 
         try {
             $conn->beginTransaction();
+
+            echo $imovelId;
 
             $sql = "INSERT INTO interesse (
                 ImovelID, 
@@ -34,7 +36,7 @@
                 $st = $conn->prepare($sql);
                 $st->execute(
                     [
-                        $imovel_id,
+                        $imovelId,
                         $nome,
                         $telefone,
                         $email,
