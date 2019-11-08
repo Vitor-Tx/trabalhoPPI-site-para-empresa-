@@ -33,6 +33,7 @@
         $telefoneContato = filtraEntrada($_POST["telefoneContato"]);
         $telefoneCelular = filtraEntrada($_POST["telefoneCelular"]);
         $cargo           = filtraEntrada($_POST["cargo"]);
+        $salario         = filtraEntrada($_POST["salario"]);
         $login           = filtraEntrada($_POST["login"]);
         $senha           = filtraEntrada($_POST["senha"]);
 
@@ -53,12 +54,13 @@
                         TelefoneCelular,
                         DataIngresso,
                         Cargo,
+                        Salario,
                         Comissao,
                         Login,
                         Senha,
                         Salt
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, 0.0, ?, ?, ?)";
+                    VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?, 0.0, ?, ?, ?)";
 
             try {
                 $st = $conn->prepare($sql);
@@ -71,6 +73,7 @@
                         $telefoneContato,
                         $telefoneCelular,
                         $cargo,
+                        $salario,
                         $login,
                         $hash,
                         $salt

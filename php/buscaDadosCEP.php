@@ -12,14 +12,22 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $proposito = filtraEntrada($_POST["proposito"]);
+        $cep = filtraEntrada($_POST["cep"]);
 
         try {
-            $sql = "SELECT DISTINCT Bairro FROM imovel WHERE TipoTransacao = ?";
+            $sql = "SELECT 
+                        Logradouro,
+                        Bairro,
+                        Cidade,
+                        Estado 
+                    FROM 
+                        consultaEndereco 
+                    WHERE 
+                        CEP = ?";
 
             try {
                 $st = $conn->prepare($sql);
-                $st->execute([$proposito]);
+                $st->execute([$cep]);
             } catch (Exception $e) {
                 throw $e;
             }
@@ -34,12 +42,7 @@
         
                 echo json_encode($dados);
             } else {
-                if ($proposito == 1) {
-                    echo "Não encontramos nenhum imóvel à venda!";
-                } else if ($proposito == 2) {
-                    echo "Não encontramos nenhum imóvel para locação!";
-                }
-                
+                echo "Erro, não encontramos seu CEP em nosso sitema!";
             }
         } catch (Exception $e) {
             echo $e->getMessage();

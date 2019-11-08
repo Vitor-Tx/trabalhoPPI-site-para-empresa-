@@ -2,20 +2,30 @@
 
     require "conexaoMysql.php";
 
+    function filtraEntrada($dado) 
+    {
+        $dado = trim($dado);               // remove espaços no inicio e no final da string
+        $dado = stripslashes($dado);       // remove contra barras: "cobra d\'agua" vira "cobra d'agua"
+        $dado = htmlspecialchars($dado);   // caracteres especiais do HTML (como < e >) são codificados
+
+        return $dado;
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id         = $_POST["id"];
-        $quantidade = $_POST["quantidade"];
+        $id         = filtraEntrada($_POST["id"]);
+        $quantidade = filtraEntrada($_POST["quantidade"]);
+
         if (isset($_POST["index"])) {
-            $index  = $_POST["index"];
+            $index  = filtraEntrada($_POST["index"]);
         }
 
         try {
 
-            $sql = "SELECT DISTINCT Imagem FROM imagem WHERE ImovelID = $id LIMIT $quantidade";
+            $sql = "SELECT DISTINCT Imagem FROM imagem WHERE ImovelID = ? LIMIT ?";
 
             try {
                 $result = $conn->prepare($sql);
-                $result->execute();
+                $result->execute([$id, $quantidade]);
             } catch (Exception $e) {
                 throw $e;
             }

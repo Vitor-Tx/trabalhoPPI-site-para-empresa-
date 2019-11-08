@@ -19,6 +19,8 @@
         public $andar;
         public $valorCondominio;
         public $portaria24Horas;
+        public $numeroApartamento;
+        public $piscina;
         public $valor;
         public $porcentagemImobiliaria;
         public $tipoImovel;
@@ -32,7 +34,7 @@
     function getImoveis($conn) {
         $array_imoveis = null;
 
-        $sql = "SELECT 
+        $sql = "SELECT DISTINCT
                     i.ID,
                     i.Rua,
                     i.Numero,
@@ -48,9 +50,26 @@
                     i.Area,
                     i.ArmarioEmbutido,
                     i.Descricao,
-                    i.Andar,
-                    i.ValorCondominio,
-                    i.Portaria24Horas,
+                    CASE
+                        WHEN i.TipoImovel = 2 THEN a.Andar
+                        ELSE null
+                    END as Andar,
+                    CASE
+                        WHEN i.TipoImovel = 2 THEN a.ValorCondominio
+                        ELSE null
+                    END as ValorCondominio,
+                    CASE
+                        WHEN i.TipoImovel = 2 THEN a.Portaria24Horas
+                        ELSE null
+                    END as Portaria24Horas,
+                    CASE
+                        WHEN i.TipoImovel = 2 THEN a.NumeroApartamento
+                        ELSE null
+                    END as NumeroApartamento,
+                    CASE
+                        WHEN i.TipoImovel = 1 THEN c.Piscina
+                        ELSE null
+                    END as Piscina,
                     i.Valor,
                     i.PorcentagemImobiliaria,
                     ti.Nome as TipoImovel,
@@ -60,12 +79,15 @@
                     i.Vendido_Alugado,
                     f.Nome as FuncionarioResponsavel
                 FROM 
-                    imovel as i, 
+                    imovel as i,
                     tipoImovel as ti,
-                    funcionario as f
+                    funcionario as f,
+                    casa as c,
+                    apartamento as a
                 WHERE
                     i.TipoImovel = ti.ID AND
-                    i.FuncionarioResponsavel = f.ID";
+                    i.FuncionarioResponsavel = f.ID AND
+                    i.ID = CASE WHEN i.TipoImovel = 1 THEN c.ID ELSE a.ID END";
 
         $result = $conn->query($sql);
         if ($result == false)
@@ -102,11 +124,17 @@
             }
             $imovel->descricao              = $row["Descricao"];
             $imovel->andar                  = $row["Andar"];
+            $imovel->numeroApartamento      = $row["NumeroApartamento"];
             $imovel->valorCondominio        = $row["ValorCondominio"];
             if ($row["Portaria24Horas"] == 1) {
                 $imovel->portaria24Horas    = "Sim";
             } else if ($row["Portaria24Horas"] == 2) {
                 $imovel->portaria24Horas    = "Não";
+            }
+            if ($row["Piscina"] == 1) {
+                $imovel->piscina            = "Sim";
+            } else if ($row["Piscina"] == 2) {
+                $imovel->piscina            = "Não";
             }
             $imovel->valor                  = $row["Valor"];
             $imovel->porcentagemImobiliaria = $row["PorcentagemImobiliaria"];

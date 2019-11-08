@@ -56,6 +56,18 @@
             $portaria24horas    =   null;
         }
 
+        if (isset($_POST["numeroApartamento"])) {
+            $numeroApartamento  =   filtraEntrada($_POST["numeroApartamento"]);
+        } else {
+            $numeroApartamento  =   null;
+        }
+
+        if (isset($_POST["piscina"])) {
+            $piscina            =   filtraEntrada($_POST["piscina"]);
+        } else {
+            $piscina            =   null;
+        }
+
         $proprietario = 0;
 
         for ($x = 0; $x < count($proprietarios); $x++) {
@@ -84,9 +96,6 @@
                         Area,
                         ArmarioEmbutido,
                         Descricao,
-                        Andar,
-                        ValorCondominio,
-                        Portaria24Horas,
                         Valor,
                         PorcentagemImobiliaria,
                         TipoImovel,
@@ -107,20 +116,17 @@
                         ?, 
                         ?, 
                         ?, 
+                        ?,  
                         ?, 
                         ?, 
                         ?, 
                         ?, 
                         ?, 
                         ?, 
-                        ?, 
-                        ?, 
-                        ?, 
-                        ?,
-                        NULL,
-                        NOW(),
-                        NULL,
-                        0,
+                        NULL, 
+                        NOW(), 
+                        NULL, 
+                        0, 
                         @id)";
 
             try {
@@ -141,9 +147,6 @@
                         $area,
                         $armarioEmbutido,
                         $descricao,
-                        $andar,
-                        $valorCondominio,
-                        $portaria24horas,
                         $valor,
                         $porcentagemImobiliaria,
                         $tipoImovel
@@ -155,6 +158,36 @@
                 $result = $conn->query($sql); 
                 if (!$result)
                     throw new Exception("Falha ao recuperar o ID: " . $conn->error);
+
+                try {
+                    if ($tipoImovel == 1) {
+                        $sql = "INSERT INTO casa (ID, Piscina) VALUES (@id, ?)";
+    
+                        $st = $conn->prepare($sql);
+                        $st->execute([$piscina]);
+                    } else if ($tipoImovel == 2) {
+                        $sql = "INSERT INTO apartamento (
+                                    ID, 
+                                    Andar, 
+                                    ValorCondominio, 
+                                    Portaria24Horas, 
+                                    NumeroApartamento
+                                )
+                                VALUES (
+                                    @id,
+                                    ?,
+                                    ?,
+                                    ?,
+                                    ?
+                                )";
+    
+                        $st = $conn->prepare($sql);
+                        $st->execute([$andar, $valorCondominio, $portaria24horas, $numeroApartamento]);
+                    }
+                } catch (Exception $e) {
+                    $conn->rollback();
+                    throw $e;
+                }
 
                 try {
                     $st = $conn->prepare("INSERT INTO proprietario (PessoaID, ImovelID) VALUES (?, @id)");

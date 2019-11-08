@@ -54,7 +54,7 @@
                                                             <div class='container'>
                                                                 <div class='col-sm-12 admBox'>
                                                                     <div class='row'>
-                                                                        <h1>$funcionario->nome<span class='badge badge-info'>$funcionario->cargo</span></h1>
+                                                                        <h1>$funcionario->nome<span class='badge badge-info ml-2'>$funcionario->cargo</span></h1>
                                                                     </div>
                                                                     <hr>
                                                                     <div class='row mt-2 ml-1'>

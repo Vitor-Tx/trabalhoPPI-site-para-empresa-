@@ -150,18 +150,40 @@ $("#btnCadastrar").on('click', function() {
 });
 
 $("#inputCEP").on('keyup', function() {
-    if ($(this).val().length == 9) {
-        $.getJSON("https://viacep.com.br/ws/"+ $(this).val() +"/json/?callback=?&SameSite=None", (dados) => {
-            $("#inputLogradouro").val(dados.logradouro);
-            $("#inputBairro").val(dados.bairro);
-            $("#inputCidade").val(dados.localidade);
-            $("#inputEstado").val(dados.uf);
+    var val = $(this).val();
 
-            $("#inputLogradouro").removeAttr("disabled");
-            $("#inputBairro").removeAttr("disabled");
-            $("#inputCidade").removeAttr("disabled");
-            $("#inputEstado").removeAttr("disabled");
-            $("#inputNumero").removeAttr("disabled");
+    if (val.length == 9) {
+        $.ajax({
+            method: "POST",
+            url: "../php/buscaDadosCEP.php",
+            data:
+            {
+                cep: val
+            },
+            success: function(result)
+            {
+                if (!result.includes("Erro")) {
+                    console.log(typeof result);
+                    var dados = JSON.parse(result);
+
+                    console.log(dados);
+
+                    $("#inputLogradouro").val(dados[0].Logradouro);
+                    $("#inputBairro").val(dados[0].Bairro);
+                    $("#inputCidade").val(dados[0].Cidade);
+                    $("#inputEstado").val(dados[0].Estado);
+                } else {
+                    alert(result);
+                }
+
+                $("#inputLogradouro").removeAttr("disabled");
+                $("#inputBairro").removeAttr("disabled");
+                $("#inputCidade").removeAttr("disabled");
+                $("#inputEstado").removeAttr("disabled");
+                $("#inputNumero").removeAttr("disabled");
+            }
         });
+
+        $(this).blur();
     }
 });

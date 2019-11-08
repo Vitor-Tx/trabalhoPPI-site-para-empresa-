@@ -124,8 +124,23 @@ $("#inputTipoImovel").change(function() {
                     "<textarea name='descricao' class='form-control' id='inputDescricao' rows='5'></textarea>" +
                 "</div>";
                 
+        if ($(this).val() === '1') {
+            saida +=    "<div class='form-group'>" +
+                            "<label for='piscina'>Possui Piscina</label>" +
+                            "<select class='form-control' name='piscina' id='inputPiscina'>" +
+                                "<option value='0' selected>Selecione um</option>" +
+                                "<option value='1'>Sim</option>" +
+                                "<option value='2'>Não</option>" +
+                            "</select>" +
+                        "</div>";
+        }
+
         if ($(this).val() === '2') {
             saida +=    "<div class='form-group'>" +
+                            "<label for='numeroApartamento'>Número do Apartamento</label>" +
+                            "<input type='number' name='numeroApartamento' id='inputNumeroApartamento' placeholder='Digite o Número do Apartamento' class='form-control'>" +
+                        "</div>" +
+                        "<div class='form-group'>" +
                             "<label for='andar'>Andar</label>" +
                             "<input type='number' name='andar' id='inputAndar' placeholder='Digite o Andar' class='form-control'>" +
                         "</div>" +
@@ -294,7 +309,8 @@ $("#inputTipoImovel").change(function() {
         var inputValor = $("#inputValor").val();
         var inputPorcentagemImobiliaria = $("#inputPorcentagemImobiliaria").val();
         var inputTipoImovel = $("#inputTipoImovel").val();
-        var fileInput = document.getElementById("inputImagens").files;
+        var inputNumeroApartamento = $("#inputNumeroApartamento").val();
+        var inputPiscina = $("#inputPiscina").val();
 
         var ok = false;
 
@@ -340,7 +356,9 @@ $("#inputTipoImovel").change(function() {
         } else if (inputDescricao == "" || inputDescricao == null || inputDescricao == undefined) {
             alert("Campo Descrição não preenchido!");
         } else if (inputTipoImovel == '2') {
-            if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
+            if (inputNumeroApartamento == "" || inputNumeroApartamento == null || inputNumeroApartamento == undefined) {
+                alert("Campo Número do Apartamento não preenchido!"); 
+            } else if (inputAndar == "" || inputAndar == null || inputAndar == undefined) {
                 alert("Campo Andar não preenchido!");
             } else if (inputValorCondominio == "" || inputValorCondominio == null || inputValorCondominio == undefined) {
                 alert("Campo Valor do Condomínio não preenchido!");
@@ -360,6 +378,8 @@ $("#inputTipoImovel").change(function() {
                     inputValor = inputValor.slice(0, inputValor.length - 3);
                 }
             }
+        } else if (inputPiscina  == "0" || inputPiscina == null || inputPiscina == undefined) {
+            alert("Campo piscina não preenchido!");
         } else if (inputValor == "" || inputValor == null || inputValor == undefined) {
             alert("Campo Valor não preenchido!");
         } else if (inputPorcentagemImobiliaria == "" || inputPorcentagemImobiliaria == null || inputPorcentagemImobiliaria == undefined) {
@@ -404,6 +424,12 @@ $("#inputTipoImovel").change(function() {
             }
             if (inputPortaria24horas != undefined) {
                 data.append("portaria24horas", inputPortaria24horas);
+            }
+            if (inputNumeroApartamento != undefined) {
+                data.append("numeroApartamento", inputNumeroApartamento);
+            }
+            if (inputPiscina != undefined) {
+                data.append("piscina", inputPiscina);
             }
 
             var ins = document.getElementById('inputImagens').files.length;

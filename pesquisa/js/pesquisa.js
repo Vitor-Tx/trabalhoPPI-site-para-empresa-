@@ -305,6 +305,14 @@ $("#btn-buscar").on("click", function() {
                                                                 "</div>"
                                                             );
                                                         }
+
+                                                        armarioEmbutido = "";
+
+                                                        if (imoveis[0].ArmarioEmbutido == 1) {
+                                                            armarioEmbutido == "Sim";
+                                                        } else if (imoveis[0].ArmarioEmbutido == 2) {
+                                                            armarioEmbutido == "Não";
+                                                        }
                                 
                                                         saida = "<div class='col-sm-12'>" +
                                                                     "<div class='row'>" +
@@ -387,9 +395,26 @@ $("#btn-buscar").on("click", function() {
                                                                         "<div class='col-sm-3'>" +
                                                                             "<span>" +
                                                                                 "<strong>Armario Embutido: </strong>"+ 
-                                                                                imoveis[0].ArmarioEmbutido +
+                                                                                armarioEmbutido +
                                                                             "</span>" +
                                                                         "</div>";
+
+                                                        if (imoveis[0].TipoImovel == "Casa") {
+                                                            piscina = "";
+
+                                                            if (parseInt(imoveis[0].Piscina) == 1) {
+                                                                piscina = "Sim";
+                                                            } else if (parseInt(imoveis[0].Piscina) == 2) {
+                                                                piscina = "Não";
+                                                            }
+                                                            console.log(piscina);
+                                                            saida += "<div class='col-sm-3'>" +
+                                                                        "<span>" +
+                                                                            "<strong>Pisicina: </strong>"+ 
+                                                                            piscina +
+                                                                        "</span>" +
+                                                                    "</div>";
+                                                        }
                                 
                                                         if (imoveis[0].TipoImovel == "Apartamento") {
                                                             condominio = imoveis[0].ValorCondominio.slice(0, 
@@ -421,6 +446,12 @@ $("#btn-buscar").on("click", function() {
                                                                             "<span>" +
                                                                                 "<strong>Portaria 24hrs: </strong>"+ 
                                                                                 portaria +
+                                                                            "</span>" +
+                                                                        "</div>" +
+                                                                        "<div class='col-sm-3'>" +
+                                                                            "<span>" +
+                                                                                "<strong>Número do Apartamento: </strong>"+ 
+                                                                                imoveis[0].NumeroApartamento +
                                                                             "</span>" +
                                                                         "</div>" +
                                                                     "</div>";

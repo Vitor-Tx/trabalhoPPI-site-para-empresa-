@@ -168,8 +168,21 @@
                                                         </div>
                                                     ";
 
+                                                    if ($imovel->tipoImovel == "Casa") {
+                                                        echo "
+                                                            <div class='row mt-2 ml-1'>
+                                                                <label for='piscina'><strong>Possui Piscina:&nbsp&nbsp</strong></label>
+                                                                <span name='piscina'>$imovel->piscina</span>
+                                                            </div>
+                                                        ";
+                                                    }
+
                                                     if ($imovel->tipoImovel == "Apartamento") {
                                                         echo "
+                                                            <div class='row mt-2 ml-1'>
+                                                                <label for='numeroApartamento'><strong>Número do Apartamento:&nbsp&nbsp</strong></label>
+                                                                <span name='numeroApartamento'>$imovel->numeroApartamento</span>
+                                                            </div>
                                                             <div class='row mt-2 ml-1'>
                                                                 <label for='andar'><strong>Andar:&nbsp&nbsp</strong></label>
                                                                 <span name='andar'>$imovel->andar</span>

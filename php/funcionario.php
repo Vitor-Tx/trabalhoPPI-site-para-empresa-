@@ -27,7 +27,7 @@
                     f.TelefoneContato,
                     f.TelefoneCelular,
                     f.DataIngresso,
-                    c.SalarioBase,
+                    f.Salario as SalarioBase,
                     f.Comissao,
                     f.Login
                 FROM
