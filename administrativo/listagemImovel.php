@@ -263,8 +263,8 @@
                                                     }
 
                                                     echo "      <hr>
-                                                                <div class='row bg-orange mt-5 mb-3 mx-4'>
-                                                                   <img src='../assets/images/uploads/$imagem' class='w-75 mx-auto'>
+                                                                <div class='row bg-orange mx-auto w-100 mt-5 mb-3 mx-4'>
+                                                                   <img src='../assets/images/uploads/$imagem' class='mx-auto img-imovel'>
                                                                 </div>
                                                             </div>
                                                         </div>

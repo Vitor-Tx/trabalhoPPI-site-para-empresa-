@@ -22,3 +22,13 @@ label {
 .bg-orange {
     background-color: rgb(214, 97, 18);
 }
+
+.img-imovel {
+    width: 40vw;
+}
+
+@media (max-width: 550px) {
+    .img-imovel {
+        width: 50vw !important;
+    }
+}

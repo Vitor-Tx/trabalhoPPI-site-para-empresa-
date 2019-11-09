@@ -460,7 +460,7 @@ $("#btn-buscar").on("click", function() {
                                                         }
                                 
                                                         saida +=    "<div class='row mt-5'>" +
-                                                                        "<div class='col-sm-12'>" +
+                                                                        "<div class='col-sm-12 text-center'>" +
                                                                             "<span>" +
                                                                                 imoveis[0].Descricao +
                                                                             "</span>" +
