@@ -13,7 +13,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id         = filtraEntrada($_POST["id"]);
-        $quantidade = filtraEntrada($_POST["quantidade"]);
+        $quantidade = (int) filtraEntrada($_POST["quantidade"]);
 
         if (isset($_POST["index"])) {
             $index  = filtraEntrada($_POST["index"]);
@@ -21,12 +21,15 @@
 
         try {
 
-            $sql = "SELECT DISTINCT Imagem FROM imagem WHERE ImovelID = ? LIMIT ?";
+            $sql = "SELECT Imagem FROM imagem WHERE ImovelID = ? LIMIT ?";
 
             try {
                 $result = $conn->prepare($sql);
-                $result->execute([$id, $quantidade]);
+                $result->bindValue(1, $id, PDO::PARAM_INT);
+                $result->bindValue(2, $quantidade, PDO::PARAM_INT);
+                $result->execute();
             } catch (Exception $e) {
+            	echo "teste";
                 throw $e;
             }
 

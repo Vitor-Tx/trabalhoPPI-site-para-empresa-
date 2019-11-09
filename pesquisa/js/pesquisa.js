@@ -151,12 +151,14 @@ $("#btn-buscar").on("click", function() {
                     imoveis = JSON.parse(result);
 
                     for (var x = 0; x < imoveis.length; x++) {
+                        var id = imoveis[x].ID;
+
                         $.ajax({
                             method: "POST",
                             url: "../php/getImagens.php",
                             data:
                             {
-                                id: imoveis[x].ID,
+                                id: id,
                                 quantidade: 3,
                                 index: x
                             },

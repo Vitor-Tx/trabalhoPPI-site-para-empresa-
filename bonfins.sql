@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 30/10/2019 às 03:00
+-- Tempo de geração: 08/11/2019 às 04:42
 -- Versão do servidor: 10.4.8-MariaDB
 -- Versão do PHP: 7.3.10
 
@@ -25,23 +25,62 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `apartamento`
+--
+
+CREATE TABLE `apartamento` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `Andar` int(1) UNSIGNED NOT NULL,
+  `ValorCondominio` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Portaria24Horas` int(1) UNSIGNED NOT NULL,
+  `NumeroApartamento` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `apartamento`
+--
+
+INSERT INTO `apartamento` (`ID`, `Andar`, `ValorCondominio`, `Portaria24Horas`, `NumeroApartamento`) VALUES
+(53, 1, '120.00 R$', 1, 102);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `cargo`
 --
 
 CREATE TABLE `cargo` (
   `ID` int(4) UNSIGNED NOT NULL,
-  `Nome` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `SalarioBase` float UNSIGNED NOT NULL
+  `Nome` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Despejando dados para a tabela `cargo`
 --
 
-INSERT INTO `cargo` (`ID`, `Nome`, `SalarioBase`) VALUES
-(1, 'Diretor', 3000),
-(2, 'Vendedor', 1200),
-(3, 'Estagiário', 600);
+INSERT INTO `cargo` (`ID`, `Nome`) VALUES
+(1, 'Diretor'),
+(3, 'Estagiário'),
+(2, 'Vendedor');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `casa`
+--
+
+CREATE TABLE `casa` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `Piscina` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `casa`
+--
+
+INSERT INTO `casa` (`ID`, `Piscina`) VALUES
+(54, 2),
+(55, 1);
 
 -- --------------------------------------------------------
 
@@ -71,6 +110,41 @@ INSERT INTO `cliente` (`ID`, `Nome`, `Cpf`, `Endereco`, `Email`, `Sexo`, `Estado
 (4, 'Teste2', '123.456.789-03', 'Rua F, Bairro G', 'teste1@teste1.com', 'm', 5, 'Tester'),
 (5, 'Carlos Rocha', '234.567.890-67', 'Rua G, Bairro F', 'carlos@gmail.com', 'm', 3, 'Atirador de Elite'),
 (6, 'Fernado Silva', '113.216.465-19', 'Rua Sargento Benevides 12, Bairro Centro, Maceió - AL', 'fernando.silva@gmail.com', 'm', 5, 'Caçador de Castores');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `consultaEndereco`
+--
+
+CREATE TABLE `consultaEndereco` (
+  `ID` int(4) UNSIGNED NOT NULL,
+  `CEP` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `Logradouro` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Bairro` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Cidade` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Estado` varchar(2) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `consultaEndereco`
+--
+
+INSERT INTO `consultaEndereco` (`ID`, `CEP`, `Logradouro`, `Bairro`, `Cidade`, `Estado`) VALUES
+(1, '49095-173', 'Rua João Batista de Melo', 'Jabotiana', 'Aracaju', 'SE'),
+(2, '59104-265', 'Vila São Braz', 'Igapó', 'Natal', 'RN'),
+(3, '75804-162', 'Viela B', 'Conjunto Rio Claro I', 'Jataí', 'GO'),
+(4, '07184-090', 'Alameda Dois', 'Vila Militar de Cumbica', 'Guarulhos', 'SP'),
+(5, '77818-370', 'Rua 3', 'Vila Cearense', 'Araguaína', 'TO'),
+(6, '49015-110', 'Rua Itabaiana', 'São José', 'Aracaju', 'SE'),
+(7, '64035-825', 'Rua Raimundo Valente Figueiredo', 'Parque Juliana', 'Teresina', 'PI'),
+(8, '57081-489', 'Via Secundária 5', 'Tabuleiro do Martins', 'Maceió', 'AL'),
+(9, '29032-372', 'Beco São Tomé', 'Nova Palestina', 'Vitória', 'ES'),
+(10, '57046-785', 'Rua Luiz Gonzaga da Silva', 'Serraria', 'Maceió', 'AL'),
+(11, '68903-519', 'Rua Luis Azarias Neto', 'Universidade', 'Macapá', 'AP'),
+(12, '55030-200', 'Avenida Lourival José da Silva', 'Petrópolis', 'Caruaru', 'PE'),
+(13, '72316-044', 'Quadra 202 Conjunto 4', 'Samambaia Norte', 'Brasília', 'DF'),
+(14, '57306-742', 'Rua Maria Gildete Tavares Lima', 'Cavaco', 'Arapiraca', 'AL');
 
 -- --------------------------------------------------------
 
@@ -110,6 +184,7 @@ CREATE TABLE `funcionario` (
   `TelefoneCelular` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `DataIngresso` date NOT NULL,
   `Cargo` int(4) UNSIGNED NOT NULL,
+  `Salario` float UNSIGNED NOT NULL,
   `Comissao` float UNSIGNED NOT NULL,
   `Login` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `Senha` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
@@ -120,14 +195,14 @@ CREATE TABLE `funcionario` (
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `TelefoneContato`, `TelefoneCelular`, `DataIngresso`, `Cargo`, `Comissao`, `Login`, `Senha`, `Salt`) VALUES
-(4, 'Guilherme Bartasson', '(34) 3223-8957', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', '2019-10-16', 1, 0, 'guilherme.bonfins', '$2a$04$s6CTAFW6BhP8Be1UAZuh2.UGnFIbDFl3d6MD2fYbuvFOjSaNt.H9m', 's6CTAFW6BhP8Be1UAZuh2A'),
-(5, 'Teste3', '(34) 34567-8907', '123.456.789-56', 'Rua C, Bairro Z Uberlândia MG', '(45) 67890-7890', '(67) 8906-7890', '2019-10-20', 2, 0, 'bonfins_teste3', '$2a$04$w3cJubBPwYnm3dDuY7t1nuGiTWj6WbhuOQuamnVzUchL6jPNJRZ8a', 'w3cJubBPwYnm3dDuY7t1nv'),
-(6, 'Teste 4', '(45) 67890-6789', '456.789.067-89', 'Rua A, Bairro B Uberlândia Mg', '(34) 56789-0789', '(56) 78905-6789', '2019-10-20', 3, 0, 'bonfins_teste4', '$2a$04$uz4Fte6UuHPBd5sic6UKlO62Eaz4.FVfCsmgEzAlvnR9yb2tRThXq', 'uz4Fte6UuHPBd5sic6UKlP'),
-(8, 'Teste5', '(34) 56789-0678', '234.567.890-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9678', '(56) 7890-7890', '2019-10-20', 1, 0, 'bonfins_teste5', '$2a$04$mRVAq3Lw1UmjZAfDZ0dZu.weHec514ssTZvPBewt4qmejNSQkq73q', 'mRVAq3Lw1UmjZAfDZ0dZuG'),
-(9, 'Guilherme Bartasson Naves Junker', '(23) 45678-9456', '345.678.905-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(67) 8905-6789', '2019-10-21', 1, 0, 'bonfins_guilherme', '$2a$04$GCaL5dPrxqX14VLugXLxjeU.4y6FyumgM01q7S5/4cbNFD.nctrsS', 'GCaL5dPrxqX14VLugXLxjh'),
-(10, 'Vitor Manoel Gonçalves Teixeira', '(23) 45678-9045', '456.789.045-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78905-6789', '2019-10-21', 1, 0, 'bonfins_vitor', '$2a$04$gk2qGlRyW5PkfScz4SGeKelSH1Gu0rp1fSUdWuuEROkgG51Q3MVwS', 'gk2qGlRyW5PkfScz4SGeKm'),
-(11, 'Diego Batistuta Ribeiro de Andrade', '(12) 34567-8903', '345.678.904-56', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78903-4567', '2019-10-21', 1, 0, 'bonfins_diego', '$2a$04$FFva7zFPyGcMNIaBq4z9q.HHeeAeFXS1BZUvFxGCJELTdnOnleUsy', 'FFva7zFPyGcMNIaBq4z9qM');
+INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `TelefoneContato`, `TelefoneCelular`, `DataIngresso`, `Cargo`, `Salario`, `Comissao`, `Login`, `Senha`, `Salt`) VALUES
+(4, 'Guilherme Bartasson', '(34) 3223-8957', '137.682.906-11', 'Rua Guaporé 526, Bairro Santa Rosa', '(34) 3223-8957', '(34) 99813-4380', '2019-10-16', 1, 1000, 0, 'guilherme.bonfins', '$2a$04$s6CTAFW6BhP8Be1UAZuh2.UGnFIbDFl3d6MD2fYbuvFOjSaNt.H9m', 's6CTAFW6BhP8Be1UAZuh2A'),
+(5, 'Teste3', '(34) 34567-8907', '123.456.789-56', 'Rua C, Bairro Z Uberlândia MG', '(45) 67890-7890', '(67) 8906-7890', '2019-10-20', 2, 1000, 0, 'bonfins_teste3', '$2a$04$w3cJubBPwYnm3dDuY7t1nuGiTWj6WbhuOQuamnVzUchL6jPNJRZ8a', 'w3cJubBPwYnm3dDuY7t1nv'),
+(6, 'Teste 4', '(45) 67890-6789', '456.789.067-89', 'Rua A, Bairro B Uberlândia Mg', '(34) 56789-0789', '(56) 78905-6789', '2019-10-20', 3, 1000, 0, 'bonfins_teste4', '$2a$04$uz4Fte6UuHPBd5sic6UKlO62Eaz4.FVfCsmgEzAlvnR9yb2tRThXq', 'uz4Fte6UuHPBd5sic6UKlP'),
+(8, 'Teste5', '(34) 56789-0678', '234.567.890-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9678', '(56) 7890-7890', '2019-10-20', 1, 1000, 0, 'bonfins_teste5', '$2a$04$mRVAq3Lw1UmjZAfDZ0dZu.weHec514ssTZvPBewt4qmejNSQkq73q', 'mRVAq3Lw1UmjZAfDZ0dZuG'),
+(9, 'Guilherme Bartasson Naves Junker', '(23) 45678-9456', '345.678.905-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(67) 8905-6789', '2019-10-21', 1, 2500, 0, 'bonfins_guilherme', '$2a$04$GCaL5dPrxqX14VLugXLxjeU.4y6FyumgM01q7S5/4cbNFD.nctrsS', 'GCaL5dPrxqX14VLugXLxjh'),
+(10, 'Vitor Manoel Gonçalves Teixeira', '(23) 45678-9045', '456.789.045-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78905-6789', '2019-10-21', 1, 2500, 0, 'bonfins_vitor', '$2a$04$gk2qGlRyW5PkfScz4SGeKelSH1Gu0rp1fSUdWuuEROkgG51Q3MVwS', 'gk2qGlRyW5PkfScz4SGeKm'),
+(11, 'Diego Batistuta Ribeiro de Andrade', '(12) 34567-8903', '345.678.904-56', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78903-4567', '2019-10-21', 1, 2500, 0, 'bonfins_diego', '$2a$04$FFva7zFPyGcMNIaBq4z9q.HHeeAeFXS1BZUvFxGCJELTdnOnleUsy', 'FFva7zFPyGcMNIaBq4z9qM');
 
 -- --------------------------------------------------------
 
@@ -140,6 +215,20 @@ CREATE TABLE `imagem` (
   `Imagem` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ImovelID` int(4) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imagem`
+--
+
+INSERT INTO `imagem` (`ID`, `Imagem`, `ImovelID`) VALUES
+(57, '53-061119-112150-1.jpg', 53),
+(58, '53-061119-112150-2.jpg', 53),
+(59, '54-061119-112321-1.jpg', 54),
+(60, '54-061119-112321-2.jpg', 54),
+(61, '55-061119-114150-1.jpg', 55),
+(62, '55-061119-114150-2.jpg', 55),
+(63, '55-061119-114150-3.jpg', 55),
+(64, '55-061119-114150-4.jpg', 55);
 
 -- --------------------------------------------------------
 
@@ -163,9 +252,6 @@ CREATE TABLE `imovel` (
   `Area` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `ArmarioEmbutido` int(1) UNSIGNED NOT NULL,
   `Descricao` text COLLATE utf8_unicode_ci NOT NULL,
-  `Andar` int(1) UNSIGNED DEFAULT NULL,
-  `ValorCondominio` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Portaria24Horas` int(1) UNSIGNED DEFAULT NULL,
   `Valor` double UNSIGNED NOT NULL,
   `PorcentagemImobiliaria` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `TipoImovel` int(4) UNSIGNED NOT NULL,
@@ -175,6 +261,15 @@ CREATE TABLE `imovel` (
   `Vendido_Alugado` int(1) UNSIGNED NOT NULL,
   `FuncionarioResponsavel` int(4) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `imovel`
+--
+
+INSERT INTO `imovel` (`ID`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Estado`, `TipoTransacao`, `QuantidadeQuartos`, `QuantidadeSuites`, `QuantidadeSalaEstar`, `QuantidadeSalaJantar`, `QuantidadeVagasGaragem`, `Area`, `ArmarioEmbutido`, `Descricao`, `Valor`, `PorcentagemImobiliaria`, `TipoImovel`, `ValorReal`, `DataInicio`, `DataFim`, `Vendido_Alugado`, `FuncionarioResponsavel`) VALUES
+(53, 'A', 123, 'B', 'C', 'AC', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '12 %', 2, NULL, '2019-11-06', NULL, 0, 9),
+(54, 'A', 123, 'B', 'Uberlândia', 'MG', 2, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 900, '12 %', 1, NULL, '2019-11-06', NULL, 0, 9),
+(55, 'Z', 258, 'X', 'Y', 'AP', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '12 %', 1, NULL, '2019-11-06', NULL, 0, 9);
 
 -- --------------------------------------------------------
 
@@ -202,6 +297,15 @@ CREATE TABLE `proprietario` (
   `PessoaID` int(4) UNSIGNED NOT NULL,
   `ImovelID` int(4) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `proprietario`
+--
+
+INSERT INTO `proprietario` (`ID`, `PessoaID`, `ImovelID`) VALUES
+(51, 1, 53),
+(52, 1, 54),
+(53, 1, 55);
 
 -- --------------------------------------------------------
 
@@ -275,11 +379,23 @@ INSERT INTO `tipoPessoa` (`ID`, `Nome`) VALUES
 --
 
 --
+-- Índices de tabela `apartamento`
+--
+ALTER TABLE `apartamento`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Índices de tabela `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Nome` (`Nome`);
+
+--
+-- Índices de tabela `casa`
+--
+ALTER TABLE `casa`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Índices de tabela `cliente`
@@ -288,6 +404,13 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Cpf` (`Cpf`),
   ADD KEY `fk_estadoCivil` (`EstadoCivil`);
+
+--
+-- Índices de tabela `consultaEndereco`
+--
+ALTER TABLE `consultaEndereco`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `CEP` (`CEP`);
 
 --
 -- Índices de tabela `estadoCivil`
@@ -372,6 +495,12 @@ ALTER TABLE `cliente`
   MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de tabela `consultaEndereco`
+--
+ALTER TABLE `consultaEndereco`
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT de tabela `estadoCivil`
 --
 ALTER TABLE `estadoCivil`
@@ -387,25 +516,25 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de tabela `imovel`
 --
 ALTER TABLE `imovel`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de tabela `interesse`
 --
 ALTER TABLE `interesse`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `proprietario`
 --
 ALTER TABLE `proprietario`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
@@ -428,6 +557,18 @@ ALTER TABLE `tipoPessoa`
 --
 -- Restrições para dumps de tabelas
 --
+
+--
+-- Restrições para tabelas `apartamento`
+--
+ALTER TABLE `apartamento`
+  ADD CONSTRAINT `fk_imovel_id_apartamento` FOREIGN KEY (`ID`) REFERENCES `imovel` (`ID`);
+
+--
+-- Restrições para tabelas `casa`
+--
+ALTER TABLE `casa`
+  ADD CONSTRAINT `fk_imovel_id_casa` FOREIGN KEY (`ID`) REFERENCES `imovel` (`ID`);
 
 --
 -- Restrições para tabelas `cliente`
