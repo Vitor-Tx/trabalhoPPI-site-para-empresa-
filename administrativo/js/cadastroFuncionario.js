@@ -73,7 +73,12 @@ $("#btnCadastrar").on('click', function() {
     var inputNome = $("#inputNome").val();
     var inputTelefone = $("#inputTelefone").val();
     var inputCPF = $("#inputCPF").val();
-    var inputEndereco = $("#inputEndereco").val();
+    var inputCEP = $("#inputCEP").val();
+    var inputLogradouro = $("#inputLogradouro").val();
+    var inputNumero = $("#inputNumero").val();
+    var inputBairro = $("#inputBairro").val();
+    var inputCidade = $("#inputCidade").val();
+    var inputEstado = $("#inputEstado").val();
     var inputTelefoneContato = $("#inputTelefoneContato").val();
     var inputTelefoneCelular = $("#inputTelefoneCelular").val();
     var inputCargo = $("#inputCargo").val();
@@ -87,8 +92,18 @@ $("#btnCadastrar").on('click', function() {
         alert("Campo Telefone não preenchido!");
     } else if (inputCPF == "" || inputCPF == null || inputCPF == undefined) {
         alert("Campo CPF não preenchido!");
-    } else if (inputEndereco == "" || inputEndereco == null || inputEndereco == undefined) {
-        alert("Campo Endereço não preenchido!");
+    } else if (inputCEP == "" || inputCEP == null || inputCEP == undefined || inputCEP.length < 9) {
+        alert("CEP inválido!");
+    } else if (inputLogradouro == "" || inputLogradouro == null || inputLogradouro == undefined) {
+        alert("Campo Logradouro não preenchido!");
+    } else if (inputNumero == 0 || inputNumero == null || inputNumero == undefined) {
+        alert("Número inválido!");
+    } else if (inputBairro == "" || inputBairro == null || inputBairro == undefined) {
+        alert("Campo Bairro não preenchido!");
+    } else if (inputCidade == "" || inputCidade == null || inputCidade == undefined) {
+        alert("Campo Cidade não preenchido!");
+    } else if (inputEstado == "" || inputEstado == null || inputEstado == undefined) {
+        alert("Campo Estado não preenchido!");
     } else if (inputTelefoneContato == "" || inputTelefoneContato == null || inputTelefoneContato == undefined) {
         alert("Campo Telefone Contato não preenchido!");
     } else if (inputTelefoneCelular == "" || inputTelefoneCelular == null || inputTelefoneCelular == undefined) {
@@ -110,11 +125,15 @@ $("#btnCadastrar").on('click', function() {
                 nome: inputNome,
                 telefone: inputTelefone,
                 cpf: inputCPF,
-                endereco: inputEndereco,
+                endereco: ( inputLogradouro + " " + 
+                            inputNumero + ", " + 
+                            inputBairro + ", " + 
+                            inputCidade + " - " + 
+                            inputEstado),
                 telefoneContato: inputTelefoneContato,
                 telefoneCelular: inputTelefoneCelular,
                 cargo: inputCargo,
-                salario: salario,
+                salario: inputSalario.slice(0, inputSalario.length - 3),
                 login: inputLogin,
                 senha: inputSenha,
             },

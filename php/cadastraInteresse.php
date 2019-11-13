@@ -21,8 +21,6 @@
         try {
             $conn->beginTransaction();
 
-            echo $imovelId;
-
             $sql = "INSERT INTO interesse (
                 ImovelID, 
                 NomeCliente, 
