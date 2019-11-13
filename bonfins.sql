@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/11/2019 às 04:42
+-- Tempo de geração: 13/11/2019 às 04:07
 -- Versão do servidor: 10.4.8-MariaDB
 -- Versão do PHP: 7.3.10
 
@@ -41,7 +41,8 @@ CREATE TABLE `apartamento` (
 --
 
 INSERT INTO `apartamento` (`ID`, `Andar`, `ValorCondominio`, `Portaria24Horas`, `NumeroApartamento`) VALUES
-(53, 1, '120.00 R$', 1, 102);
+(53, 1, '120.00 R$', 1, 102),
+(56, 3, '2.50 R$', 1, 300);
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,8 @@ INSERT INTO `cliente` (`ID`, `Nome`, `Cpf`, `Endereco`, `Email`, `Sexo`, `Estado
 (3, 'Teste', '123.456.789-05', 'Rua C, Bairro D', 'teste@teste.com', 'f', 1, 'Tester'),
 (4, 'Teste2', '123.456.789-03', 'Rua F, Bairro G', 'teste1@teste1.com', 'm', 5, 'Tester'),
 (5, 'Carlos Rocha', '234.567.890-67', 'Rua G, Bairro F', 'carlos@gmail.com', 'm', 3, 'Atirador de Elite'),
-(6, 'Fernado Silva', '113.216.465-19', 'Rua Sargento Benevides 12, Bairro Centro, Maceió - AL', 'fernando.silva@gmail.com', 'm', 5, 'Caçador de Castores');
+(6, 'Fernado Silva', '113.216.465-19', 'Rua Sargento Benevides 12, Bairro Centro, Maceió - AL', 'fernando.silva@gmail.com', 'm', 5, 'Caçador de Castores'),
+(7, 'Lucas Ribeiro', '218.706.470-09', 'Rua Via Secundária 5 159, Bairro Tabuleiro do Martins, Maceió - AL', 'lucasribeiro@gmail.com', 'm', 2, 'Pizzaiolo');
 
 -- --------------------------------------------------------
 
@@ -202,7 +204,8 @@ INSERT INTO `funcionario` (`ID`, `Nome`, `Telefone`, `Cpf`, `Endereco`, `Telefon
 (8, 'Teste5', '(34) 56789-0678', '234.567.890-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9678', '(56) 7890-7890', '2019-10-20', 1, 1000, 0, 'bonfins_teste5', '$2a$04$mRVAq3Lw1UmjZAfDZ0dZu.weHec514ssTZvPBewt4qmejNSQkq73q', 'mRVAq3Lw1UmjZAfDZ0dZuG'),
 (9, 'Guilherme Bartasson Naves Junker', '(23) 45678-9456', '345.678.905-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(67) 8905-6789', '2019-10-21', 1, 2500, 0, 'bonfins_guilherme', '$2a$04$GCaL5dPrxqX14VLugXLxjeU.4y6FyumgM01q7S5/4cbNFD.nctrsS', 'GCaL5dPrxqX14VLugXLxjh'),
 (10, 'Vitor Manoel Gonçalves Teixeira', '(23) 45678-9045', '456.789.045-67', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78905-6789', '2019-10-21', 1, 2500, 0, 'bonfins_vitor', '$2a$04$gk2qGlRyW5PkfScz4SGeKelSH1Gu0rp1fSUdWuuEROkgG51Q3MVwS', 'gk2qGlRyW5PkfScz4SGeKm'),
-(11, 'Diego Batistuta Ribeiro de Andrade', '(12) 34567-8903', '345.678.904-56', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78903-4567', '2019-10-21', 1, 2500, 0, 'bonfins_diego', '$2a$04$FFva7zFPyGcMNIaBq4z9q.HHeeAeFXS1BZUvFxGCJELTdnOnleUsy', 'FFva7zFPyGcMNIaBq4z9qM');
+(11, 'Diego Batistuta Ribeiro de Andrade', '(12) 34567-8903', '345.678.904-56', 'Rua A, Bairro B Uberlândia MG', '(23) 45678-9056', '(56) 78903-4567', '2019-10-21', 1, 2500, 0, 'bonfins_diego', '$2a$04$FFva7zFPyGcMNIaBq4z9q.HHeeAeFXS1BZUvFxGCJELTdnOnleUsy', 'FFva7zFPyGcMNIaBq4z9qM'),
+(12, 'Daniel Furtado', '(34) 99999-9999', '144.881.810-90', 'Alameda Dois 123, Vila Militar de Cumbica, Guarulhos - SP', '(34) 99999-9999', '(34) 99999-9999', '2019-11-12', 1, 4000, 0, 'bonfins_daniel', '$2a$04$5iTdMwsZxD6EzRKRmPkpduJQc4GZn5RyigqlG/I6P9nEbVpDGR2E.', '5iTdMwsZxD6EzRKRmPkpdu');
 
 -- --------------------------------------------------------
 
@@ -228,7 +231,9 @@ INSERT INTO `imagem` (`ID`, `Imagem`, `ImovelID`) VALUES
 (61, '55-061119-114150-1.jpg', 55),
 (62, '55-061119-114150-2.jpg', 55),
 (63, '55-061119-114150-3.jpg', 55),
-(64, '55-061119-114150-4.jpg', 55);
+(64, '55-061119-114150-4.jpg', 55),
+(65, '56-121119-115513-1.jpg', 56),
+(66, '56-121119-115514-2.jpg', 56);
 
 -- --------------------------------------------------------
 
@@ -269,7 +274,8 @@ CREATE TABLE `imovel` (
 INSERT INTO `imovel` (`ID`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Estado`, `TipoTransacao`, `QuantidadeQuartos`, `QuantidadeSuites`, `QuantidadeSalaEstar`, `QuantidadeSalaJantar`, `QuantidadeVagasGaragem`, `Area`, `ArmarioEmbutido`, `Descricao`, `Valor`, `PorcentagemImobiliaria`, `TipoImovel`, `ValorReal`, `DataInicio`, `DataFim`, `Vendido_Alugado`, `FuncionarioResponsavel`) VALUES
 (53, 'A', 123, 'B', 'C', 'AC', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '12 %', 2, NULL, '2019-11-06', NULL, 0, 9),
 (54, 'A', 123, 'B', 'Uberlândia', 'MG', 2, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 900, '12 %', 1, NULL, '2019-11-06', NULL, 0, 9),
-(55, 'Z', 258, 'X', 'Y', 'AP', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '12 %', 1, NULL, '2019-11-06', NULL, 0, 9);
+(55, 'Z', 258, 'X', 'Y', 'AP', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '12 %', 1, NULL, '2019-11-06', NULL, 0, 9),
+(56, 'A', 123, 'B', 'C', 'BA', 1, 1, 1, 1, 1, 1, '200 m²', 1, 'Teste', 200000, '15 %', 2, NULL, '2019-11-12', NULL, 0, 12);
 
 -- --------------------------------------------------------
 
@@ -285,6 +291,13 @@ CREATE TABLE `interesse` (
   `EmailCliente` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `Proposta` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Despejando dados para a tabela `interesse`
+--
+
+INSERT INTO `interesse` (`ID`, `ImovelID`, `NomeCliente`, `TelefoneCliente`, `EmailCliente`, `Proposta`) VALUES
+(5, 56, 'Maria Teixeira', '(35) 88888-8888', 'mariat@gmail.com', 'Teste');
 
 -- --------------------------------------------------------
 
@@ -305,7 +318,8 @@ CREATE TABLE `proprietario` (
 INSERT INTO `proprietario` (`ID`, `PessoaID`, `ImovelID`) VALUES
 (51, 1, 53),
 (52, 1, 54),
-(53, 1, 55);
+(53, 1, 55),
+(54, 7, 56);
 
 -- --------------------------------------------------------
 
@@ -334,7 +348,9 @@ INSERT INTO `telefone` (`ID`, `PessoaID`, `TipoPessoa`, `Numero`) VALUES
 (7, 4, 1, '(45) 67890-4567'),
 (8, 5, 1, '(34) 56789-0789'),
 (9, 5, 1, '(67) 8907-8909'),
-(10, 6, 1, '(45) 4545-5445');
+(10, 6, 1, '(45) 4545-5445'),
+(11, 7, 1, '(34) 99999-9999'),
+(12, 7, 1, '(34) 88888-8888');
 
 -- --------------------------------------------------------
 
@@ -492,7 +508,7 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `consultaEndereco`
@@ -510,37 +526,37 @@ ALTER TABLE `estadoCivil`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de tabela `imovel`
 --
 ALTER TABLE `imovel`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de tabela `interesse`
 --
 ALTER TABLE `interesse`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `proprietario`
 --
 ALTER TABLE `proprietario`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de tabela `telefone`
 --
 ALTER TABLE `telefone`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `tipoImovel`
